@@ -3,7 +3,37 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PL.Sinema.UI", "PL.Sinema.UI\PL.Sinema.UI.csproj", "{4B7250C5-7E3F-494B-A26C-2D7C6508AD68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL.Sinema", "DAL.Sinema\DAL.Sinema.csproj", "{BA953C29-BF9A-4E4B-A0E5-10DA8D1E9BB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL.Sinema", "BLL.Sinema\BLL.Sinema.csproj", "{2278F500-5A92-4DFB-9A6E-3C2CF0BE8929}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities.Sinema", "Entities.Sinema\Entities.Sinema.csproj", "{03732BB4-C23C-4CCE-B8DB-0E951F4D555E}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4B7250C5-7E3F-494B-A26C-2D7C6508AD68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B7250C5-7E3F-494B-A26C-2D7C6508AD68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B7250C5-7E3F-494B-A26C-2D7C6508AD68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B7250C5-7E3F-494B-A26C-2D7C6508AD68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA953C29-BF9A-4E4B-A0E5-10DA8D1E9BB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA953C29-BF9A-4E4B-A0E5-10DA8D1E9BB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA953C29-BF9A-4E4B-A0E5-10DA8D1E9BB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA953C29-BF9A-4E4B-A0E5-10DA8D1E9BB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2278F500-5A92-4DFB-9A6E-3C2CF0BE8929}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2278F500-5A92-4DFB-9A6E-3C2CF0BE8929}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2278F500-5A92-4DFB-9A6E-3C2CF0BE8929}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2278F500-5A92-4DFB-9A6E-3C2CF0BE8929}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03732BB4-C23C-4CCE-B8DB-0E951F4D555E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03732BB4-C23C-4CCE-B8DB-0E951F4D555E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03732BB4-C23C-4CCE-B8DB-0E951F4D555E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03732BB4-C23C-4CCE-B8DB-0E951F4D555E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
