@@ -15,5 +15,10 @@ namespace Entities.Sinema
         public int Id { get => _id; set => _id = value; }
         public DateTime AddedDate { get => _addedDate; set => _addedDate = value; }
         public bool IsActive { get => _isActive; set => _isActive = value; }
+        public EntityBase()
+        {
+            AddedDate = DateTime.Now;
+            IsActive = true;
+        }
     }
 }

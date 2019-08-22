@@ -76,5 +76,19 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLL.Sinema\BLL.Sinema.csproj">
+      <Project>{2278f500-5a92-4dfb-9a6e-3c2cf0be8929}</Project>
+      <Name>BLL.Sinema</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL.Sinema\DAL.Sinema.csproj">
+      <Project>{ba953c29-bf9a-4e4b-a0e5-10da8d1e9bb7}</Project>
+      <Name>DAL.Sinema</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entities.Sinema\Entities.Sinema.csproj">
+      <Project>{03732bb4-c23c-4cce-b8db-0e951f4d555e}</Project>
+      <Name>Entities.Sinema</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,5 +1,4 @@
-﻿using Entities.Sinema;
-using Entities.Sinema.Entity;
+﻿using Entities.Sinema.Entity;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -9,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace DAL.Sinema.Context
 {
-    public class SinemaContext:DbContext
+    public class SinemaContext : DbContext
     {
-        public SinemaContext():base("SinemaConnStr")
+        public SinemaContext() : base("SinemaConnStr")
         {
 
         }
@@ -26,6 +25,7 @@ namespace DAL.Sinema.Context
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            //Database.SetInitializer<SinemaContext>(new CreateDatabaseIfNotExists<SinemaContext>());
             modelBuilder.Entity<Ticket>()
                 .HasRequired(t => t.Customer)
                 .WithMany(c => c.Tickets)
@@ -37,14 +37,14 @@ namespace DAL.Sinema.Context
                 .HasForeignKey(t => t.SeanceId)
                 .WillCascadeOnDelete(false);
             modelBuilder.Entity<TicketDetail>()
-                .HasRequired(td=>td.Ticket)
-                .WithMany(t=>t.TicketDetails)
-                .HasForeignKey(td=>td.TicketId)
+                .HasRequired(td => td.Ticket)
+                .WithMany(t => t.TicketDetails)
+                .HasForeignKey(td => td.TicketId)
                 .WillCascadeOnDelete(false);
             modelBuilder.Entity<Seance>()
-                .HasRequired(s=>s.Movie)
-                .WithMany(m=>m.Seances)
-                .HasForeignKey(s=>s.MovieId)
+                .HasRequired(s => s.Movie)
+                .WithMany(m => m.Seances)
+                .HasForeignKey(s => s.MovieId)
                 .WillCascadeOnDelete(false);
             modelBuilder.Entity<Seance>()
                 .HasRequired(s => s.Hall)
@@ -52,33 +52,177 @@ namespace DAL.Sinema.Context
                 .HasForeignKey(s => s.HallId)
                 .WillCascadeOnDelete(false);
             modelBuilder.Entity<Seat>()
-                .HasRequired(s=>s.Hall)
-                .WithMany(s=>s.Seats)
-                .HasForeignKey(s=>s.HallId)
+                .HasRequired(s => s.Hall)
+                .WithMany(s => s.Seats)
+                .HasForeignKey(s => s.HallId)
                 .WillCascadeOnDelete(false);
             modelBuilder.Entity<TicketDetail_Seat>()
-                .HasRequired(tds=>tds.TicketDetail)
-                .WithMany(td=>td.TicketDetail_Seats)
-                .HasForeignKey(tds=>tds.TicketDetailId)
+                .HasRequired(tds => tds.TicketDetail)
+                .WithMany(td => td.TicketDetail_Seats)
+                .HasForeignKey(tds => tds.TicketDetailId)
                 .WillCascadeOnDelete(false);
             modelBuilder.Entity<TicketDetail_Seat>()
-                .HasRequired(tds=>tds.Seat)
-                .WithMany(s=>s.TicketDetail_Seats)
-                .HasForeignKey(tds=>tds.SeatId)
+                .HasRequired(tds => tds.Seat)
+                .WithMany(s => s.TicketDetail_Seats)
+                .HasForeignKey(tds => tds.SeatId)
                 .WillCascadeOnDelete(false);
-            modelBuilder.Entity<EntityBase>()
-                .HasKey(e => e.Id);
-            modelBuilder.Entity<EntityBase>()
+
+
+            modelBuilder.Entity<Customer>()
+                .Property(p => p.Id)
+                .HasColumnOrder(0);
+            modelBuilder.Entity<Customer>()
+                .HasKey(c => c.Id)
                 .Property(p => p.AddedDate)
-                .HasColumnOrder(1)
                 .HasColumnType("datetime2")
-                .HasColumnAnnotation("DefaultValue", DateTime.Now)
                 .IsOptional();
-            modelBuilder.Entity<EntityBase>()
+            modelBuilder.Entity<Customer>()
                 .Property(p => p.IsActive)
-                .HasColumnAnnotation("DefaultValue", true)
+                .IsOptional();
+            modelBuilder.Entity<Customer>()
+                .Property(p => p.Name)
+                .HasMaxLength(50)
+                .IsRequired();
+            modelBuilder.Entity<Customer>()
+                .Property(p => p.Surname)
+                .HasMaxLength(50)
+                .IsRequired();
+            modelBuilder.Entity<Customer>()
+                .Property(p => p.Phone)
+                .HasMaxLength(11)
+                .IsFixedLength()
                 .IsOptional();
 
+            modelBuilder.Entity<Hall>()
+                .Property(p => p.Id)
+                .HasColumnOrder(0);
+            modelBuilder.Entity<Hall>()
+                .HasKey(c => c.Id)
+                .Property(p => p.AddedDate)
+                .HasColumnType("datetime2")
+                .IsOptional();
+            modelBuilder.Entity<Hall>()
+                .Property(p => p.IsActive)
+                .IsOptional();
+            modelBuilder.Entity<Hall>()
+                .Property(p => p.Hall_Code)
+                .HasMaxLength(50)
+                .IsRequired();
+            modelBuilder.Entity<Hall>()
+                .Property(p => p.Seating_Capacity)
+                .IsRequired();
+
+            modelBuilder.Entity<Movie>()
+              .Property(p => p.Id)
+              .HasColumnOrder(0);
+            modelBuilder.Entity<Movie>()
+                .HasKey(c => c.Id)
+                .Property(p => p.AddedDate)
+                .HasColumnType("datetime2")
+                .IsOptional();
+            modelBuilder.Entity<Movie>()
+                .Property(p => p.IsActive)
+                .IsOptional();
+            modelBuilder.Entity<Movie>()
+                .Property(p => p.Movie_Name)
+                .HasMaxLength(50)
+                .IsRequired();
+            modelBuilder.Entity<Movie>()
+                .Property(p => p.Movie_Type)
+                .HasMaxLength(50)
+                .IsRequired();
+            modelBuilder.Entity<Movie>()
+                .Property(p => p.Movie_Duration_InMinute)
+                .IsRequired();
+            modelBuilder.Entity<Movie>()
+                .Property(p => p.Director)
+                .HasMaxLength(50)
+                .IsRequired();
+            modelBuilder.Entity<Movie>()
+                .Property(p => p.Banner)
+                .IsOptional();
+
+            modelBuilder.Entity<Seance>()
+                .Property(p => p.Id)
+                .HasColumnOrder(0);
+            modelBuilder.Entity<Seance>()
+                .HasKey(c => c.Id)
+                .Property(p => p.AddedDate)
+                .HasColumnType("datetime2")
+                .IsOptional();
+            modelBuilder.Entity<Seance>()
+                .Property(p => p.IsActive)
+                .IsOptional();
+            modelBuilder.Entity<Seance>()
+                .Property(p => p.Start_Time)
+                .HasColumnType("datetime2")
+                .IsRequired();
+            modelBuilder.Entity<Seance>()
+                .Property(p => p.End_Time)
+                .HasColumnType("datetime2")
+                .IsRequired();
+
+            modelBuilder.Entity<Seat>()
+                .Property(p => p.Id)
+                .HasColumnOrder(0);
+            modelBuilder.Entity<Seat>()
+                .HasKey(c => c.Id)
+                .Property(p => p.AddedDate)
+                .HasColumnType("datetime2")
+                .IsOptional();
+            modelBuilder.Entity<Seat>()
+                .Property(p => p.IsActive)
+                .IsOptional();
+            modelBuilder.Entity<Seat>()
+                .Property(p => p.Price)
+                .IsRequired();
+            modelBuilder.Entity<Seat>()
+                .Property(p => p.Seat_Type)
+                .HasMaxLength(50)
+                .IsRequired();
+
+            modelBuilder.Entity<Ticket>()
+                .Property(p => p.Id)
+                .HasColumnOrder(0);
+            modelBuilder.Entity<Ticket>()
+                .HasKey(c => c.Id)
+                .Property(p => p.AddedDate)
+                .HasColumnType("datetime2")
+                .IsOptional();
+            modelBuilder.Entity<Ticket>()
+                .Property(p => p.IsActive)
+                .IsOptional();
+            modelBuilder.Entity<Ticket>()
+                .Property(p => p.Ticket_Amount)
+                .IsRequired();
+            modelBuilder.Entity<Ticket>()
+                .Property(p => p.Validity_Date)
+                .HasColumnType("datetime2")
+                .IsRequired();
+
+            modelBuilder.Entity<TicketDetail>()
+                .Property(p => p.Id)
+                .HasColumnOrder(0);
+            modelBuilder.Entity<TicketDetail>()
+                .HasKey(c => c.Id)
+                .Property(p => p.AddedDate)
+                .HasColumnType("datetime2")
+                .IsOptional();
+            modelBuilder.Entity<TicketDetail>()
+                .Property(p => p.IsActive)
+                .IsOptional();
+
+            modelBuilder.Entity<TicketDetail_Seat>()
+                .Property(p => p.Id)
+                .HasColumnOrder(0);
+            modelBuilder.Entity<TicketDetail_Seat>()
+                .HasKey(c => c.Id)
+                .Property(p => p.AddedDate)
+                .HasColumnType("datetime2")
+                .IsOptional();
+            modelBuilder.Entity<TicketDetail_Seat>()
+                .Property(p => p.IsActive)
+                .IsOptional();
 
             base.OnModelCreating(modelBuilder);
         }
