@@ -15,6 +15,11 @@ namespace Entities.Sinema.Entity
         public decimal Ticket_Amount { get => _ticket_Amount; set => _ticket_Amount = value; }
 
         public int SeanceId { get; set; }
+        public virtual Seance Seance { get; set; }
+
         public int CustomerId { get; set; }
+        public virtual Customer Customer { get; set; }
+
+        public virtual List<TicketDetail> TicketDetails { get; set; }
     }
 }

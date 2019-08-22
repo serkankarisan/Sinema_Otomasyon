@@ -19,5 +19,8 @@ namespace Entities.Sinema.Entity
         public int Movie_Duration_InMinute { get => _movie_Duration_InMinute; set => _movie_Duration_InMinute = value; }
         public string Director { get => _director; set => _director = value; }
         public string Banner { get => _banner; set => _banner = value; }
+
+
+        public virtual List<Seance> Seances { get; set; }
     }
 }

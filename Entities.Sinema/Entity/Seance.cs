@@ -16,6 +16,12 @@ namespace Entities.Sinema.Entity
         public DateTime End_Time { get => _end_Time; set => _end_Time = value; }
 
         public int MovieId { get; set; }
+        public virtual Movie Movie { get; set; }
+
+
         public int HallId { get; set; }
+        public virtual Hall Hall { get; set; }
+
+        public virtual List<Ticket> Tickets { get; set; }
     }
 }

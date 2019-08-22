@@ -9,6 +9,9 @@ namespace Entities.Sinema.Entity
     public class TicketDetail:EntityBase
     {
         public int TicketId { get; set; }
-        public int SeatId { get; set; }
+        public virtual Ticket Ticket { get; set; }
+
+
+        public virtual List<TicketDetail_Seat> TicketDetail_Seats { get; set; }
     }
 }

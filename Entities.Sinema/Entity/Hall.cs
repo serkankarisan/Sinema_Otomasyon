@@ -13,5 +13,9 @@ namespace Entities.Sinema.Entity
 
         public string Hall_Code { get => _hall_Code; set => _hall_Code = value; }
         public int Seating_Capacity { get => _seating_Capacity; set => _seating_Capacity = value; }
+
+
+        public virtual List<Seance> Seances { get; set; }
+        public virtual List<Seat> Seats { get; set; }
     }
 }
