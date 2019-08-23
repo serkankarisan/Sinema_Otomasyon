@@ -48,6 +48,9 @@ namespace PL.Sinema.UI
 
         private void btnGiris_Click(object sender, EventArgs e)
         {
+            txtKullaniciAdi.Text = "serkan";
+            txtSifre.Text = "12345";
+
             if (txtKullaniciAdi.Text.Trim() == "Kullanıcı Adı")
             {
                 MessageBox.Show("Kullanıcı adı girmelisiniz.", "Eksik Bilgi!");

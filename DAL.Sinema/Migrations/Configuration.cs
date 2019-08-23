@@ -1,5 +1,6 @@
 namespace DAL.Sinema.Migrations
 {
+    using Entities.Sinema.Entity;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -19,6 +20,18 @@ namespace DAL.Sinema.Migrations
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
+
+
+            //þifre 12345
+            context.Users.AddOrUpdate(
+                new User { Id = 1, UserName = "serkan", Name = "Serkan", SurName = "Karýþan", IsActive = true, Password = "NieQminDE4Ggcewn98nKl3Jhgq7Smn3dLlQ1MyLPswq7njpt8qwsIP4jQ2MR1nhWTQyNMFkwV19g4tPQSBhNeQ==", AddedDate = DateTime.Now}
+                );
+            context.Roles.AddOrUpdate(
+                new Role { Id = 1, RoleName = "Admin", AddedDate=DateTime.Now, IsActive=true }, new Role { Id = 2, RoleName = "User", AddedDate = DateTime.Now, IsActive = true }
+               );
+            context.User_Roles.AddOrUpdate(
+                new User_Role { UserId = 1, RoleId = 1, IsActive=true, AddedDate=DateTime.Now }
+               );
         }
     }
 }

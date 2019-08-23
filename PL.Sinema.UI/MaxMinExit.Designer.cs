@@ -44,7 +44,7 @@
             this.btnMaxMin.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.btnMaxMin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMaxMin.Image = ((System.Drawing.Image)(resources.GetObject("btnMaxMin.Image")));
-            this.btnMaxMin.Location = new System.Drawing.Point(785, 2);
+            this.btnMaxMin.Location = new System.Drawing.Point(780, 12);
             this.btnMaxMin.Name = "btnMaxMin";
             this.btnMaxMin.Size = new System.Drawing.Size(25, 25);
             this.btnMaxMin.TabIndex = 16;
@@ -59,7 +59,7 @@
             this.btnSimgeDurumu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.btnSimgeDurumu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimgeDurumu.Image = ((System.Drawing.Image)(resources.GetObject("btnSimgeDurumu.Image")));
-            this.btnSimgeDurumu.Location = new System.Drawing.Point(754, 2);
+            this.btnSimgeDurumu.Location = new System.Drawing.Point(749, 12);
             this.btnSimgeDurumu.Name = "btnSimgeDurumu";
             this.btnSimgeDurumu.Size = new System.Drawing.Size(25, 25);
             this.btnSimgeDurumu.TabIndex = 15;
@@ -69,7 +69,7 @@
             // pbLogo
             // 
             this.pbLogo.Image = ((System.Drawing.Image)(resources.GetObject("pbLogo.Image")));
-            this.pbLogo.Location = new System.Drawing.Point(4, 1);
+            this.pbLogo.Location = new System.Drawing.Point(3, 6);
             this.pbLogo.Name = "pbLogo";
             this.pbLogo.Size = new System.Drawing.Size(140, 31);
             this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -84,7 +84,7 @@
             this.btnCikis.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.btnCikis.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCikis.Image = ((System.Drawing.Image)(resources.GetObject("btnCikis.Image")));
-            this.btnCikis.Location = new System.Drawing.Point(816, 2);
+            this.btnCikis.Location = new System.Drawing.Point(811, 12);
             this.btnCikis.Name = "btnCikis";
             this.btnCikis.Size = new System.Drawing.Size(25, 25);
             this.btnCikis.TabIndex = 13;
@@ -102,7 +102,7 @@
             this.Controls.Add(this.pbLogo);
             this.Controls.Add(this.btnCikis);
             this.Name = "MaxMinExit";
-            this.Size = new System.Drawing.Size(850, 30);
+            this.Size = new System.Drawing.Size(850, 40);
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
             this.ResumeLayout(false);
 
