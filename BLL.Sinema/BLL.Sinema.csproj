@@ -53,12 +53,14 @@
     <Compile Include="Repository\CustomerRepository.cs" />
     <Compile Include="Repository\HallRepository.cs" />
     <Compile Include="Repository\MovieRepository.cs" />
+    <Compile Include="Repository\RoleRepository.cs" />
     <Compile Include="Repository\SeanceRepository.cs" />
     <Compile Include="Repository\SeatRepository.cs" />
     <Compile Include="Repository\Service\RepositoryService.cs" />
     <Compile Include="Repository\TicketDetailRepository.cs" />
     <Compile Include="Repository\TicketDetailSeatRepository.cs" />
     <Compile Include="Repository\TicketRepository.cs" />
+    <Compile Include="Repository\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
