@@ -9,5 +9,9 @@ namespace BLL.Sinema.Repository
 {
     public class UserRepository:BaseRepository<User>
     {
+        public User SelectByUserName(string UserName)
+        {
+            return _dbSet.Where(w => w.IsActive == true).FirstOrDefault(x => x.UserName == UserName);
+        }
     }
 }

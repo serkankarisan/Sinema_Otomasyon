@@ -55,17 +55,17 @@ namespace BLL.Sinema.Repository
 
         public List<T> Select()
         {
-            return _dbSet.ToList();
+            return _dbSet.Where(w=>w.IsActive==true).ToList();
         }
 
         public List<T> SelectWhere(Expression<Func<T, bool>> predicate)
         {
-            return _dbSet.Where(predicate).ToList();
+            return _dbSet.Where(predicate).Where(w=>w.IsActive==true).ToList();
         }
 
         public T SelectById(int id)
         {
-            return _dbSet.FirstOrDefault(x => x.Id == id);
+            return _dbSet.Where(w => w.IsActive == true).FirstOrDefault(x => x.Id == id);
         }
     }
 }

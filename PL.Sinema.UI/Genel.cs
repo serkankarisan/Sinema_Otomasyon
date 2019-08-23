@@ -11,6 +11,7 @@ namespace PL.Sinema.UI
     public class Genel
     {
         public static RepositoryService Service = new RepositoryService();
+        public static User ActiveUser = new User();
 
         public static string Hash(string password)
         {
@@ -35,6 +36,7 @@ namespace PL.Sinema.UI
                     if (String.Compare(UserName, user.UserName, false) == 0)
                     {
                         result = "1";
+                        ActiveUser = user;
                     }
                     else
                     {

@@ -20,11 +20,18 @@ namespace PL.Sinema.UI
 
         private void AnaSayfa_Load(object sender, EventArgs e)
         {
-            Customer m = Genel.Service.Customer.SelectById(1);
-            m.Name = "Serkan";
-            m.Surname = "Karışan";
-            m.Phone = "05355063330";
-            Genel.Service.Customer.Update(m);
+            User_Role ur = new User_Role();
+            User u = Genel.Service.User.SelectByUserName(Genel.ActiveUser.UserName);
+            lblKullanici.Text = u.Name + " " + u.SurName;
+            ur = u.User_Roles.FirstOrDefault();
+            lblYetki.Text = ur.Role.RoleName;
+            lblTarih.Text = DateTime.Now.Date.ToLongDateString();
+            tmrClock.Start();
+        }
+
+        private void tmrClock_Tick(object sender, EventArgs e)
+        {
+            lblSaat.Text = DateTime.Now.ToLongTimeString();
         }
     }
 }

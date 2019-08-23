@@ -252,6 +252,14 @@ namespace DAL.Sinema.Context
                 .Property(p => p.IsActive)
                 .IsOptional();
             modelBuilder.Entity<User>()
+               .Property(p => p.Name)
+               .HasMaxLength(100)
+               .IsRequired();
+            modelBuilder.Entity<User>()
+               .Property(p => p.SurName)
+               .HasMaxLength(100)
+               .IsRequired();
+            modelBuilder.Entity<User>()
                 .Property(p => p.UserName)
                 .HasMaxLength(100)
                 .IsRequired();
