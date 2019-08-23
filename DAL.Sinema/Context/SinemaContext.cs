@@ -23,6 +23,9 @@ namespace DAL.Sinema.Context
         public DbSet<TicketDetail> TicketDetails { get; set; }
         public DbSet<TicketDetail_Seat> TicketDetail_Seats { get; set; }
 
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //Database.SetInitializer<SinemaContext>(new CreateDatabaseIfNotExists<SinemaContext>());
@@ -66,6 +69,12 @@ namespace DAL.Sinema.Context
                 .WithMany(s => s.TicketDetail_Seats)
                 .HasForeignKey(tds => tds.SeatId)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Role>()
+               .HasRequired(r => r.User)
+               .WithMany(u => u.Roles)
+               .HasForeignKey(r => r.UserId)
+               .WillCascadeOnDelete(false);
 
 
             modelBuilder.Entity<Customer>()
@@ -223,6 +232,44 @@ namespace DAL.Sinema.Context
             modelBuilder.Entity<TicketDetail_Seat>()
                 .Property(p => p.IsActive)
                 .IsOptional();
+
+
+            modelBuilder.Entity<User>()
+                .Property(p => p.Id)
+                .HasColumnOrder(0);
+            modelBuilder.Entity<User>()
+                .HasKey(c => c.Id)
+                .Property(p => p.AddedDate)
+                .HasColumnType("datetime2")
+                .IsOptional();
+            modelBuilder.Entity<User>()
+                .Property(p => p.IsActive)
+                .IsOptional();
+            modelBuilder.Entity<User>()
+                .Property(p => p.UserName)
+                .HasMaxLength(100)
+                .IsRequired();
+            modelBuilder.Entity<User>()
+                .Property(p => p.Password)
+                .HasMaxLength(100)
+                .IsRequired();
+
+
+            modelBuilder.Entity<Role>()
+                .Property(p => p.Id)
+                .HasColumnOrder(0);
+            modelBuilder.Entity<Role>()
+                .HasKey(c => c.Id)
+                .Property(p => p.AddedDate)
+                .HasColumnType("datetime2")
+                .IsOptional();
+            modelBuilder.Entity<Role>()
+                .Property(p => p.IsActive)
+                .IsOptional();
+            modelBuilder.Entity<Role>()
+                .Property(p => p.RoleName)
+                .HasMaxLength(100)
+                .IsRequired();
 
             base.OnModelCreating(modelBuilder);
         }

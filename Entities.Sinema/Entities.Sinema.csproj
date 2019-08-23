@@ -45,11 +45,13 @@
     <Compile Include="Entity\Customer.cs" />
     <Compile Include="Entity\Hall.cs" />
     <Compile Include="Entity\Movie.cs" />
+    <Compile Include="Entity\Role.cs" />
     <Compile Include="Entity\Seance.cs" />
     <Compile Include="Entity\Seat.cs" />
     <Compile Include="Entity\Ticket.cs" />
     <Compile Include="Entity\TicketDetail.cs" />
     <Compile Include="Entity\TicketDetail_Seat.cs" />
+    <Compile Include="Entity\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
