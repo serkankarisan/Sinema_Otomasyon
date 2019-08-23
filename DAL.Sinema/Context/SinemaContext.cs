@@ -25,6 +25,7 @@ namespace DAL.Sinema.Context
 
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<User_Role> User_Roles { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -70,11 +71,16 @@ namespace DAL.Sinema.Context
                 .HasForeignKey(tds => tds.SeatId)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Role>()
-               .HasRequired(r => r.User)
-               .WithMany(u => u.Roles)
-               .HasForeignKey(r => r.UserId)
+            modelBuilder.Entity<User_Role>()
+               .HasRequired(ur => ur.User)
+               .WithMany(u => u.User_Roles)
+               .HasForeignKey(ur => ur.UserId)
                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<User_Role>()
+                .HasRequired(ur => ur.Role)
+                .WithMany(r => r.User_Roles)
+                .HasForeignKey(ur => ur.RoleId)
+                .WillCascadeOnDelete(false);
 
 
             modelBuilder.Entity<Customer>()
@@ -270,6 +276,15 @@ namespace DAL.Sinema.Context
                 .Property(p => p.RoleName)
                 .HasMaxLength(100)
                 .IsRequired();
+
+            modelBuilder.Entity<User_Role>()
+                .HasKey(c => new { c.RoleId,c.UserId })
+                .Property(p => p.AddedDate)
+                .HasColumnType("datetime2")
+                .IsOptional();
+            modelBuilder.Entity<User_Role>()
+                .Property(p => p.IsActive)
+                .IsOptional();
 
             base.OnModelCreating(modelBuilder);
         }
