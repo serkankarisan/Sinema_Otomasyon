@@ -61,7 +61,6 @@
     <Compile Include="Repository\TicketDetailSeatRepository.cs" />
     <Compile Include="Repository\TicketRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
-    <Compile Include="Repository\UserRoleRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

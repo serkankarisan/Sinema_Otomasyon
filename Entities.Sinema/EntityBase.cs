@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,8 +13,11 @@ namespace Entities.Sinema
         private DateTime _addedDate;
         private bool _isActive;
 
+        [Column(Order =0)]
         public int Id { get => _id; set => _id = value; }
+        [Column(Order = 1)]
         public DateTime AddedDate { get => _addedDate; set => _addedDate = value; }
+        [Column(Order = 2)]
         public bool IsActive { get => _isActive; set => _isActive = value; }
         public EntityBase()
         {

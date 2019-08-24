@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmKullanıcıIslemleri));
             this.dgvKullanicilar = new System.Windows.Forms.DataGridView();
             this.btnKaydet = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -42,10 +43,14 @@
             this.cbRol = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pnlHeader1 = new PL.Sinema.UI.pnlHeader();
             this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnIptal = new System.Windows.Forms.Button();
+            this.btnSil = new System.Windows.Forms.Button();
+            this.pbSifreGizle = new System.Windows.Forms.PictureBox();
+            this.pnlHeader1 = new PL.Sinema.UI.pnlHeader();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKullanicilar)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSifreGizle)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvKullanicilar
@@ -56,10 +61,11 @@
             this.dgvKullanicilar.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.dgvKullanicilar.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvKullanicilar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvKullanicilar.Location = new System.Drawing.Point(434, 72);
+            this.dgvKullanicilar.GridColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dgvKullanicilar.Location = new System.Drawing.Point(388, 72);
             this.dgvKullanicilar.Name = "dgvKullanicilar";
             this.dgvKullanicilar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvKullanicilar.Size = new System.Drawing.Size(399, 239);
+            this.dgvKullanicilar.Size = new System.Drawing.Size(475, 239);
             this.dgvKullanicilar.TabIndex = 1;
             this.dgvKullanicilar.DoubleClick += new System.EventHandler(this.dgvKullanicilar_DoubleClick);
             // 
@@ -138,6 +144,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(149, 26);
             this.txtPassword.TabIndex = 92;
+            this.txtPassword.Enter += new System.EventHandler(this.txtPassword_Enter);
             // 
             // txtSurname
             // 
@@ -192,6 +199,7 @@
             this.cbRol.Name = "cbRol";
             this.cbRol.Size = new System.Drawing.Size(149, 28);
             this.cbRol.TabIndex = 107;
+            this.cbRol.SelectedIndexChanged += new System.EventHandler(this.cbRol_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -209,6 +217,9 @@
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.pbSifreGizle);
+            this.panel1.Controls.Add(this.btnSil);
+            this.panel1.Controls.Add(this.btnIptal);
             this.panel1.Controls.Add(this.btnUpdate);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label5);
@@ -222,19 +233,10 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Location = new System.Drawing.Point(52, 72);
+            this.panel1.Location = new System.Drawing.Point(6, 72);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(364, 301);
             this.panel1.TabIndex = 109;
-            // 
-            // pnlHeader1
-            // 
-            this.pnlHeader1.BackColor = System.Drawing.SystemColors.GrayText;
-            this.pnlHeader1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlHeader1.Location = new System.Drawing.Point(0, 0);
-            this.pnlHeader1.Name = "pnlHeader1";
-            this.pnlHeader1.Size = new System.Drawing.Size(994, 30);
-            this.pnlHeader1.TabIndex = 0;
             // 
             // btnUpdate
             // 
@@ -252,10 +254,63 @@
             this.btnUpdate.Visible = false;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
+            // btnIptal
+            // 
+            this.btnIptal.BackColor = System.Drawing.Color.Navy;
+            this.btnIptal.Enabled = false;
+            this.btnIptal.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnIptal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnIptal.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnIptal.Location = new System.Drawing.Point(273, 192);
+            this.btnIptal.Name = "btnIptal";
+            this.btnIptal.Size = new System.Drawing.Size(65, 33);
+            this.btnIptal.TabIndex = 110;
+            this.btnIptal.Text = "İptal";
+            this.btnIptal.UseVisualStyleBackColor = false;
+            this.btnIptal.Visible = false;
+            this.btnIptal.Click += new System.EventHandler(this.btnIptal_Click);
+            // 
+            // btnSil
+            // 
+            this.btnSil.BackColor = System.Drawing.Color.Navy;
+            this.btnSil.Enabled = false;
+            this.btnSil.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSil.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnSil.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSil.Location = new System.Drawing.Point(169, 240);
+            this.btnSil.Name = "btnSil";
+            this.btnSil.Size = new System.Drawing.Size(169, 33);
+            this.btnSil.TabIndex = 111;
+            this.btnSil.Text = "Kullanıcıyı Sil";
+            this.btnSil.UseVisualStyleBackColor = false;
+            this.btnSil.Visible = false;
+            this.btnSil.Click += new System.EventHandler(this.btnSil_Click);
+            // 
+            // pbSifreGizle
+            // 
+            this.pbSifreGizle.Image = ((System.Drawing.Image)(resources.GetObject("pbSifreGizle.Image")));
+            this.pbSifreGizle.Location = new System.Drawing.Point(271, 97);
+            this.pbSifreGizle.Name = "pbSifreGizle";
+            this.pbSifreGizle.Size = new System.Drawing.Size(20, 20);
+            this.pbSifreGizle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbSifreGizle.TabIndex = 112;
+            this.pbSifreGizle.TabStop = false;
+            this.pbSifreGizle.Click += new System.EventHandler(this.pbSifreGizle_Click);
+            // 
+            // pnlHeader1
+            // 
+            this.pnlHeader1.BackColor = System.Drawing.SystemColors.GrayText;
+            this.pnlHeader1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlHeader1.Location = new System.Drawing.Point(0, 0);
+            this.pnlHeader1.Name = "pnlHeader1";
+            this.pnlHeader1.Size = new System.Drawing.Size(994, 30);
+            this.pnlHeader1.TabIndex = 0;
+            // 
             // frmKullanıcıIslemleri
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(994, 504);
             this.Controls.Add(this.panel1);
@@ -268,6 +323,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvKullanicilar)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSifreGizle)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -290,5 +346,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnIptal;
+        private System.Windows.Forms.Button btnSil;
+        private System.Windows.Forms.PictureBox pbSifreGizle;
     }
 }

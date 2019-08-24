@@ -18,7 +18,8 @@ namespace Entities.Sinema.Entity
         public string Name { get => _name; set => _name = value; }
         public string SurName { get => _surName; set => _surName = value; }
 
-        public virtual List<User_Role> User_Roles { get; set; }
+        public int RoleId { get; set; }
+        public virtual Role Role { get; set; }
 
     }
 }

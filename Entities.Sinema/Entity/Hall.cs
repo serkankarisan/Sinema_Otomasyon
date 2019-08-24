@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,9 @@ namespace Entities.Sinema.Entity
         private string _hall_Code;
         private int _seating_Capacity;
 
+        [Column(Order = 3)]
         public string Hall_Code { get => _hall_Code; set => _hall_Code = value; }
+        [Column(Order = 4)]
         public int Seating_Capacity { get => _seating_Capacity; set => _seating_Capacity = value; }
 
 

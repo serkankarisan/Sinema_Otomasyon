@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,9 @@ namespace Entities.Sinema.Entity
         private DateTime _validity_Date;
         private decimal _ticket_Amount;
 
+        [Column(Order = 3)]
         public DateTime Validity_Date { get => _validity_Date; set => _validity_Date = value; }
+        [Column(Order = 4)]
         public decimal Ticket_Amount { get => _ticket_Amount; set => _ticket_Amount = value; }
 
         public int SeanceId { get; set; }

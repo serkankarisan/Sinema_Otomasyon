@@ -24,11 +24,9 @@ namespace PL.Sinema.UI
         private void AnaSayfa_Load(object sender, EventArgs e)
         {
             pnlMenu.Height = 0;
-            User_Role ur = new User_Role();
             User u = Genel.Service.User.SelectByUserName(Genel.ActiveUser.UserName);
             lblKullanici.Text = u.Name + " " + u.SurName;
-            ur = u.User_Roles.FirstOrDefault();
-            lblYetki.Text = ur.Role.RoleName;
+            lblYetki.Text = u.Role.RoleName;
             lblTarih.Text = DateTime.Now.Date.ToLongDateString();
             tmrClock.Start();
         }
