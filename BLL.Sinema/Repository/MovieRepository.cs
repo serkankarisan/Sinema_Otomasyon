@@ -9,5 +9,9 @@ namespace BLL.Sinema.Repository
 {
     public class MovieRepository:BaseRepository<Movie>
     {
+        public Movie SelectByMovieName(string MovieName)
+        {
+            return _dbSet.Where(w => w.IsActive == true).FirstOrDefault(x => x.Movie_Name == MovieName);
+        }
     }
 }

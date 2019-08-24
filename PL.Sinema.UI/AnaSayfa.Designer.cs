@@ -33,6 +33,16 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.pnlContent = new System.Windows.Forms.Panel();
+            this.pnlGiris = new System.Windows.Forms.Panel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.pnlNavLeft = new System.Windows.Forms.Panel();
+            this.pnlMenu = new System.Windows.Forms.Panel();
+            this.btnSeansMenu = new System.Windows.Forms.Button();
+            this.btnSalonMenu = new System.Windows.Forms.Button();
+            this.btnFilmMenu = new System.Windows.Forms.Button();
+            this.btnKullanıcıMenu = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnMenu = new System.Windows.Forms.Button();
             this.lblSaat = new System.Windows.Forms.Label();
@@ -42,26 +52,16 @@
             this.lblYetki = new System.Windows.Forms.Label();
             this.lblKullanici = new System.Windows.Forms.Label();
             this.tmrClock = new System.Windows.Forms.Timer(this.components);
-            this.pnlMenu = new System.Windows.Forms.Panel();
-            this.btnKullanıcıMenu = new System.Windows.Forms.Button();
-            this.btnFilmMenu = new System.Windows.Forms.Button();
-            this.btnSalonMenu = new System.Windows.Forms.Button();
-            this.btnSeansMenu = new System.Windows.Forms.Button();
-            this.pnlNavLeft = new System.Windows.Forms.Panel();
-            this.pnlContent = new System.Windows.Forms.Panel();
-            this.pnlGiris = new System.Windows.Forms.Panel();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.maxMinExit1 = new PL.Sinema.UI.MaxMinExit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.pnlMenu.SuspendLayout();
-            this.pnlNavLeft.SuspendLayout();
             this.pnlContent.SuspendLayout();
             this.pnlGiris.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.pnlNavLeft.SuspendLayout();
+            this.pnlMenu.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -93,6 +93,166 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(943, 426);
             this.panel4.TabIndex = 1;
+            // 
+            // pnlContent
+            // 
+            this.pnlContent.BackColor = System.Drawing.Color.Transparent;
+            this.pnlContent.Controls.Add(this.pnlGiris);
+            this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlContent.Location = new System.Drawing.Point(265, 0);
+            this.pnlContent.Name = "pnlContent";
+            this.pnlContent.Size = new System.Drawing.Size(678, 426);
+            this.pnlContent.TabIndex = 2;
+            // 
+            // pnlGiris
+            // 
+            this.pnlGiris.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlGiris.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlGiris.BackgroundImage")));
+            this.pnlGiris.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlGiris.Controls.Add(this.pictureBox3);
+            this.pnlGiris.Controls.Add(this.button1);
+            this.pnlGiris.Location = new System.Drawing.Point(65, 40);
+            this.pnlGiris.Name = "pnlGiris";
+            this.pnlGiris.Size = new System.Drawing.Size(545, 350);
+            this.pnlGiris.TabIndex = 27;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(103, 115);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(338, 199);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 28;
+            this.pictureBox3.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button1.Font = new System.Drawing.Font("High Tower Text", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.Location = new System.Drawing.Point(188, 41);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(168, 55);
+            this.button1.TabIndex = 27;
+            this.button1.Text = "Bilet Kes";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // pnlNavLeft
+            // 
+            this.pnlNavLeft.BackColor = System.Drawing.Color.Transparent;
+            this.pnlNavLeft.Controls.Add(this.pnlMenu);
+            this.pnlNavLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlNavLeft.Location = new System.Drawing.Point(0, 0);
+            this.pnlNavLeft.Name = "pnlNavLeft";
+            this.pnlNavLeft.Size = new System.Drawing.Size(265, 426);
+            this.pnlNavLeft.TabIndex = 0;
+            this.pnlNavLeft.Click += new System.EventHandler(this.pnlNavLeft_Click);
+            // 
+            // pnlMenu
+            // 
+            this.pnlMenu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlMenu.BackColor = System.Drawing.Color.Transparent;
+            this.pnlMenu.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlMenu.BackgroundImage")));
+            this.pnlMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlMenu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlMenu.Controls.Add(this.btnSeansMenu);
+            this.pnlMenu.Controls.Add(this.btnSalonMenu);
+            this.pnlMenu.Controls.Add(this.btnFilmMenu);
+            this.pnlMenu.Controls.Add(this.btnKullanıcıMenu);
+            this.pnlMenu.Location = new System.Drawing.Point(12, 0);
+            this.pnlMenu.Name = "pnlMenu";
+            this.pnlMenu.Size = new System.Drawing.Size(247, 400);
+            this.pnlMenu.TabIndex = 0;
+            // 
+            // btnSeansMenu
+            // 
+            this.btnSeansMenu.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnSeansMenu.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnSeansMenu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnSeansMenu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSeansMenu.Font = new System.Drawing.Font("High Tower Text", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnSeansMenu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSeansMenu.Image = ((System.Drawing.Image)(resources.GetObject("btnSeansMenu.Image")));
+            this.btnSeansMenu.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSeansMenu.Location = new System.Drawing.Point(5, 172);
+            this.btnSeansMenu.Name = "btnSeansMenu";
+            this.btnSeansMenu.Size = new System.Drawing.Size(230, 40);
+            this.btnSeansMenu.TabIndex = 21;
+            this.btnSeansMenu.Text = "Seans İşlemleri";
+            this.btnSeansMenu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSeansMenu.UseVisualStyleBackColor = true;
+            // 
+            // btnSalonMenu
+            // 
+            this.btnSalonMenu.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnSalonMenu.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnSalonMenu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnSalonMenu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSalonMenu.Font = new System.Drawing.Font("High Tower Text", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnSalonMenu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSalonMenu.Image = ((System.Drawing.Image)(resources.GetObject("btnSalonMenu.Image")));
+            this.btnSalonMenu.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSalonMenu.Location = new System.Drawing.Point(5, 120);
+            this.btnSalonMenu.Name = "btnSalonMenu";
+            this.btnSalonMenu.Size = new System.Drawing.Size(230, 40);
+            this.btnSalonMenu.TabIndex = 20;
+            this.btnSalonMenu.Text = "Salon İşlemleri";
+            this.btnSalonMenu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSalonMenu.UseVisualStyleBackColor = true;
+            // 
+            // btnFilmMenu
+            // 
+            this.btnFilmMenu.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnFilmMenu.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnFilmMenu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnFilmMenu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnFilmMenu.Font = new System.Drawing.Font("High Tower Text", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnFilmMenu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnFilmMenu.Image = ((System.Drawing.Image)(resources.GetObject("btnFilmMenu.Image")));
+            this.btnFilmMenu.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnFilmMenu.Location = new System.Drawing.Point(5, 68);
+            this.btnFilmMenu.Name = "btnFilmMenu";
+            this.btnFilmMenu.Size = new System.Drawing.Size(230, 40);
+            this.btnFilmMenu.TabIndex = 19;
+            this.btnFilmMenu.Text = "Film İşlemleri";
+            this.btnFilmMenu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnFilmMenu.UseVisualStyleBackColor = true;
+            this.btnFilmMenu.Click += new System.EventHandler(this.btnFilmMenu_Click);
+            // 
+            // btnKullanıcıMenu
+            // 
+            this.btnKullanıcıMenu.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnKullanıcıMenu.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnKullanıcıMenu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnKullanıcıMenu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnKullanıcıMenu.Font = new System.Drawing.Font("High Tower Text", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnKullanıcıMenu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnKullanıcıMenu.Image = ((System.Drawing.Image)(resources.GetObject("btnKullanıcıMenu.Image")));
+            this.btnKullanıcıMenu.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnKullanıcıMenu.Location = new System.Drawing.Point(5, 16);
+            this.btnKullanıcıMenu.Name = "btnKullanıcıMenu";
+            this.btnKullanıcıMenu.Size = new System.Drawing.Size(230, 40);
+            this.btnKullanıcıMenu.TabIndex = 18;
+            this.btnKullanıcıMenu.Text = "Kullanıcı İşlemleri";
+            this.btnKullanıcıMenu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnKullanıcıMenu.UseVisualStyleBackColor = true;
+            this.btnKullanıcıMenu.Click += new System.EventHandler(this.btnKullanıcıMenu_Click);
             // 
             // panel3
             // 
@@ -200,165 +360,6 @@
             // 
             this.tmrClock.Tick += new System.EventHandler(this.tmrClock_Tick);
             // 
-            // pnlMenu
-            // 
-            this.pnlMenu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlMenu.BackColor = System.Drawing.Color.Transparent;
-            this.pnlMenu.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlMenu.BackgroundImage")));
-            this.pnlMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlMenu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlMenu.Controls.Add(this.btnSeansMenu);
-            this.pnlMenu.Controls.Add(this.btnSalonMenu);
-            this.pnlMenu.Controls.Add(this.btnFilmMenu);
-            this.pnlMenu.Controls.Add(this.btnKullanıcıMenu);
-            this.pnlMenu.Location = new System.Drawing.Point(12, 0);
-            this.pnlMenu.Name = "pnlMenu";
-            this.pnlMenu.Size = new System.Drawing.Size(247, 400);
-            this.pnlMenu.TabIndex = 0;
-            // 
-            // btnKullanıcıMenu
-            // 
-            this.btnKullanıcıMenu.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnKullanıcıMenu.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btnKullanıcıMenu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnKullanıcıMenu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnKullanıcıMenu.Font = new System.Drawing.Font("High Tower Text", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btnKullanıcıMenu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnKullanıcıMenu.Image = ((System.Drawing.Image)(resources.GetObject("btnKullanıcıMenu.Image")));
-            this.btnKullanıcıMenu.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnKullanıcıMenu.Location = new System.Drawing.Point(5, 16);
-            this.btnKullanıcıMenu.Name = "btnKullanıcıMenu";
-            this.btnKullanıcıMenu.Size = new System.Drawing.Size(230, 40);
-            this.btnKullanıcıMenu.TabIndex = 18;
-            this.btnKullanıcıMenu.Text = "Kullanıcı İşlemleri";
-            this.btnKullanıcıMenu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnKullanıcıMenu.UseVisualStyleBackColor = true;
-            this.btnKullanıcıMenu.Click += new System.EventHandler(this.btnKullanıcıMenu_Click);
-            // 
-            // btnFilmMenu
-            // 
-            this.btnFilmMenu.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnFilmMenu.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btnFilmMenu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnFilmMenu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnFilmMenu.Font = new System.Drawing.Font("High Tower Text", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btnFilmMenu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnFilmMenu.Image = ((System.Drawing.Image)(resources.GetObject("btnFilmMenu.Image")));
-            this.btnFilmMenu.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnFilmMenu.Location = new System.Drawing.Point(5, 68);
-            this.btnFilmMenu.Name = "btnFilmMenu";
-            this.btnFilmMenu.Size = new System.Drawing.Size(230, 40);
-            this.btnFilmMenu.TabIndex = 19;
-            this.btnFilmMenu.Text = "Film İşlemleri";
-            this.btnFilmMenu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFilmMenu.UseVisualStyleBackColor = true;
-            // 
-            // btnSalonMenu
-            // 
-            this.btnSalonMenu.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnSalonMenu.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btnSalonMenu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnSalonMenu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSalonMenu.Font = new System.Drawing.Font("High Tower Text", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btnSalonMenu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSalonMenu.Image = ((System.Drawing.Image)(resources.GetObject("btnSalonMenu.Image")));
-            this.btnSalonMenu.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSalonMenu.Location = new System.Drawing.Point(5, 120);
-            this.btnSalonMenu.Name = "btnSalonMenu";
-            this.btnSalonMenu.Size = new System.Drawing.Size(230, 40);
-            this.btnSalonMenu.TabIndex = 20;
-            this.btnSalonMenu.Text = "Salon İşlemleri";
-            this.btnSalonMenu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSalonMenu.UseVisualStyleBackColor = true;
-            // 
-            // btnSeansMenu
-            // 
-            this.btnSeansMenu.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnSeansMenu.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btnSeansMenu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnSeansMenu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSeansMenu.Font = new System.Drawing.Font("High Tower Text", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btnSeansMenu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSeansMenu.Image = ((System.Drawing.Image)(resources.GetObject("btnSeansMenu.Image")));
-            this.btnSeansMenu.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSeansMenu.Location = new System.Drawing.Point(5, 172);
-            this.btnSeansMenu.Name = "btnSeansMenu";
-            this.btnSeansMenu.Size = new System.Drawing.Size(230, 40);
-            this.btnSeansMenu.TabIndex = 21;
-            this.btnSeansMenu.Text = "Seans İşlemleri";
-            this.btnSeansMenu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSeansMenu.UseVisualStyleBackColor = true;
-            // 
-            // pnlNavLeft
-            // 
-            this.pnlNavLeft.BackColor = System.Drawing.Color.Transparent;
-            this.pnlNavLeft.Controls.Add(this.pnlMenu);
-            this.pnlNavLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlNavLeft.Location = new System.Drawing.Point(0, 0);
-            this.pnlNavLeft.Name = "pnlNavLeft";
-            this.pnlNavLeft.Size = new System.Drawing.Size(265, 426);
-            this.pnlNavLeft.TabIndex = 0;
-            this.pnlNavLeft.Click += new System.EventHandler(this.pnlNavLeft_Click);
-            // 
-            // pnlContent
-            // 
-            this.pnlContent.BackColor = System.Drawing.Color.Transparent;
-            this.pnlContent.Controls.Add(this.pnlGiris);
-            this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlContent.Location = new System.Drawing.Point(265, 0);
-            this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(678, 426);
-            this.pnlContent.TabIndex = 2;
-            // 
-            // pnlGiris
-            // 
-            this.pnlGiris.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlGiris.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlGiris.BackgroundImage")));
-            this.pnlGiris.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlGiris.Controls.Add(this.pictureBox3);
-            this.pnlGiris.Controls.Add(this.button1);
-            this.pnlGiris.Location = new System.Drawing.Point(65, 40);
-            this.pnlGiris.Name = "pnlGiris";
-            this.pnlGiris.Size = new System.Drawing.Size(545, 350);
-            this.pnlGiris.TabIndex = 27;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
-            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(103, 115);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(338, 199);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 28;
-            this.pictureBox3.TabStop = false;
-            // 
-            // button1
-            // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Font = new System.Drawing.Font("High Tower Text", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.Location = new System.Drawing.Point(188, 41);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(168, 55);
-            this.button1.TabIndex = 27;
-            this.button1.Text = "Bilet Kes";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // maxMinExit1
             // 
             this.maxMinExit1.BackColor = System.Drawing.Color.Transparent;
@@ -388,13 +389,13 @@
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.pnlMenu.ResumeLayout(false);
-            this.pnlNavLeft.ResumeLayout(false);
             this.pnlContent.ResumeLayout(false);
             this.pnlGiris.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.pnlNavLeft.ResumeLayout(false);
+            this.pnlMenu.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }

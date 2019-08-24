@@ -158,5 +158,6 @@
     <Content Include="Images\resize-6-24.ico" />
     <Content Include="Images\x-mark-24.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

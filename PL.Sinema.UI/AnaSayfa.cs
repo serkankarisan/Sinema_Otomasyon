@@ -24,9 +24,9 @@ namespace PL.Sinema.UI
         private void AnaSayfa_Load(object sender, EventArgs e)
         {
             pnlMenu.Height = 0;
-            User u = Genel.Service.User.SelectByUserName(Genel.ActiveUser.UserName);
-            lblKullanici.Text = u.Name + " " + u.SurName;
-            lblYetki.Text = u.Role.RoleName;
+            //User u = Genel.Service.User.SelectByUserName(Genel.ActiveUser.UserName);
+            //lblKullanici.Text = u.Name + " " + u.SurName;
+            //lblYetki.Text = u.Role.RoleName;
             lblTarih.Text = DateTime.Now.Date.ToLongDateString();
             tmrClock.Start();
         }
@@ -107,6 +107,14 @@ namespace PL.Sinema.UI
         private void btnKullanıcıMenu_Click(object sender, EventArgs e)
         {
             frmKullanıcıIslemleri frm = new frmKullanıcıIslemleri();
+            FormAc(frm);
+            pnlNavLeft.Width = 0;
+            pnlGiris.Width = 0;
+        }
+
+        private void btnFilmMenu_Click(object sender, EventArgs e)
+        {
+            frmFilmIslemleri frm = new frmFilmIslemleri();
             FormAc(frm);
             pnlNavLeft.Width = 0;
             pnlGiris.Width = 0;
