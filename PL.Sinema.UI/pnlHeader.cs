@@ -19,6 +19,7 @@ namespace PL.Sinema.UI
 
         private void btnCikis_Click(object sender, EventArgs e)
         {
+            Genel.FormActive = false;
             this.FindForm().Close();
         }
 

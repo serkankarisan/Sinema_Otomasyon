@@ -52,7 +52,8 @@
             // 
             // lvFilmler
             // 
-            this.lvFilmler.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lvFilmler.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lvFilmler.BackColor = System.Drawing.Color.LightGray;
             this.lvFilmler.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("lvFilmler.BackgroundImage")));
@@ -61,9 +62,9 @@
             this.lvFilmler.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.lvFilmler.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lvFilmler.FullRowSelect = true;
-            this.lvFilmler.Location = new System.Drawing.Point(281, 85);
+            this.lvFilmler.Location = new System.Drawing.Point(460, 71);
             this.lvFilmler.Name = "lvFilmler";
-            this.lvFilmler.Size = new System.Drawing.Size(750, 304);
+            this.lvFilmler.Size = new System.Drawing.Size(283, 410);
             this.lvFilmler.TabIndex = 11;
             this.lvFilmler.UseCompatibleStateImageBehavior = false;
             this.lvFilmler.DoubleClick += new System.EventHandler(this.lvFilmler_DoubleClick);
@@ -278,7 +279,7 @@
             this.pnlHeader1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.pnlHeader1.Location = new System.Drawing.Point(0, 0);
             this.pnlHeader1.Name = "pnlHeader1";
-            this.pnlHeader1.Size = new System.Drawing.Size(1238, 30);
+            this.pnlHeader1.Size = new System.Drawing.Size(885, 30);
             this.pnlHeader1.TabIndex = 0;
             // 
             // frmFilmIslemleri
@@ -286,7 +287,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ClientSize = new System.Drawing.Size(1238, 606);
+            this.ClientSize = new System.Drawing.Size(885, 606);
             this.Controls.Add(this.btnYeni);
             this.Controls.Add(this.btnIptal);
             this.Controls.Add(this.btnUpdate);

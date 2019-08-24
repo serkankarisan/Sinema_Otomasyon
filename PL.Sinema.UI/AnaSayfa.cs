@@ -17,22 +17,45 @@ namespace PL.Sinema.UI
         {
             InitializeComponent();
         }
-
+        
         int pnlMaxboyut = 400;
         private bool _dragging = false;
         private Point _start_point = new Point(0, 0);
         private void AnaSayfa_Load(object sender, EventArgs e)
         {
+            btnSeansMenu.Location = new Point(7, 166);
             pnlMenu.Height = 0;
             //User u = Genel.Service.User.SelectByUserName(Genel.ActiveUser.UserName);
             //lblKullanici.Text = u.Name + " " + u.SurName;
             //lblYetki.Text = u.Role.RoleName;
+            User testuser = new User();
+            testuser.Name = "Serkan";
+            testuser.SurName = "Karışan";
+            Role testrole = new Role();
+            testrole.RoleName = "Admin";
+            testuser.Role = testrole;
+            lblKullanici.Text = testuser.Name + " " + testuser.SurName;
+            lblYetki.Text = testuser.Role.RoleName;
+            if (testuser.Role.RoleName!="Admin")
+            {
+                pnlUser.Location = new Point(10, 0);
+                btnMenu.Enabled = false;
+                btnMenu.Visible = false;
+            }
             lblTarih.Text = DateTime.Now.Date.ToLongDateString();
             tmrClock.Start();
         }
 
         private void tmrClock_Tick(object sender, EventArgs e)
         {
+            if (Genel.FormActive)
+            {
+                pnlGiris.Visible = false;
+            }
+            else
+            {
+                pnlGiris.Visible = true;
+            }
             lblSaat.Text = DateTime.Now.ToLongTimeString();
         }
 
@@ -43,12 +66,14 @@ namespace PL.Sinema.UI
                 if (F is Form)
                 {
                     Form MF = (Form)F;
+                    Genel.FormActive = false;
                     MF.Close();
                 }
             }
             AF.TopLevel = false;
             this.pnlContent.Controls.Add(AF);
             AF.Dock = DockStyle.Fill;
+            Genel.FormActive = true;
             AF.Show();
         }
 
@@ -56,21 +81,10 @@ namespace PL.Sinema.UI
         {
             if (pnlMenu.Height == 0)
             {
-                pnlNavLeft.Width = 260;
                 pnlMenu.Height = pnlMaxboyut;
             }
             else if (pnlMenu.Height == pnlMaxboyut)
             {
-                pnlNavLeft.Width = 0;
-                pnlMenu.Height = 0;
-            }
-        }
-
-        private void pnlNavLeft_Click(object sender, EventArgs e)
-        {
-            if (pnlMenu.Height == pnlMaxboyut)
-            {
-                pnlNavLeft.Width = 0;
                 pnlMenu.Height = 0;
             }
         }
@@ -79,7 +93,6 @@ namespace PL.Sinema.UI
         {
             if (pnlMenu.Height == pnlMaxboyut)
             {
-                pnlNavLeft.Width = 0;
                 pnlMenu.Height = 0;
             }
         }
@@ -108,16 +121,66 @@ namespace PL.Sinema.UI
         {
             frmKullanıcıIslemleri frm = new frmKullanıcıIslemleri();
             FormAc(frm);
-            pnlNavLeft.Width = 0;
-            pnlGiris.Width = 0;
+            pnlMenu.Height = 0;
+            btnSeansMenu.Location = new Point(7, 166);
+            btnSalonDüzenleme.Visible = false;
+            btnSalonTanımlama.Visible = false;
         }
 
         private void btnFilmMenu_Click(object sender, EventArgs e)
         {
             frmFilmIslemleri frm = new frmFilmIslemleri();
             FormAc(frm);
-            pnlNavLeft.Width = 0;
-            pnlGiris.Width = 0;
+            pnlMenu.Height = 0;
+            btnSeansMenu.Location = new Point(7, 166);
+            btnSalonDüzenleme.Visible = false;
+            btnSalonTanımlama.Visible = false;
+        }
+
+        private void btnSalonMenu_Click(object sender, EventArgs e)
+        {
+            if (btnSalonDüzenleme.Visible == false && btnSalonDüzenleme.Visible == false)
+            {
+                btnSalonDüzenleme.Visible = true;
+                btnSalonTanımlama.Visible = true;
+                btnSeansMenu.Location= new Point(7, 254);
+            }
+            else if (btnSalonDüzenleme.Visible == true && btnSalonDüzenleme.Visible == true)
+            {
+                btnSalonDüzenleme.Visible = false;
+                btnSalonTanımlama.Visible = false;
+                btnSeansMenu.Location = new Point(7, 166);
+            }
+        }
+
+        private void btnSeansMenu_Click(object sender, EventArgs e)
+        {
+            frmSeanIslemleri frm = new frmSeanIslemleri();
+            FormAc(frm);
+            pnlMenu.Height = 0;
+            btnSeansMenu.Location = new Point(7, 166);
+            btnSalonDüzenleme.Visible = false;
+            btnSalonTanımlama.Visible = false;
+        }
+
+        private void btnSalonTanımlama_Click(object sender, EventArgs e)
+        {
+            frmSalonTanımlama frm = new frmSalonTanımlama();
+            FormAc(frm);
+            pnlMenu.Height = 0;
+            btnSeansMenu.Location = new Point(7, 166);
+            btnSalonDüzenleme.Visible = false;
+            btnSalonTanımlama.Visible = false;
+        }
+
+        private void btnSalonDüzenleme_Click(object sender, EventArgs e)
+        {
+            frmSalonDüzenleme frm = new frmSalonDüzenleme();
+            FormAc(frm);
+            pnlMenu.Height = 0;
+            btnSeansMenu.Location = new Point(7, 166);
+            btnSalonDüzenleme.Visible = false;
+            btnSalonTanımlama.Visible = false;
         }
     }
 

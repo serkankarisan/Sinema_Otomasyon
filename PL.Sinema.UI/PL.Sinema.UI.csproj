@@ -71,6 +71,24 @@
     <Compile Include="frmKullanıcıIslemleri.Designer.cs">
       <DependentUpon>frmKullanıcıIslemleri.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSalonDüzenleme.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSalonDüzenleme.Designer.cs">
+      <DependentUpon>frmSalonDüzenleme.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSalonTanımlama.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSalonTanımlama.Designer.cs">
+      <DependentUpon>frmSalonTanımlama.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSeanIslemleri.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSeanIslemleri.Designer.cs">
+      <DependentUpon>frmSeanIslemleri.cs</DependentUpon>
+    </Compile>
     <Compile Include="Genel.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -100,6 +118,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmKullanıcıIslemleri.resx">
       <DependentUpon>frmKullanıcıIslemleri.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSalonDüzenleme.resx">
+      <DependentUpon>frmSalonDüzenleme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSalonTanımlama.resx">
+      <DependentUpon>frmSalonTanımlama.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSeanIslemleri.resx">
+      <DependentUpon>frmSeanIslemleri.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
