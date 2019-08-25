@@ -182,10 +182,7 @@ namespace DAL.Sinema.Context
                 .Property(p => p.IsActive)
                 .IsOptional();
             modelBuilder.Entity<Seat>()
-                .Property(p => p.Price)
-                .IsRequired();
-            modelBuilder.Entity<Seat>()
-                .Property(p => p.Seat_Type)
+                .Property(p => p.Seat_Code)
                 .HasMaxLength(50)
                 .IsRequired();
 

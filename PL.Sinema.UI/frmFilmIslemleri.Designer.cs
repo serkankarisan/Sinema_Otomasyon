@@ -290,7 +290,6 @@
             this.ClientSize = new System.Drawing.Size(885, 606);
             this.Controls.Add(this.btnYeni);
             this.Controls.Add(this.btnIptal);
-            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnSil);
             this.Controls.Add(this.btnKaydet);
             this.Controls.Add(this.label3);
@@ -306,6 +305,7 @@
             this.Controls.Add(this.txtBanner);
             this.Controls.Add(this.lvFilmler);
             this.Controls.Add(this.pnlHeader1);
+            this.Controls.Add(this.btnUpdate);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmFilmIslemleri";
             this.Text = "Film İşlemleri";

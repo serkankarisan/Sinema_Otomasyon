@@ -9,5 +9,9 @@ namespace BLL.Sinema.Repository
 {
     public class SeatRepository:BaseRepository<Seat>
     {
+        public Seat SelectBySeatCode(string SeatCode)
+        {
+            return _dbSet.Where(w => w.IsActive == true).FirstOrDefault(x => x.Seat_Code == SeatCode);
+        }
     }
 }

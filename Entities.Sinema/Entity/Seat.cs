@@ -13,10 +13,7 @@ namespace Entities.Sinema.Entity
         private decimal _price;
 
         [Column(Order = 3)]
-        public string Seat_Type { get => _seat_Type; set => _seat_Type = value; }
-        [Column(Order = 4)]
-        public decimal Price { get => _price; set => _price = value; }
-
+        public string Seat_Code { get => _seat_Type; set => _seat_Type = value; }
         public int HallId { get; set; }
         public virtual Hall Hall { get; set; }
 
