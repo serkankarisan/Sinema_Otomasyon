@@ -1,4 +1,5 @@
-﻿using Entities.Sinema.Entity;
+﻿using DAL.Sinema.Migrations;
+using Entities.Sinema.Entity;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -12,7 +13,7 @@ namespace DAL.Sinema.Context
     {
         public SinemaContext() : base("SinemaConnStr")
         {
-
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<SinemaContext, Configuration>("SinemaContext"));
         }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Movie> Movies { get; set; }
@@ -28,7 +29,7 @@ namespace DAL.Sinema.Context
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //Database.SetInitializer<SinemaContext>(new CreateDatabaseIfNotExists<SinemaContext>());
+            Database.SetInitializer<SinemaContext>(new CreateDatabaseIfNotExists<SinemaContext>());
             modelBuilder.Entity<Ticket>()
                 .HasRequired(t => t.Customer)
                 .WithMany(c => c.Tickets)

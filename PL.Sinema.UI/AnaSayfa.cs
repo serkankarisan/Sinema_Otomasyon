@@ -17,12 +17,14 @@ namespace PL.Sinema.UI
         {
             InitializeComponent();
         }
-        
+
         int pnlMaxboyut = 400;
         private bool _dragging = false;
         private Point _start_point = new Point(0, 0);
+        ToolTip ttMenuEnabled = new ToolTip();
         private void AnaSayfa_Load(object sender, EventArgs e)
         {
+            ttMenuEnabled.SetToolTip(lblMenuUyari, "Menü'nün aktif olması için açık sayfaları kapatmalısınız!");
             btnSeansMenu.Location = new Point(7, 166);
             pnlMenu.Height = 0;
             //User u = Genel.Service.User.SelectByUserName(Genel.ActiveUser.UserName);
@@ -36,7 +38,7 @@ namespace PL.Sinema.UI
             testuser.Role = testrole;
             lblKullanici.Text = testuser.Name + " " + testuser.SurName;
             lblYetki.Text = testuser.Role.RoleName;
-            if (testuser.Role.RoleName!="Admin")
+            if (testuser.Role.RoleName != "Admin")
             {
                 pnlUser.Location = new Point(10, 0);
                 btnMenu.Enabled = false;
@@ -51,10 +53,16 @@ namespace PL.Sinema.UI
             if (Genel.FormActive)
             {
                 pnlGiris.Visible = false;
+                btnMenu.Enabled = false;
+                ttMenuEnabled.Active = true;
+                lblMenuUyari.Visible = true;
             }
             else
             {
+                ttMenuEnabled.Active = false;
+                btnMenu.Enabled = true;
                 pnlGiris.Visible = true;
+                lblMenuUyari.Visible = false;
             }
             lblSaat.Text = DateTime.Now.ToLongTimeString();
         }
@@ -143,7 +151,7 @@ namespace PL.Sinema.UI
             {
                 btnSalonDüzenleme.Visible = true;
                 btnSalonTanımlama.Visible = true;
-                btnSeansMenu.Location= new Point(7, 254);
+                btnSeansMenu.Location = new Point(7, 254);
             }
             else if (btnSalonDüzenleme.Visible == true && btnSalonDüzenleme.Visible == true)
             {

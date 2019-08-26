@@ -13,6 +13,8 @@ namespace PL.Sinema.UI
         public static RepositoryService Service = new RepositoryService();
         public static User ActiveUser = new User();
         public static bool FormActive = false;
+        public static string Selected_Hall_Code = "";
+
         public static string Hash(string password)
         {
             var bytes = new UTF8Encoding().GetBytes(password);

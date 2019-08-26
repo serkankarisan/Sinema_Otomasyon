@@ -34,12 +34,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtKoltukKapasitesi = new System.Windows.Forms.TextBox();
             this.pnlSalon = new System.Windows.Forms.Panel();
+            this.lblSalon = new System.Windows.Forms.Label();
+            this.lblSalonKodu = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.pnlKoltuklar = new System.Windows.Forms.Panel();
-            this.lblSalonKodu = new System.Windows.Forms.Label();
-            this.lblSalon = new System.Windows.Forms.Label();
             this.pnlHeader1 = new PL.Sinema.UI.pnlHeader();
+            this.btnSalonDuzeni = new System.Windows.Forms.Button();
             this.pnlSalon.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -131,6 +132,32 @@
             this.pnlSalon.Size = new System.Drawing.Size(770, 450);
             this.pnlSalon.TabIndex = 115;
             // 
+            // lblSalon
+            // 
+            this.lblSalon.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblSalon.AutoSize = true;
+            this.lblSalon.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblSalon.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblSalon.Location = new System.Drawing.Point(235, 13);
+            this.lblSalon.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSalon.Name = "lblSalon";
+            this.lblSalon.Size = new System.Drawing.Size(62, 20);
+            this.lblSalon.TabIndex = 116;
+            this.lblSalon.Text = "Salon : ";
+            this.lblSalon.Visible = false;
+            // 
+            // lblSalonKodu
+            // 
+            this.lblSalonKodu.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblSalonKodu.AutoSize = true;
+            this.lblSalonKodu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblSalonKodu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblSalonKodu.Location = new System.Drawing.Point(305, 13);
+            this.lblSalonKodu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSalonKodu.Name = "lblSalonKodu";
+            this.lblSalonKodu.Size = new System.Drawing.Size(0, 20);
+            this.lblSalonKodu.TabIndex = 116;
+            // 
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -165,32 +192,6 @@
             this.pnlKoltuklar.Size = new System.Drawing.Size(700, 370);
             this.pnlKoltuklar.TabIndex = 117;
             // 
-            // lblSalonKodu
-            // 
-            this.lblSalonKodu.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lblSalonKodu.AutoSize = true;
-            this.lblSalonKodu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.lblSalonKodu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblSalonKodu.Location = new System.Drawing.Point(305, 13);
-            this.lblSalonKodu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblSalonKodu.Name = "lblSalonKodu";
-            this.lblSalonKodu.Size = new System.Drawing.Size(0, 20);
-            this.lblSalonKodu.TabIndex = 116;
-            // 
-            // lblSalon
-            // 
-            this.lblSalon.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lblSalon.AutoSize = true;
-            this.lblSalon.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.lblSalon.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblSalon.Location = new System.Drawing.Point(235, 13);
-            this.lblSalon.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblSalon.Name = "lblSalon";
-            this.lblSalon.Size = new System.Drawing.Size(62, 20);
-            this.lblSalon.TabIndex = 116;
-            this.lblSalon.Text = "Salon : ";
-            this.lblSalon.Visible = false;
-            // 
             // pnlHeader1
             // 
             this.pnlHeader1.BackColor = System.Drawing.SystemColors.GrayText;
@@ -200,12 +201,33 @@
             this.pnlHeader1.Size = new System.Drawing.Size(800, 30);
             this.pnlHeader1.TabIndex = 0;
             // 
+            // btnSalonDuzeni
+            // 
+            this.btnSalonDuzeni.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSalonDuzeni.BackColor = System.Drawing.Color.DarkBlue;
+            this.btnSalonDuzeni.Enabled = false;
+            this.btnSalonDuzeni.FlatAppearance.BorderSize = 0;
+            this.btnSalonDuzeni.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSalonDuzeni.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnSalonDuzeni.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSalonDuzeni.Location = new System.Drawing.Point(422, 89);
+            this.btnSalonDuzeni.Name = "btnSalonDuzeni";
+            this.btnSalonDuzeni.Size = new System.Drawing.Size(363, 35);
+            this.btnSalonDuzeni.TabIndex = 116;
+            this.btnSalonDuzeni.Text = "Default Salon Düzenini Değiştir";
+            this.btnSalonDuzeni.UseVisualStyleBackColor = false;
+            this.btnSalonDuzeni.Visible = false;
+            this.btnSalonDuzeni.Click += new System.EventHandler(this.btnSalonDuzeni_Click);
+            // 
             // frmSalonTanımlama
             // 
+            this.AcceptButton = this.btnKaydet;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.CancelButton = this.btnIptal;
             this.ClientSize = new System.Drawing.Size(800, 584);
+            this.Controls.Add(this.btnSalonDuzeni);
             this.Controls.Add(this.pnlSalon);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtKoltukKapasitesi);
@@ -240,5 +262,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblSalonKodu;
         private System.Windows.Forms.Label lblSalon;
+        private System.Windows.Forms.Button btnSalonDuzeni;
     }
 }

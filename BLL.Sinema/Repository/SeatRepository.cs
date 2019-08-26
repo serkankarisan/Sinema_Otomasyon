@@ -13,5 +13,11 @@ namespace BLL.Sinema.Repository
         {
             return _dbSet.Where(w => w.IsActive == true).FirstOrDefault(x => x.Seat_Code == SeatCode);
         }
+        public List<Seat> SelectByHallCode(string HallCode)
+        {
+            HallRepository Halls = new HallRepository();
+            int HallID = Halls.SelectByHallCode(HallCode).Id;
+            return _dbSet.Where(w => w.IsActive == true && w.HallId == HallID).ToList();
+        }
     }
 }

@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AnaSayfa));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.maxMinExit1 = new PL.Sinema.UI.MaxMinExit();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.pnlContent = new System.Windows.Forms.Panel();
@@ -55,6 +54,9 @@
             this.lblTarih = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.tmrClock = new System.Windows.Forms.Timer(this.components);
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.maxMinExit1 = new PL.Sinema.UI.MaxMinExit();
+            this.lblMenuUyari = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -64,6 +66,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel3.SuspendLayout();
             this.pnlUser.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -74,19 +77,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(943, 44);
             this.panel1.TabIndex = 0;
-            // 
-            // maxMinExit1
-            // 
-            this.maxMinExit1.BackColor = System.Drawing.Color.Transparent;
-            this.maxMinExit1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("maxMinExit1.BackgroundImage")));
-            this.maxMinExit1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.maxMinExit1.Location = new System.Drawing.Point(0, 0);
-            this.maxMinExit1.Name = "maxMinExit1";
-            this.maxMinExit1.Size = new System.Drawing.Size(943, 44);
-            this.maxMinExit1.TabIndex = 0;
-            this.maxMinExit1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.maxMinExit1_MouseDown);
-            this.maxMinExit1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.maxMinExit1_MouseMove);
-            this.maxMinExit1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.maxMinExit1_MouseUp);
             // 
             // panel2
             // 
@@ -306,6 +296,7 @@
             this.panel3.Controls.Add(this.lblSaat);
             this.panel3.Controls.Add(this.lblTarih);
             this.panel3.Controls.Add(this.label19);
+            this.panel3.Controls.Add(this.panel5);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
@@ -412,6 +403,41 @@
             // 
             this.tmrClock.Tick += new System.EventHandler(this.tmrClock_Tick);
             // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.Transparent;
+            this.panel5.Controls.Add(this.lblMenuUyari);
+            this.panel5.ForeColor = System.Drawing.Color.Transparent;
+            this.panel5.Location = new System.Drawing.Point(20, 3);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(211, 39);
+            this.panel5.TabIndex = 19;
+            // 
+            // maxMinExit1
+            // 
+            this.maxMinExit1.BackColor = System.Drawing.Color.Transparent;
+            this.maxMinExit1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("maxMinExit1.BackgroundImage")));
+            this.maxMinExit1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.maxMinExit1.Location = new System.Drawing.Point(0, 0);
+            this.maxMinExit1.Name = "maxMinExit1";
+            this.maxMinExit1.Size = new System.Drawing.Size(943, 44);
+            this.maxMinExit1.TabIndex = 0;
+            this.maxMinExit1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.maxMinExit1_MouseDown);
+            this.maxMinExit1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.maxMinExit1_MouseMove);
+            this.maxMinExit1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.maxMinExit1_MouseUp);
+            // 
+            // lblMenuUyari
+            // 
+            this.lblMenuUyari.AutoSize = true;
+            this.lblMenuUyari.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblMenuUyari.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblMenuUyari.Location = new System.Drawing.Point(164, 7);
+            this.lblMenuUyari.Name = "lblMenuUyari";
+            this.lblMenuUyari.Size = new System.Drawing.Size(16, 22);
+            this.lblMenuUyari.TabIndex = 16;
+            this.lblMenuUyari.Text = "!";
+            this.lblMenuUyari.Visible = false;
+            // 
             // AnaSayfa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -436,6 +462,8 @@
             this.panel3.PerformLayout();
             this.pnlUser.ResumeLayout(false);
             this.pnlUser.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -467,5 +495,7 @@
         private System.Windows.Forms.Button btnSalonTanımlama;
         private System.Windows.Forms.Button btnSeansMenu;
         private System.Windows.Forms.Panel pnlUser;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label lblMenuUyari;
     }
 }
