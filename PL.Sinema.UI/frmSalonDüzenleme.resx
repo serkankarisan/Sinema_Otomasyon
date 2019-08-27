@@ -117,4 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnKoltukEkle.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAHpJREFUWEftl0EKwCAMBPe54kF8WenLfEJtAh6KSIxgSw8bmFs2zikqVuoCglAm
+        xNa+v2R4qkC1kJ7c2vcXBShAAQq8IiABXa/JyTE69In2dBmLoAJlNOgL9GwKUIACvxCIQnbiWURnl7FY
+        ez9KgJcRBShAAQps/p4DN4oT/mga27qdAAAAAElFTkSuQmCC
+</value>
+  </data>
 </root>

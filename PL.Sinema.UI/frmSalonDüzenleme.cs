@@ -17,8 +17,11 @@ namespace PL.Sinema.UI
         {
             InitializeComponent();
         }
+        Label lblSil = new Label();
+        PictureBox pbSil = new PictureBox();
+        Panel pnlSil = new Panel();
         bool SuruklemeDurumu = false;
-        Point IlkKonum;
+        Point IlkKonum,EskiKonum;
         int pbWidth = 100, pbHeight = 75;
         int Dsayac = 0, Ysayac = 0;
         float YKalan = 0, YMaxUzunluk = 0, YSira = 0, YAralik = 0, Soldan = 0, Ustten = 0, YYuvarlamaFarki = 0;
@@ -26,7 +29,7 @@ namespace PL.Sinema.UI
         int SalonID = 0;
         private void btnSil_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Silmek İstiyor musunuz?", "Onaylıyor Musunuz?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Silmek istiyor musunuz?", "Onaylıyor Musunuz?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 if (txtSalon_Code.Text.Trim() == "" && lblSalonKodu.Text.Trim() == "")
                 {
@@ -36,6 +39,9 @@ namespace PL.Sinema.UI
                 {
                     btnDuzeniKaydet.Enabled = false;
                     btnDuzeniKaydet.Visible = false;
+                    btnKoltukEkle.Enabled = false;
+                    btnKoltukEkle.Visible = false;
+                    pnlSil.Visible = false;
                     pnlKoltuklar.Controls.Clear();
                     if (txtSalon_Code.Text.Trim() == "")
                     {
@@ -66,8 +72,6 @@ namespace PL.Sinema.UI
                             MessageBox.Show("Salon başarıyla silindi.", "İşlem Başarılı");
                             lblSalon.Visible = false;
                             lblSalonKodu.Text = "";
-                            btnDuzeniKaydet.Enabled = false;
-                            btnDuzeniKaydet.Visible = false;
                             btnIptal.Enabled = false;
                             btnSalonDuzeni.Enabled = false;
                             btnSil.Enabled = false;
@@ -100,6 +104,9 @@ namespace PL.Sinema.UI
             }
             btnDuzeniKaydet.Enabled = false;
             btnDuzeniKaydet.Visible = false;
+            btnKoltukEkle.Enabled = false;
+            btnKoltukEkle.Visible = false;
+            pnlSil.Visible = false;
             MessageBox.Show("Yeni salon düzeni kaydedildi.", "İşlem Başarılı");
             pnlKoltuklar.Controls.Clear();
             SalonGetir(lblSalonKodu.Text.Trim());
@@ -109,8 +116,6 @@ namespace PL.Sinema.UI
         {
             if (Genel.Selected_Hall_Code == "")
             {
-                btnDuzeniKaydet.Enabled = false;
-                btnDuzeniKaydet.Visible = false;
                 btnIptal.Enabled = false;
                 btnSalonDuzeni.Enabled = false;
                 btnSil.Enabled = false;
@@ -121,8 +126,6 @@ namespace PL.Sinema.UI
             }
             else
             {
-                btnDuzeniKaydet.Enabled = false;
-                btnDuzeniKaydet.Visible = false;
                 btnIptal.Enabled = true;
                 btnSalonDuzeni.Enabled = true;
                 btnSil.Enabled = true;
@@ -132,11 +135,20 @@ namespace PL.Sinema.UI
                 SalonGetir(Genel.Selected_Hall_Code);
                 txtSalon_Code.Text = Genel.Selected_Hall_Code;
             }
+            btnDuzeniKaydet.Enabled = false;
+            btnDuzeniKaydet.Visible = false;
+            btnKoltukEkle.Enabled = false;
+            btnKoltukEkle.Visible = false;
+            pnlSil.Visible = false;
         }
 
 
         private void btnSalonDuzeni_Click(object sender, EventArgs e)
         {
+            SilmeAlanıGörsel();
+            pnlSil.Visible = true;
+            btnKoltukEkle.Enabled = true;
+            btnKoltukEkle.Visible = true;
             btnDuzeniKaydet.Enabled = true;
             btnDuzeniKaydet.Visible = true;
             List<Seat> SeatList = Genel.Service.Seat.SelectByHallCode(lblSalonKodu.Text);
@@ -152,11 +164,51 @@ namespace PL.Sinema.UI
                 }
             }
         }
+        private void SilmeAlanıGörsel( )
+        {
+            pnlSil.Controls.Clear();
+            lblSil.Text= "Koltuğu silmek için bu alana sürükleyin.";
+            lblSil.Anchor = (AnchorStyles.Top | AnchorStyles.Left);
+            lblSil.Width = 400;
+            lblSil.Height = 25;
+            lblSil.Location=new Point(500,10);
+            lblSil.BackColor = Color.Transparent;
+            lblSil.ForeColor = Color.White;
+            lblSil.Font = new Font("Arial", 15, FontStyle.Bold);
 
+            Label lblUyari = new Label();
+            lblUyari.Text = "Uyarı!Koltuk ekleme ve silme işlemi koltuk düzeninden bağımsızdır onaylarsanız iptal edilemez.";
+            lblUyari.Anchor = (AnchorStyles.Top | AnchorStyles.Left);
+            lblUyari.Width = 400;
+            lblUyari.Height = 50;
+            lblUyari.Location = new Point(0, 5);
+            lblUyari.BackColor = Color.Transparent;
+            lblUyari.ForeColor = Color.White;
+            lblUyari.Font = new Font("Arial", 10,FontStyle.Bold);
+
+            pbSil.Anchor = (AnchorStyles.Top | AnchorStyles.Left);
+            pbSil.Width = 45;
+            pbSil.Height = 45;
+            pbSil.Location = new Point(900, 0);
+            pbSil.Image = Image.FromFile(Application.StartupPath + "" + "\\Images\\minus.ico");
+            pbSil.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbSil.BackColor = Color.Transparent;
+
+            pnlSil.Controls.Add(lblSil);
+            pnlSil.Controls.Add(pbSil);
+            pnlSil.Controls.Add(lblUyari);
+            pnlSil.Dock = DockStyle.Top;
+            pnlSil.BackColor = Color.Transparent;
+            pnlSil.Height = 45;
+            pnlSil.BorderStyle = BorderStyle.Fixed3D;
+
+            pnlKoltuklar.Controls.Add(pnlSil);
+        }
 
         private void P_MouseDown(object sender, MouseEventArgs e)
         {
             PictureBox pb = (PictureBox)sender;
+            EskiKonum = pb.Location;
             SuruklemeDurumu = true;
             IlkKonum = e.Location;
             pb.BackColor = Color.LightGray;
@@ -166,8 +218,13 @@ namespace PL.Sinema.UI
             if (SuruklemeDurumu)
             {
                 PictureBox pb = (PictureBox)sender;
-                pb.Left = e.X + pb.Left - (IlkKonum.X);
-                pb.Top = e.Y + pb.Top - (IlkKonum.Y);
+                if (e.X + pb.Left - (IlkKonum.X) > 0 && e.Y + pb.Top - (IlkKonum.Y) > 0)
+                {
+                    pb.Left = e.X + pb.Left - (IlkKonum.X);
+                    pb.Top = e.Y + pb.Top - (IlkKonum.Y);
+                }
+                pnlSil.BackColor = Color.LightSalmon;
+                lblSil.ForeColor = Color.Black;
             }
         }
         private void P_MouseUp(object sender, MouseEventArgs e)
@@ -176,6 +233,30 @@ namespace PL.Sinema.UI
             SuruklemeDurumu = false;
             pb.Image = Image.FromFile(Application.StartupPath + "" + "\\Images\\KoltukOrange.png");
             pb.BackColor = Color.Transparent;
+            pnlSil.BackColor = Color.Transparent;
+            lblSil.ForeColor = Color.White;
+            if (pb.Top < 45)
+            {
+                if (MessageBox.Show("Koltuğu silmek istiyor musunuz?", "Onaylıyor Musunuz?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    string[] PbName = pb.Name.Split('_');
+                    int KoltukID = Convert.ToInt32(PbName[1]);
+                    int  hallID = Genel.Service.Seat.SelectById(KoltukID).HallId;
+                    Hall h = Genel.Service.Hall.SelectById(hallID);
+                    if (h.Seating_Capacity!=0)
+                    {
+                        h.Seating_Capacity -= 1;
+                        Genel.Service.Hall.Update(h);
+                    }
+                    Genel.Service.Seat.Delete(KoltukID);
+                    pnlKoltuklar.Controls.Remove(pb);
+                }
+                else
+                {
+                    pb.Image = Image.FromFile(Application.StartupPath + "" + "\\Images\\Koltuk.png");
+                    pb.Location = EskiKonum;
+                }
+            }
         }
 
         private void btnIptal_Click(object sender, EventArgs e)
@@ -190,6 +271,9 @@ namespace PL.Sinema.UI
             lblSalon.Visible = false;
             btnDuzeniKaydet.Enabled = false;
             btnDuzeniKaydet.Visible = false;
+            btnKoltukEkle.Enabled = false;
+            btnKoltukEkle.Visible = false;
+            pnlSil.Visible = false;
             pnlKoltuklar.Controls.Clear();
         }
 
@@ -199,6 +283,9 @@ namespace PL.Sinema.UI
             {
                 btnDuzeniKaydet.Enabled = false;
                 btnDuzeniKaydet.Visible = false;
+                btnKoltukEkle.Enabled = false;
+                btnKoltukEkle.Visible = false;
+                pnlSil.Visible = false;
                 pnlKoltuklar.Controls.Clear();
                 SalonGetir(txtSalon_Code.Text.Trim());
             }
@@ -247,7 +334,7 @@ namespace PL.Sinema.UI
                 if (DMaxUzunluk % pbHeight == 0)
                 {
                     DKalan = pbHeight;
-                    DSira = Convert.ToInt32(((DMaxUzunluk - pbHeight) / pbHeight) - DYuvarlamaFarki);
+                    DSira = Convert.ToInt32(((DMaxUzunluk - pbHeight) / pbHeight) - DYuvarlamaFarki)-1;
                 }
                 else
                 {

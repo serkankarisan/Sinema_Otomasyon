@@ -65,7 +65,7 @@ namespace PL.Sinema.UI
         {
             if (!string.IsNullOrEmpty(txtKoltukKapasitesi.Text.Trim()))
             {
-                if (Convert.ToInt32(txtKoltukKapasitesi.Text.Trim()) <= 170)
+                if (Convert.ToInt32(txtKoltukKapasitesi.Text.Trim()) <= 153)
                 {
                     if (!KapasiteAsimi)
                     {
@@ -110,16 +110,16 @@ namespace PL.Sinema.UI
                         if (DMaxUzunluk % pbHeight == 0)
                         {
                             DKalan = pbHeight;
-                            DSira = Convert.ToInt32(((DMaxUzunluk - pbHeight) / pbHeight) - DYuvarlamaFarki);
+                            DSira = Convert.ToInt32(((DMaxUzunluk - pbHeight) / pbHeight) - DYuvarlamaFarki)-1;
                         }
                         else
                         {
                             DKalan = DMaxUzunluk % pbHeight;
                             DYuvarlamaFarki = DKalan / pbHeight;
-                            DSira = Convert.ToInt32((DMaxUzunluk / pbHeight) - DYuvarlamaFarki);
+                            DSira = Convert.ToInt32((DMaxUzunluk / pbHeight) - DYuvarlamaFarki) - 1;
                         }
                         DAralik = (DKalan / (DSira - 1));
-                        Ustten = (pbHeight + DAralik) * (DSira - 2);
+                        Ustten = (pbHeight + DAralik) * (DSira - 1);
                         Hall EklenenSalon = Genel.Service.Hall.SelectByHallCode(EklenenSalonKodu);
                         if ((DSira - 1) * YSira < EklenenSalon.Seating_Capacity)
                         {
@@ -173,7 +173,7 @@ namespace PL.Sinema.UI
                 }
                 else
                 {
-                    MessageBox.Show("Salon kapasitesi Max Koltuk Kapasitesi(170)'ni geçemez.", "Hata!");
+                    MessageBox.Show("Salon kapasitesi Max Koltuk Kapasitesi(153)'ni geçemez.", "Hata!");
                     return;
                 }
             }
