@@ -62,6 +62,7 @@
             // btnIptal
             // 
             this.btnIptal.BackColor = System.Drawing.Color.DarkBlue;
+            this.btnIptal.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnIptal.Enabled = false;
             this.btnIptal.FlatAppearance.BorderSize = 0;
             this.btnIptal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -187,6 +188,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlKoltuklar.BackColor = System.Drawing.Color.Transparent;
+            this.pnlKoltuklar.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnlKoltuklar.Location = new System.Drawing.Point(35, 50);
             this.pnlKoltuklar.Name = "pnlKoltuklar";
             this.pnlKoltuklar.Size = new System.Drawing.Size(700, 370);

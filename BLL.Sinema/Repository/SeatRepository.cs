@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Sinema.Repository
 {
-    public class SeatRepository:BaseRepository<Seat>
+    public class SeatRepository : BaseRepository<Seat>
     {
         public Seat SelectBySeatCode(string SeatCode)
         {
@@ -16,8 +16,16 @@ namespace BLL.Sinema.Repository
         public List<Seat> SelectByHallCode(string HallCode)
         {
             HallRepository Halls = new HallRepository();
-            int HallID = Halls.SelectByHallCode(HallCode).Id;
-            return _dbSet.Where(w => w.IsActive == true && w.HallId == HallID).ToList();
+            Hall h = Halls.SelectByHallCode(HallCode);
+            if (h != null)
+            {
+                int HallID = h.Id;
+                return _dbSet.Where(w => w.IsActive == true && w.HallId == HallID).ToList();
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

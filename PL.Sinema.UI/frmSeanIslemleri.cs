@@ -16,5 +16,39 @@ namespace PL.Sinema.UI
         {
             InitializeComponent();
         }
+        bool SuruklemeDurumu = false;
+        Point IlkKonum;
+        private void P_MouseDown(object sender, MouseEventArgs e)
+        {
+            PictureBox pb = (PictureBox)sender;
+            SuruklemeDurumu = true;
+            IlkKonum = e.Location;
+            //pb.BackColor = Color.AliceBlue;
+        }
+        private void P_MouseMove(object sender, MouseEventArgs e)
+        {
+
+        }
+        private void P_MouseUp(object sender, MouseEventArgs e)
+        {
+            PictureBox pb = (PictureBox)sender;
+            SuruklemeDurumu = false;
+            //pb.BackColor = Color.Transparent;
+        }
+
+        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+
+        }
     }
 }

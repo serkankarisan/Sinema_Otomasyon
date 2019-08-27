@@ -28,31 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pnlHeader1 = new PL.Sinema.UI.pnlHeader();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pnlHeader1 = new PL.Sinema.UI.pnlHeader();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // pnlHeader1
-            // 
-            this.pnlHeader1.BackColor = System.Drawing.SystemColors.GrayText;
-            this.pnlHeader1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlHeader1.Location = new System.Drawing.Point(0, 0);
-            this.pnlHeader1.Name = "pnlHeader1";
-            this.pnlHeader1.Size = new System.Drawing.Size(800, 30);
-            this.pnlHeader1.TabIndex = 0;
-            // 
             // panel2
             // 
             this.panel2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.panel2.Controls.Add(this.pictureBox2);
-            this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Location = new System.Drawing.Point(40, 198);
@@ -67,14 +57,6 @@
             this.pictureBox2.Size = new System.Drawing.Size(52, 54);
             this.pictureBox2.TabIndex = 119;
             this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(48, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(52, 54);
-            this.pictureBox1.TabIndex = 118;
-            this.pictureBox1.TabStop = false;
             // 
             // label3
             // 
@@ -100,12 +82,34 @@
             this.label2.TabIndex = 116;
             this.label2.Text = "Boş Koltuklar";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.pictureBox1.Location = new System.Drawing.Point(207, 67);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(52, 54);
+            this.pictureBox1.TabIndex = 118;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
+            // 
+            // pnlHeader1
+            // 
+            this.pnlHeader1.BackColor = System.Drawing.SystemColors.GrayText;
+            this.pnlHeader1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlHeader1.Location = new System.Drawing.Point(0, 0);
+            this.pnlHeader1.Name = "pnlHeader1";
+            this.pnlHeader1.Size = new System.Drawing.Size(800, 30);
+            this.pnlHeader1.TabIndex = 0;
+            // 
             // frmSeanIslemleri
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panel2);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pnlHeader1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmSeanIslemleri";
