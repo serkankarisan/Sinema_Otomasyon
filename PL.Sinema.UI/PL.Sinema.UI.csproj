@@ -77,6 +77,12 @@
     <Compile Include="frmSalonDüzenleme.Designer.cs">
       <DependentUpon>frmSalonDüzenleme.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSalonSec.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSalonSec.Designer.cs">
+      <DependentUpon>frmSalonSec.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSalonTanımlama.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +127,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmSalonDüzenleme.resx">
       <DependentUpon>frmSalonDüzenleme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSalonSec.resx">
+      <DependentUpon>frmSalonSec.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSalonTanımlama.resx">
       <DependentUpon>frmSalonTanımlama.cs</DependentUpon>

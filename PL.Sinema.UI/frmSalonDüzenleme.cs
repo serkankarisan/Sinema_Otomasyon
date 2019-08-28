@@ -21,12 +21,78 @@ namespace PL.Sinema.UI
         PictureBox pbSil = new PictureBox();
         Panel pnlSil = new Panel();
         bool SuruklemeDurumu = false;
-        Point IlkKonum,EskiKonum;
+        Point IlkKonum, EskiKonum;
         int pbWidth = 100, pbHeight = 75;
         int Dsayac = 0, Ysayac = 0;
         float YKalan = 0, YMaxUzunluk = 0, YSira = 0, YAralik = 0, Soldan = 0, Ustten = 0, YYuvarlamaFarki = 0;
         float DKalan = 0, DMaxUzunluk = 0, DSira = 0, DAralik = 0, DYuvarlamaFarki = 0;
         int SalonID = 0;
+        string SalonKodu = "";
+
+        private void btnSec_Click(object sender, EventArgs e)
+        {
+            frmSalonSec frm = new frmSalonSec();
+            frm.ShowDialog();
+            btnIptal.Enabled = true;
+            btnSalonDuzeni.Enabled = true;
+            btnSil.Enabled = true;
+            btnIptal.Visible = true;
+            btnSalonDuzeni.Visible = true;
+            btnSil.Visible = true;
+            SalonGetir(Genel.Selected_Hall_Code);
+            txtSalon_Code.Text = Genel.Selected_Hall_Code;
+            SalonKodu = Genel.Selected_Hall_Code;
+        }
+
+        private void btnKoltukEkle_Click(object sender, EventArgs e)
+        {
+            Seat k = new Seat();
+            k.HallId = Genel.Service.Hall.SelectByHallCode(SalonKodu).Id;
+            List<Seat> Liste = Genel.Service.Seat.Select().Where(s => s.HallId == k.HallId).ToList();
+            k.Seat_Code = "K" + DateTime.Now.ToShortDateString() + DateTime.Now.ToLongTimeString();
+            Genel.Service.Seat.Insert(k);
+            Hall h = Genel.Service.Hall.SelectById(k.HallId);
+            h.Seating_Capacity += 1;
+            Genel.Service.Hall.Update(h);
+            SalonKoltukEkle(SalonKodu);
+            Seat kl = Genel.Service.Seat.SelectBySeatCode(k.Seat_Code);
+            int LocY = 0, LocX = 0;
+            for (int i = 0; i < Liste.Count(); i++)
+            {
+                if (i == 0)
+                {
+                    LocY = Liste[i].Location_Y;
+                    LocX = Liste[i].Location_X;
+                }
+                else
+                {
+                    if (Liste[i].Location_Y < Liste[i - 1].Location_Y)
+                    {
+                        LocY = Liste[i].Location_Y;
+                    }
+                    if (Liste[i].Location_X > Liste[i - 1].Location_X)
+                    {
+                        LocX = Liste[i].Location_X;
+                    }
+                }
+            }
+            kl.Location_X = Convert.ToInt32(LocX + pbWidth + YAralik);
+            kl.Location_Y = LocY;
+            Genel.Service.Seat.Update(kl);
+            lblSalon.Visible = true;
+            btnIptal.Enabled = true;
+            btnSalonDuzeni.Enabled = true;
+            btnSil.Enabled = true;
+            btnIptal.Visible = true;
+            btnSalonDuzeni.Visible = true;
+            btnDuzeniKaydet.Enabled = false;
+            btnDuzeniKaydet.Visible = false;
+            btnKoltukEkle.Enabled = false;
+            btnKoltukEkle.Visible = false;
+            lblUyari2.Visible = false;
+            btnSil.Visible = true;
+            SalonGetir(SalonKodu);
+        }
         private void btnSil_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Silmek istiyor musunuz?", "Onaylıyor Musunuz?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -41,16 +107,10 @@ namespace PL.Sinema.UI
                     btnDuzeniKaydet.Visible = false;
                     btnKoltukEkle.Enabled = false;
                     btnKoltukEkle.Visible = false;
+                    lblUyari2.Visible = false;
                     pnlSil.Visible = false;
                     pnlKoltuklar.Controls.Clear();
-                    if (txtSalon_Code.Text.Trim() == "")
-                    {
-                        SalonID = Genel.Service.Hall.SelectByHallCode(txtSalon_Code.Text.Trim()).Id;
-                    }
-                    else
-                    {
-                        SalonID = Genel.Service.Hall.SelectByHallCode(lblSalonKodu.Text.Trim()).Id;
-                    }
+                    SalonID = Genel.Service.Hall.SelectByHallCode(SalonKodu).Id;
                     List<Seat> KoltukListe = Genel.Service.Seat.Select().Where(s => s.HallId == SalonID).ToList();
                     if (Genel.Service.Hall.SelectById(SalonID) == null)
                     {
@@ -106,10 +166,11 @@ namespace PL.Sinema.UI
             btnDuzeniKaydet.Visible = false;
             btnKoltukEkle.Enabled = false;
             btnKoltukEkle.Visible = false;
+            lblUyari2.Visible = false;
             pnlSil.Visible = false;
             MessageBox.Show("Yeni salon düzeni kaydedildi.", "İşlem Başarılı");
             pnlKoltuklar.Controls.Clear();
-            SalonGetir(lblSalonKodu.Text.Trim());
+            SalonGetir(SalonKodu);
         }
 
         private void frmSalonDüzenleme_Load(object sender, EventArgs e)
@@ -134,11 +195,13 @@ namespace PL.Sinema.UI
                 btnSil.Visible = true;
                 SalonGetir(Genel.Selected_Hall_Code);
                 txtSalon_Code.Text = Genel.Selected_Hall_Code;
+                SalonKodu = Genel.Selected_Hall_Code;
             }
             btnDuzeniKaydet.Enabled = false;
             btnDuzeniKaydet.Visible = false;
             btnKoltukEkle.Enabled = false;
             btnKoltukEkle.Visible = false;
+            lblUyari2.Visible = false;
             pnlSil.Visible = false;
         }
 
@@ -149,6 +212,7 @@ namespace PL.Sinema.UI
             pnlSil.Visible = true;
             btnKoltukEkle.Enabled = true;
             btnKoltukEkle.Visible = true;
+            lblUyari2.Visible = true;
             btnDuzeniKaydet.Enabled = true;
             btnDuzeniKaydet.Visible = true;
             List<Seat> SeatList = Genel.Service.Seat.SelectByHallCode(lblSalonKodu.Text);
@@ -164,27 +228,27 @@ namespace PL.Sinema.UI
                 }
             }
         }
-        private void SilmeAlanıGörsel( )
+        private void SilmeAlanıGörsel()
         {
             pnlSil.Controls.Clear();
-            lblSil.Text= "Koltuğu silmek için bu alana sürükleyin.";
+            lblSil.Text = "Koltuğu silmek için bu alana sürükleyin.";
             lblSil.Anchor = (AnchorStyles.Top | AnchorStyles.Left);
             lblSil.Width = 400;
             lblSil.Height = 25;
-            lblSil.Location=new Point(500,10);
+            lblSil.Location = new Point(500, 10);
             lblSil.BackColor = Color.Transparent;
             lblSil.ForeColor = Color.White;
             lblSil.Font = new Font("Arial", 15, FontStyle.Bold);
 
             Label lblUyari = new Label();
-            lblUyari.Text = "Uyarı!Koltuk ekleme ve silme işlemi koltuk düzeninden bağımsızdır onaylarsanız iptal edilemez.";
+            lblUyari.Text = "Uyarı!Koltuk ekleme ve silme işlemlerini onaylarsanız iptal edilemez.";
             lblUyari.Anchor = (AnchorStyles.Top | AnchorStyles.Left);
             lblUyari.Width = 400;
             lblUyari.Height = 50;
             lblUyari.Location = new Point(0, 5);
             lblUyari.BackColor = Color.Transparent;
             lblUyari.ForeColor = Color.White;
-            lblUyari.Font = new Font("Arial", 10,FontStyle.Bold);
+            lblUyari.Font = new Font("Arial", 10, FontStyle.Bold);
 
             pbSil.Anchor = (AnchorStyles.Top | AnchorStyles.Left);
             pbSil.Width = 45;
@@ -241,9 +305,9 @@ namespace PL.Sinema.UI
                 {
                     string[] PbName = pb.Name.Split('_');
                     int KoltukID = Convert.ToInt32(PbName[1]);
-                    int  hallID = Genel.Service.Seat.SelectById(KoltukID).HallId;
+                    int hallID = Genel.Service.Seat.SelectById(KoltukID).HallId;
                     Hall h = Genel.Service.Hall.SelectById(hallID);
-                    if (h.Seating_Capacity!=0)
+                    if (h.Seating_Capacity != 0)
                     {
                         h.Seating_Capacity -= 1;
                         Genel.Service.Hall.Update(h);
@@ -273,7 +337,9 @@ namespace PL.Sinema.UI
             btnDuzeniKaydet.Visible = false;
             btnKoltukEkle.Enabled = false;
             btnKoltukEkle.Visible = false;
+            lblUyari2.Visible = false;
             pnlSil.Visible = false;
+            txtSalon_Code.Clear();
             pnlKoltuklar.Controls.Clear();
         }
 
@@ -281,13 +347,15 @@ namespace PL.Sinema.UI
         {
             if (txtSalon_Code.Text.Trim() != "")
             {
+                SalonKodu = txtSalon_Code.Text.Trim();
                 btnDuzeniKaydet.Enabled = false;
                 btnDuzeniKaydet.Visible = false;
                 btnKoltukEkle.Enabled = false;
                 btnKoltukEkle.Visible = false;
+                lblUyari2.Visible = false;
                 pnlSil.Visible = false;
                 pnlKoltuklar.Controls.Clear();
-                SalonGetir(txtSalon_Code.Text.Trim());
+                SalonGetir(SalonKodu);
             }
             else
             {
@@ -297,6 +365,7 @@ namespace PL.Sinema.UI
 
         private void SalonGetir(string HallCode)
         {
+            pnlKoltuklar.Controls.Clear();
             List<Seat> SeatList = Genel.Service.Seat.SelectByHallCode(HallCode);
             if (SeatList != null)
             {
@@ -334,7 +403,7 @@ namespace PL.Sinema.UI
                 if (DMaxUzunluk % pbHeight == 0)
                 {
                     DKalan = pbHeight;
-                    DSira = Convert.ToInt32(((DMaxUzunluk - pbHeight) / pbHeight) - DYuvarlamaFarki)-1;
+                    DSira = Convert.ToInt32(((DMaxUzunluk - pbHeight) / pbHeight) - DYuvarlamaFarki) - 1;
                 }
                 else
                 {
@@ -384,5 +453,64 @@ namespace PL.Sinema.UI
                 return;
             }
         }
+        private void SalonKoltukEkle(string HallCode)
+        {
+            //Yatay hesap
+            YMaxUzunluk = pnlKoltuklar.Width;
+            if (YMaxUzunluk % pbWidth == 0)
+            {
+                YKalan = pbWidth;
+                YSira = Convert.ToInt32(((YMaxUzunluk - pbWidth) / pbWidth) - YYuvarlamaFarki);
+            }
+            else
+            {
+                YKalan = YMaxUzunluk % pbWidth;
+                YYuvarlamaFarki = YKalan / pbWidth;
+                YSira = Convert.ToInt32((YMaxUzunluk / pbWidth) - YYuvarlamaFarki);
+            }
+            YAralik = (YKalan / (YSira - 1));
+
+            //Dikey Hesap
+            DMaxUzunluk = pnlKoltuklar.Height;
+            if (DMaxUzunluk % pbHeight == 0)
+            {
+                DKalan = pbHeight;
+                DSira = Convert.ToInt32(((DMaxUzunluk - pbHeight) / pbHeight) - DYuvarlamaFarki) - 1;
+            }
+            else
+            {
+                DKalan = DMaxUzunluk % pbHeight;
+                DYuvarlamaFarki = DKalan / pbHeight;
+                DSira = Convert.ToInt32((DMaxUzunluk / pbHeight) - DYuvarlamaFarki) - 1;
+            }
+            DAralik = (DKalan / (DSira - 1));
+            Ustten = (pbHeight + DAralik) * (DSira - 1);
+            Hall EklenenSalon = Genel.Service.Hall.SelectByHallCode(HallCode);
+            if ((DSira - 1) * YSira < EklenenSalon.Seating_Capacity)
+            {
+                pbHeight -= 25;
+                pbWidth -= 25;
+                SalonKoltukEkle(HallCode);
+                return;
+            }
+            List<Seat> List = Genel.Service.Seat.SelectByHallCode(HallCode);
+            foreach (Seat k in List)
+            {
+                if (Ysayac == YSira)
+                {
+                    Ysayac = 0;
+                    Soldan = YAralik;
+                    Ustten -= (pbHeight + DAralik);
+                    Dsayac += 1;
+                }
+                k.Location_X = Convert.ToInt32(Soldan);
+                k.Location_Y = Convert.ToInt32(Ustten);
+                Genel.Service.Seat.Update(k);
+                Soldan += (pbWidth + YAralik);
+                Ysayac += 1;
+            }
+
+        }
     }
 }
+

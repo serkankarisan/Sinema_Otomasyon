@@ -43,8 +43,10 @@
             this.btnIptal = new System.Windows.Forms.Button();
             this.btnSil = new System.Windows.Forms.Button();
             this.btnDuzeniKaydet = new System.Windows.Forms.Button();
-            this.pnlHeader1 = new PL.Sinema.UI.pnlHeader();
             this.label2 = new System.Windows.Forms.Label();
+            this.lblUyari2 = new System.Windows.Forms.Label();
+            this.btnSec = new System.Windows.Forms.Button();
+            this.pnlHeader1 = new PL.Sinema.UI.pnlHeader();
             this.pnlSalon.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -73,6 +75,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlSalon.BackColor = System.Drawing.Color.Transparent;
+            this.pnlSalon.Controls.Add(this.lblUyari2);
             this.pnlSalon.Controls.Add(this.btnKoltukEkle);
             this.pnlSalon.Controls.Add(this.lblSalon);
             this.pnlSalon.Controls.Add(this.lblSalonKodu);
@@ -90,18 +93,19 @@
             this.btnKoltukEkle.Enabled = false;
             this.btnKoltukEkle.FlatAppearance.BorderSize = 0;
             this.btnKoltukEkle.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnKoltukEkle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnKoltukEkle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnKoltukEkle.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnKoltukEkle.Image = ((System.Drawing.Image)(resources.GetObject("btnKoltukEkle.Image")));
             this.btnKoltukEkle.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnKoltukEkle.Location = new System.Drawing.Point(35, 3);
             this.btnKoltukEkle.Name = "btnKoltukEkle";
-            this.btnKoltukEkle.Size = new System.Drawing.Size(153, 45);
+            this.btnKoltukEkle.Size = new System.Drawing.Size(128, 45);
             this.btnKoltukEkle.TabIndex = 126;
             this.btnKoltukEkle.Text = "Koltuk Ekle";
             this.btnKoltukEkle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnKoltukEkle.UseVisualStyleBackColor = false;
             this.btnKoltukEkle.Visible = false;
+            this.btnKoltukEkle.Click += new System.EventHandler(this.btnKoltukEkle_Click);
             // 
             // lblSalon
             // 
@@ -254,15 +258,6 @@
             this.btnDuzeniKaydet.Visible = false;
             this.btnDuzeniKaydet.Click += new System.EventHandler(this.btnDuzeniKaydet_Click);
             // 
-            // pnlHeader1
-            // 
-            this.pnlHeader1.BackColor = System.Drawing.SystemColors.GrayText;
-            this.pnlHeader1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlHeader1.Location = new System.Drawing.Point(0, 0);
-            this.pnlHeader1.Name = "pnlHeader1";
-            this.pnlHeader1.Size = new System.Drawing.Size(800, 30);
-            this.pnlHeader1.TabIndex = 0;
-            // 
             // label2
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -275,12 +270,49 @@
             this.label2.TabIndex = 126;
             this.label2.Text = "Koltuğu silmek için bu alana sürükleyin.";
             // 
+            // lblUyari2
+            // 
+            this.lblUyari2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblUyari2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblUyari2.Location = new System.Drawing.Point(170, 3);
+            this.lblUyari2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblUyari2.Name = "lblUyari2";
+            this.lblUyari2.Size = new System.Drawing.Size(335, 45);
+            this.lblUyari2.TabIndex = 126;
+            this.lblUyari2.Text = "Uyarı! Koltuk eklendiğinde salon düzeni sıfırlanır ve yeniden düzenlemeniz gereki" +
+    "r.";
+            this.lblUyari2.Visible = false;
+            // 
+            // btnSec
+            // 
+            this.btnSec.BackColor = System.Drawing.Color.Navy;
+            this.btnSec.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSec.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnSec.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSec.Location = new System.Drawing.Point(384, 39);
+            this.btnSec.Name = "btnSec";
+            this.btnSec.Size = new System.Drawing.Size(71, 35);
+            this.btnSec.TabIndex = 126;
+            this.btnSec.Text = "Seç";
+            this.btnSec.UseVisualStyleBackColor = false;
+            this.btnSec.Click += new System.EventHandler(this.btnSec_Click);
+            // 
+            // pnlHeader1
+            // 
+            this.pnlHeader1.BackColor = System.Drawing.SystemColors.GrayText;
+            this.pnlHeader1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlHeader1.Location = new System.Drawing.Point(0, 0);
+            this.pnlHeader1.Name = "pnlHeader1";
+            this.pnlHeader1.Size = new System.Drawing.Size(800, 30);
+            this.pnlHeader1.TabIndex = 0;
+            // 
             // frmSalonDüzenleme
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(800, 584);
+            this.Controls.Add(this.btnSec);
             this.Controls.Add(this.btnDuzeniKaydet);
             this.Controls.Add(this.btnSil);
             this.Controls.Add(this.btnSalonDuzeni);
@@ -321,5 +353,7 @@
         private System.Windows.Forms.Button btnDuzeniKaydet;
         private System.Windows.Forms.Button btnKoltukEkle;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblUyari2;
+        private System.Windows.Forms.Button btnSec;
     }
 }
