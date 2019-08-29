@@ -11,12 +11,14 @@ namespace Entities.Sinema.Entity
     {
         private string _hall_Code;
         private int _seating_Capacity;
+        private int _max_Capacity;
 
         [Column(Order = 3)]
         public string Hall_Code { get => _hall_Code; set => _hall_Code = value; }
         [Column(Order = 4)]
         public int Seating_Capacity { get => _seating_Capacity; set => _seating_Capacity = value; }
-
+        [Column(Order = 5)]
+        public int Max_Capacity { get => _max_Capacity; set => _max_Capacity = value; }
 
         public virtual List<Seance> Seances { get; set; }
         public virtual List<Seat> Seats { get; set; }

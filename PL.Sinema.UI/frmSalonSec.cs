@@ -19,7 +19,14 @@ namespace PL.Sinema.UI
 
         private void dgvSalonlar_DoubleClick(object sender, EventArgs e)
         {
-            Genel.Selected_Hall_Code = dgvSalonlar.SelectedRows[0].Cells["Hall_Code"].Value.ToString();
+            if (dgvSalonlar.SelectedRows.Count==1)
+            {
+                Genel.Selected_Hall_Code = dgvSalonlar.SelectedRows[0].Cells["Hall_Code"].Value.ToString();
+            }
+            else
+            {
+                Genel.Selected_Hall_Code = "";
+            }
             this.Close();
         }
 
@@ -39,6 +46,7 @@ namespace PL.Sinema.UI
 
         private void btnYeni_Click(object sender, EventArgs e)
         {
+            Genel.Selected_Hall_Code = "";
             this.Close();
         }
     }

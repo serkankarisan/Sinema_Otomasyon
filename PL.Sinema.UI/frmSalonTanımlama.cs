@@ -74,6 +74,7 @@ namespace PL.Sinema.UI
                         if (int.TryParse(txtKoltukKapasitesi.Text.Trim(), out salon_kapasite))
                         {
                             s.Seating_Capacity = salon_kapasite;
+                            s.Max_Capacity = salon_kapasite;
                         }
                         else
                         {
@@ -121,7 +122,7 @@ namespace PL.Sinema.UI
                         DAralik = (DKalan / (DSira - 1));
                         Ustten = (pbHeight + DAralik) * (DSira - 1);
                         Hall EklenenSalon = Genel.Service.Hall.SelectByHallCode(EklenenSalonKodu);
-                        if ((DSira - 1) * YSira < EklenenSalon.Seating_Capacity)
+                        if ((DSira - 1) * YSira < EklenenSalon.Max_Capacity)
                         {
                             KapasiteAsimi = true;
                             pbHeight -= 25;

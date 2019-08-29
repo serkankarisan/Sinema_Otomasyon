@@ -20,6 +20,7 @@ namespace PL.Sinema.UI
         private void btnCikis_Click(object sender, EventArgs e)
         {
             Genel.FormActive = false;
+            Genel.Selected_Hall_Code = "";
             this.FindForm().Close();
         }
 
