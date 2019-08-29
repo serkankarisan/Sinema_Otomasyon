@@ -14,9 +14,12 @@ namespace PL.Sinema.UI
         public static User ActiveUser = new User();
         public static bool FormActive = false;
         public static string Selected_Hall_Code = "";
+        public static int Selected_Film_ID = 0;
         public static float pnlKoltukWidth = 0;
         public static float pnlKoltukHeight = 0;
-
+        public static bool Filter = false;
+        public static DateTime BaslangicTarihi;
+        public static DateTime BitisTarihi;
 
 
         public static string Hash(string password)

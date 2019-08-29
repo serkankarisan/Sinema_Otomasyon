@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities.Sinema.Entity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,7 +20,7 @@ namespace PL.Sinema.UI
 
         private void dgvSalonlar_DoubleClick(object sender, EventArgs e)
         {
-            if (dgvSalonlar.SelectedRows.Count==1)
+            if (dgvSalonlar.SelectedRows.Count == 1)
             {
                 Genel.Selected_Hall_Code = dgvSalonlar.SelectedRows[0].Cells["Hall_Code"].Value.ToString();
             }
@@ -32,15 +33,23 @@ namespace PL.Sinema.UI
 
         private void frmSalonSec_Load(object sender, EventArgs e)
         {
-            Listele();
+            if (!Genel.Filter)
+            {
+                Listele(Genel.Service.Hall.Select());
+            }
+            else
+            {
+                Listele(Genel.Service.Hall.SelectBySeance(Genel.BaslangicTarihi, Genel.BitisTarihi));
+            }
         }
-        private void Listele()
+        private void Listele(List<Hall> Liste)
         {
-            dgvSalonlar.DataSource = Genel.Service.Hall.Select();
+            dgvSalonlar.DataSource = Liste;
             dgvSalonlar.Columns["Id"].Visible = false;
             dgvSalonlar.Columns["AddedDate"].HeaderText = "Eklenme Tarihi";
             dgvSalonlar.Columns["Hall_Code"].HeaderText = "Salon Kodu";
             dgvSalonlar.Columns["Seating_Capacity"].HeaderText = "Koltuk Sayısı";
+            dgvSalonlar.Columns["Max_Capacity"].Visible = false;
             dgvSalonlar.Columns["IsActive"].Visible = false;
         }
 

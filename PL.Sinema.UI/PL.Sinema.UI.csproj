@@ -65,6 +65,12 @@
     <Compile Include="frmFilmIslemleri.Designer.cs">
       <DependentUpon>frmFilmIslemleri.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmFilmSec.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFilmSec.Designer.cs">
+      <DependentUpon>frmFilmSec.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmKullanıcıIslemleri.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +127,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmFilmIslemleri.resx">
       <DependentUpon>frmFilmIslemleri.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFilmSec.resx">
+      <DependentUpon>frmFilmSec.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmKullanıcıIslemleri.resx">
       <DependentUpon>frmKullanıcıIslemleri.cs</DependentUpon>

@@ -70,7 +70,7 @@ namespace PL.Sinema.UI
                     if (!KapasiteAsimi)
                     {
                         Hall s = new Hall();
-                        s.Hall_Code = "SLN" + DateTime.Now.ToShortDateString() + DateTime.Now.ToShortTimeString();
+                        s.Hall_Code = "SLN" + DateTime.Now.ToShortDateString() + DateTime.Now.ToLongTimeString();
                         if (int.TryParse(txtKoltukKapasitesi.Text.Trim(), out salon_kapasite))
                         {
                             s.Seating_Capacity = salon_kapasite;
@@ -85,6 +85,7 @@ namespace PL.Sinema.UI
                         {
                             Salon_Eklendi = true;
                             EklenenSalonKodu = Genel.Service.Hall.SelectByHallCode(s.Hall_Code).Hall_Code;
+                            pnlKoltuklar.Controls.Clear();
                         }
                     }
                     if (Salon_Eklendi)
