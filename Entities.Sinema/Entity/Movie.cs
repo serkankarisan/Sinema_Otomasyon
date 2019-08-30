@@ -28,5 +28,10 @@ namespace Entities.Sinema.Entity
 
 
         public virtual List<Seance> Seances { get; set; }
+
+        public override string ToString()
+        {
+            return Movie_Name;
+        }
     }
 }

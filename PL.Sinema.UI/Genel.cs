@@ -20,7 +20,7 @@ namespace PL.Sinema.UI
         public static bool Filter = false;
         public static DateTime BaslangicTarihi;
         public static DateTime BitisTarihi;
-
+        public static int Selected_Seance_ID = 0;
 
         public static string Hash(string password)
         {

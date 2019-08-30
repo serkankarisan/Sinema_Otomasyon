@@ -22,5 +22,10 @@ namespace Entities.Sinema.Entity
 
         public virtual List<Seance> Seances { get; set; }
         public virtual List<Seat> Seats { get; set; }
+
+        public override string ToString()
+        {
+            return Hall_Code;
+        }
     }
 }

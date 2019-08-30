@@ -23,10 +23,74 @@ namespace PL.Sinema.UI
         DateTime Bitis_tarihi = new DateTime();
         Movie m;
         Hall h;
+        Seance seance;
         int saat, dk;
         bool s = false, d = false;
         private void btnSalonSec_Click(object sender, EventArgs e)
         {
+            bugun = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+            baslangic = Convert.ToDateTime(dtpBaslangic.Value.ToShortDateString());
+            if (baslangic >= bugun)
+            {
+                if (txtdk.Text.Trim() == "")
+                {
+                    txtdk.Text = "00";
+                    dk = 0;
+                }
+                if (int.TryParse(txtdk.Text.Trim(), out dk))
+                {
+                    if (dk <= 60 && dk >= 0)
+                    {
+                        d = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Dakika 60 ile 0 arası bir değer olmalı.", "Eksik Bilgi!");
+                        txtdk.Focus();
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Dakika sayılardan oluşmalı.", "Hata!");
+                    txtdk.Focus();
+                    return;
+                }
+                if (txtSaat.Text.Trim() != "")
+                {
+                    if (int.TryParse(txtSaat.Text.Trim(), out saat))
+                    {
+                        if (saat < 24 && saat >= 0)
+                        {
+                            s = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Saat 23 ile 0 arası bir değer olmalı.", "Eksik Bilgi!");
+                            txtSaat.Focus();
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Saat sayılardan oluşmalı.", "Hata!");
+                        txtSaat.Focus();
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Saat girmelisiniz.", "Eksik Bilgi!");
+                    txtSaat.Focus();
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("İleri Bir Tarih Seçin!", "Tarih Hatalı!");
+                dtpBaslangic.Value = DateTime.Now;
+                return;
+            }
             if (s && d)
             {
                 string[] date = baslangic.ToString().Split(' ');
@@ -49,57 +113,223 @@ namespace PL.Sinema.UI
                 {
                     lblSalonKodu.Text = h.Hall_Code;
                     lblSalonKapasite.Text = h.Seating_Capacity.ToString();
-                    btnSeansEkle.Visible = true;
+                    if (seance == null)
+                    {
+                        btnSeansEkle.Visible = true;
+                    }
                 }
             }
-
         }
 
         private void frmSeanIslemleri_Load(object sender, EventArgs e)
         {
             txtSaat.Focus();
         }
-
-        //private void txtSaat_TextChanged(object sender, EventArgs e)
-        //{
-        //    int st;
-        //    if (int.TryParse(txtSaat.Text.Trim(), out st))
-        //    {
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Saat sayılardan oluşmalı.", "Hata!");
-        //        txtSaat.Focus();
-        //        return;
-        //    }
-        //}
-
-        //private void txtdk_TextChanged(object sender, EventArgs e)
-        //{
-        //    int st;
-        //    if (int.TryParse(txtdk.Text.Trim(), out st))
-        //    {
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Dakika sayılardan oluşmalı.", "Hata!");
-        //        txtdk.Focus();
-        //        return;
-        //    }
-        //}
-
+        bool kontrol = false;
         private void dtpBaslangic_ValueChanged(object sender, EventArgs e)
+        {
+            if (!kontrol)
+            {
+                bugun = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+                baslangic = Convert.ToDateTime(dtpBaslangic.Value.ToShortDateString());
+                if (!(baslangic >= bugun))
+                {
+                    MessageBox.Show("İleri Bir Tarih Seçin!", "Tarih Hatalı!");
+                    dtpBaslangic.Value = DateTime.Now;
+                    return;
+                }
+            }
+        }
+
+        private void btnGoruntule_Click(object sender, EventArgs e)
+        {
+            frmSeansSec frm = new frmSeansSec();
+            frm.ShowDialog();
+            seance = Genel.Service.Seance.SelectById(Genel.Selected_Seance_ID);
+            if (seance != null)
+            {
+                btnIptal.Visible = true;
+                btnKaydet.Visible = true;
+                btnSil.Visible = true;
+                kontrol = true;
+                lblFilmAdi.Text = seance.Movie.Movie_Name;
+                lblSure.Text = seance.Movie.Movie_Duration_InMinute.ToString();
+                lblTur.Text = seance.Movie.Movie_Type;
+                lblSalonKodu.Text = seance.Hall.Hall_Code;
+                lblSalonKapasite.Text = seance.Hall.Seating_Capacity.ToString();
+
+                string[] date = seance.Start_Time.ToString().Split(' ');
+                string[] hour = date[1].Split(':');
+
+                txtSaat.Text = hour[0];
+                txtdk.Text = hour[1];
+                dtpBaslangic.Value = seance.Start_Time;
+            }
+        }
+
+        private void btnKaydet_Click(object sender, EventArgs e)
         {
             bugun = Convert.ToDateTime(DateTime.Now.ToShortDateString());
             baslangic = Convert.ToDateTime(dtpBaslangic.Value.ToShortDateString());
-            if (!(baslangic >= bugun))
+            if (baslangic >= bugun)
+            {
+                if (txtdk.Text.Trim() == "")
+                {
+                    txtdk.Text = "00";
+                    dk = 0;
+                }
+                if (int.TryParse(txtdk.Text.Trim(), out dk))
+                {
+                    if (dk <= 60 && dk >= 0)
+                    {
+                        d = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Dakika 60 ile 0 arası bir değer olmalı.", "Eksik Bilgi!");
+                        txtdk.Focus();
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Dakika sayılardan oluşmalı.", "Hata!");
+                    txtdk.Focus();
+                    return;
+                }
+                if (txtSaat.Text.Trim() != "")
+                {
+                    if (int.TryParse(txtSaat.Text.Trim(), out saat))
+                    {
+                        if (saat < 24 && saat >= 0)
+                        {
+                            s = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Saat 23 ile 0 arası bir değer olmalı.", "Eksik Bilgi!");
+                            txtSaat.Focus();
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Saat sayılardan oluşmalı.", "Hata!");
+                        txtSaat.Focus();
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Saat girmelisiniz.", "Eksik Bilgi!");
+                    txtSaat.Focus();
+                    return;
+                }
+            }
+            else
             {
                 MessageBox.Show("İleri Bir Tarih Seçin!", "Tarih Hatalı!");
                 dtpBaslangic.Value = DateTime.Now;
                 return;
             }
+            if (s && d)
+            {
+                string[] date = baslangic.ToString().Split(' ');
+                string[] hour = date[1].Split(':');
+                hour[0] = saat.ToString();
+                hour[1] = dk.ToString();
+                Baslama_tarihi = Convert.ToDateTime(date[0] + " " + hour[0] + ":" + hour[1] + ":00");
+                int filmSaat = (Convert.ToInt32(lblSure.Text) / 60);
+                int filmDk = (Convert.ToInt32(lblSure.Text) % 60);
+                hour[0] = (saat + filmSaat).ToString();
+                hour[1] = (dk + filmDk).ToString();
+                Bitis_tarihi = Convert.ToDateTime(date[0] + " " + hour[0] + ":" + hour[1] + ":00");
+                seance.Start_Time = Baslama_tarihi;
+                seance.End_Time = Bitis_tarihi;
+                if (h != null)
+                {
+                    seance.HallId = h.Id;
+                }
+                if (m != null)
+                {
+                    seance.MovieId = m.Id;
+                }
+                Genel.Service.Seance.Update(seance);
+                Genel.Selected_Seance_ID = 0;
+                Genel.Selected_Film_ID = 0;
+                Genel.Selected_Hall_Code = "";
+                seance = null;
+                h = null;
+                m = null;
+                btnSil.Visible = false;
+                btnKaydet.Visible = false;
+                btnIptal.Visible = false;
+                btnSeansEkle.Visible = false;
+                lblFilmAdi.Text = "";
+                lblSure.Text = "";
+                lblTur.Text = "";
+                lblSalonKodu.Text = "";
+                lblSalonKapasite.Text = "";
+                dtpBaslangic.Value = DateTime.Now;
+                txtdk.Clear();
+                txtSaat.Clear();
+                btnSalonSec.Enabled = false;
+                MessageBox.Show("Seans başarıyla güncellendi.", "İşlem Başarılı");
+            }
         }
 
+        private void btnIptal_Click(object sender, EventArgs e)
+        {
+            Genel.Selected_Seance_ID = 0;
+            Genel.Selected_Film_ID = 0;
+            Genel.Selected_Hall_Code = "";
+            seance = null;
+            h = null;
+            m = null;
+            btnSil.Visible = false;
+            btnKaydet.Visible = false;
+            btnIptal.Visible = false;
+            btnSeansEkle.Visible = false;
+            lblFilmAdi.Text = "";
+            lblSure.Text = "";
+            lblTur.Text = "";
+            lblSalonKodu.Text = "";
+            lblSalonKapasite.Text = "";
+            dtpBaslangic.Value = DateTime.Now;
+            txtdk.Clear();
+            txtSaat.Clear();
+            btnSalonSec.Enabled = false;
+        }
+
+        private void btnSil_Click(object sender, EventArgs e)
+        {
+            if (seance != null && MessageBox.Show("Silmek İstiyor musunuz?", "Onaylıyor Musunuz?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                if (Genel.Service.Seance.Delete(seance.Id) > 0)
+                {
+                    Genel.Selected_Seance_ID = 0;
+                    Genel.Selected_Film_ID = 0;
+                    Genel.Selected_Hall_Code = "";
+                    seance = null;
+                    h = null;
+                    m = null;
+                    btnSil.Visible = false;
+                    btnKaydet.Visible = false;
+                    btnIptal.Visible = false;
+                    btnSeansEkle.Visible = false;
+                    lblFilmAdi.Text = "";
+                    lblSure.Text = "";
+                    lblTur.Text = "";
+                    lblSalonKodu.Text = "";
+                    lblSalonKapasite.Text = "";
+                    dtpBaslangic.Value = DateTime.Now;
+                    txtdk.Clear();
+                    txtSaat.Clear();
+                    btnSalonSec.Enabled = false;
+                    MessageBox.Show("Seans başarıyla silindi.", "İşlem Başarılı");
+                }
+            }
+        }
         private void btnFilmSec_Click(object sender, EventArgs e)
         {
             bugun = Convert.ToDateTime(DateTime.Now.ToShortDateString());
@@ -158,6 +388,15 @@ namespace PL.Sinema.UI
                     txtSaat.Focus();
                     return;
                 }
+            }
+            else
+            {
+                MessageBox.Show("İleri Bir Tarih Seçin!", "Tarih Hatalı!");
+                dtpBaslangic.Value = DateTime.Now;
+                return;
+            }
+            if (s && d)
+            {
                 frmFilmSec frm = new frmFilmSec();
                 frm.ShowDialog();
                 m = Genel.Service.Movie.SelectById(Genel.Selected_Film_ID);
@@ -169,43 +408,47 @@ namespace PL.Sinema.UI
                     btnSalonSec.Enabled = true;
                 }
             }
-            else
-            {
-                MessageBox.Show("İleri Bir Tarih Seçin!", "Tarih Hatalı!");
-                dtpBaslangic.Value = DateTime.Now;
-                return;
-            }
+
         }
 
         private void btnSeansEkle_Click(object sender, EventArgs e)
         {
-            if (m!=null && h!=null)
+            if (m != null && h != null)
             {
                 Seance s = new Seance();
                 s.HallId = h.Id;
                 s.MovieId = m.Id;
                 s.Start_Time = Baslama_tarihi;
                 s.End_Time = Bitis_tarihi;
-                if (Genel.Service.Seance.Insert(s)>0)
+                if (Genel.Service.Seance.Insert(s) > 0)
                 {
                     MessageBox.Show("Seans başarıyla eklendi.", "İşlem Başarılı");
+                    Genel.Selected_Seance_ID = 0;
+                    Genel.Selected_Film_ID = 0;
+                    Genel.Selected_Hall_Code = "";
+                    seance = null;
+                    h = null;
+                    m = null;
+                    btnSil.Visible = false;
+                    btnKaydet.Visible = false;
+                    btnIptal.Visible = false;
+                    btnSeansEkle.Visible = false;
+                    lblFilmAdi.Text = "";
+                    lblSure.Text = "";
+                    lblTur.Text = "";
+                    lblSalonKodu.Text = "";
+                    lblSalonKapasite.Text = "";
                     dtpBaslangic.Value = DateTime.Now;
                     txtdk.Clear();
                     txtSaat.Clear();
                     btnSalonSec.Enabled = false;
-                    btnSeansEkle.Visible = false;
-                    lblFilmAdi.Text = "";
-                    lblSalonKapasite.Text = "";
-                    lblSalonKodu.Text = "";
-                    lblSure.Text = "";
-                    lblTur.Text = "";
                 }
                 else
                 {
                     MessageBox.Show("Seans eklenemedi.", "Hata!");
                     return;
                 }
-                
+
             }
         }
     }

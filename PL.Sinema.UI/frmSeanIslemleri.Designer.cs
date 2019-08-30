@@ -51,6 +51,10 @@
             this.label7 = new System.Windows.Forms.Label();
             this.btnSeansEkle = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnGoruntule = new System.Windows.Forms.Button();
+            this.btnIptal = new System.Windows.Forms.Button();
+            this.btnKaydet = new System.Windows.Forms.Button();
+            this.btnSil = new System.Windows.Forms.Button();
             this.pnlHeader1 = new PL.Sinema.UI.pnlHeader();
             this.pnlSalon.SuspendLayout();
             this.pnlFilm.SuspendLayout();
@@ -342,6 +346,65 @@
             this.panel1.Size = new System.Drawing.Size(792, 360);
             this.panel1.TabIndex = 134;
             // 
+            // btnGoruntule
+            // 
+            this.btnGoruntule.BackColor = System.Drawing.Color.Navy;
+            this.btnGoruntule.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnGoruntule.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnGoruntule.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnGoruntule.Location = new System.Drawing.Point(12, 48);
+            this.btnGoruntule.Name = "btnGoruntule";
+            this.btnGoruntule.Size = new System.Drawing.Size(223, 35);
+            this.btnGoruntule.TabIndex = 131;
+            this.btnGoruntule.Text = "Seansları Görüntüle";
+            this.btnGoruntule.UseVisualStyleBackColor = false;
+            this.btnGoruntule.Click += new System.EventHandler(this.btnGoruntule_Click);
+            // 
+            // btnIptal
+            // 
+            this.btnIptal.BackColor = System.Drawing.Color.Navy;
+            this.btnIptal.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnIptal.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnIptal.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnIptal.Location = new System.Drawing.Point(241, 48);
+            this.btnIptal.Name = "btnIptal";
+            this.btnIptal.Size = new System.Drawing.Size(88, 35);
+            this.btnIptal.TabIndex = 135;
+            this.btnIptal.Text = "İptal";
+            this.btnIptal.UseVisualStyleBackColor = false;
+            this.btnIptal.Visible = false;
+            this.btnIptal.Click += new System.EventHandler(this.btnIptal_Click);
+            // 
+            // btnKaydet
+            // 
+            this.btnKaydet.BackColor = System.Drawing.Color.Navy;
+            this.btnKaydet.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnKaydet.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnKaydet.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnKaydet.Location = new System.Drawing.Point(331, 48);
+            this.btnKaydet.Name = "btnKaydet";
+            this.btnKaydet.Size = new System.Drawing.Size(88, 35);
+            this.btnKaydet.TabIndex = 136;
+            this.btnKaydet.Text = "Kaydet";
+            this.btnKaydet.UseVisualStyleBackColor = false;
+            this.btnKaydet.Visible = false;
+            this.btnKaydet.Click += new System.EventHandler(this.btnKaydet_Click);
+            // 
+            // btnSil
+            // 
+            this.btnSil.BackColor = System.Drawing.Color.Navy;
+            this.btnSil.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSil.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnSil.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSil.Location = new System.Drawing.Point(425, 48);
+            this.btnSil.Name = "btnSil";
+            this.btnSil.Size = new System.Drawing.Size(64, 35);
+            this.btnSil.TabIndex = 137;
+            this.btnSil.Text = "Sil";
+            this.btnSil.UseVisualStyleBackColor = false;
+            this.btnSil.Visible = false;
+            this.btnSil.Click += new System.EventHandler(this.btnSil_Click);
+            // 
             // pnlHeader1
             // 
             this.pnlHeader1.BackColor = System.Drawing.SystemColors.GrayText;
@@ -357,6 +420,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(816, 450);
+            this.Controls.Add(this.btnSil);
+            this.Controls.Add(this.btnKaydet);
+            this.Controls.Add(this.btnIptal);
+            this.Controls.Add(this.btnGoruntule);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlHeader1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -399,5 +466,9 @@
         private System.Windows.Forms.Label lblTur;
         private System.Windows.Forms.Label lblFilmAdi;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnGoruntule;
+        private System.Windows.Forms.Button btnIptal;
+        private System.Windows.Forms.Button btnKaydet;
+        private System.Windows.Forms.Button btnSil;
     }
 }
