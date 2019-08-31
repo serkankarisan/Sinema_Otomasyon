@@ -121,6 +121,7 @@ namespace PL.Sinema.UI
                     pnlKoltuklar.Controls.Clear();
                     SalonID = Genel.Service.Hall.SelectByHallCode(SalonKodu).Id;
                     List<Seat> KoltukListe = Genel.Service.Seat.Select().Where(s => s.HallId == SalonID).ToList();
+                    List<Seance> SeansListe = Genel.Service.Seance.Select().Where(s => s.HallId == SalonID).ToList();
                     if (Genel.Service.Hall.SelectById(SalonID) == null)
                     {
                         MessageBox.Show("Salon bulunamadı.", "Hata!");
@@ -132,6 +133,10 @@ namespace PL.Sinema.UI
                         foreach (Seat k in KoltukListe)
                         {
                             Genel.Service.Seat.Delete(k.Id);
+                        }
+                        foreach (Seance s in SeansListe)
+                        {
+                            Genel.Service.Seance.Delete(s.Id);
                         }
                     }
                     if (Genel.Service.Seat.Select().Where(s => s.HallId == SalonID).Count() == 0)

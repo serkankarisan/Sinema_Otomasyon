@@ -57,8 +57,7 @@
     <Compile Include="Repository\SeanceRepository.cs" />
     <Compile Include="Repository\SeatRepository.cs" />
     <Compile Include="Repository\Service\RepositoryService.cs" />
-    <Compile Include="Repository\TicketDetailRepository.cs" />
-    <Compile Include="Repository\TicketDetailSeatRepository.cs" />
+    <Compile Include="Repository\TicketSeatRepository.cs" />
     <Compile Include="Repository\TicketRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
   </ItemGroup>

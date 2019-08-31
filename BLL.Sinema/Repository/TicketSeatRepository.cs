@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Sinema.Repository
 {
-    public class TicketDetailSeatRepository: BaseRepository<TicketDetail_Seat>
+    public class TicketSeatRepository: BaseRepository<Ticket_Seat>
     {
     }
 }

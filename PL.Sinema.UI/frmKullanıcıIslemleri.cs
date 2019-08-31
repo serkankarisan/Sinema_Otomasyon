@@ -35,7 +35,8 @@ namespace PL.Sinema.UI
 
         private void Listele()
         {
-            dgvKullanicilar.DataSource = Genel.Service.User.Select();
+            List<User> Liste= Genel.Service.User.Select();
+            dgvKullanicilar.DataSource = Liste;
             dgvKullanicilar.Columns["Id"].Visible = false;
             dgvKullanicilar.Columns["UserName"].HeaderText = "Kullanıcı Adı";
             dgvKullanicilar.Columns["RoleId"].Visible = false;
@@ -139,7 +140,7 @@ namespace PL.Sinema.UI
                         u.UserName = txtUsername.Text.Trim();
                         u.Name = txtName.Text.Trim();
                         u.SurName = txtSurname.Text.Trim();
-                        u.Password = Genel.Hash(txtUsername.Text.Trim());
+                        u.Password = Genel.Hash(txtPassword.Text.Trim());
                         u.RoleId = selectedRole.Id;
                         Genel.Service.User.Update(u);
                         MessageBox.Show("Kullanıcı başarıyla güncellendi.", "İşlem Başarılı");

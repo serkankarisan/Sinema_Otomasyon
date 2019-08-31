@@ -25,7 +25,6 @@ namespace BLL.Sinema.Repository
         {
             return _context.SaveChanges();
         }
-
         public int Insert(T entity)
         {
             //entity.IsActive = true;

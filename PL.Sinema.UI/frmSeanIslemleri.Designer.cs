@@ -55,6 +55,7 @@
             this.btnIptal = new System.Windows.Forms.Button();
             this.btnKaydet = new System.Windows.Forms.Button();
             this.btnSil = new System.Windows.Forms.Button();
+            this.btnSalonIptal = new System.Windows.Forms.Button();
             this.pnlHeader1 = new PL.Sinema.UI.pnlHeader();
             this.pnlSalon.SuspendLayout();
             this.pnlFilm.SuspendLayout();
@@ -67,7 +68,7 @@
             this.dtpBaslangic.Location = new System.Drawing.Point(166, 42);
             this.dtpBaslangic.Name = "dtpBaslangic";
             this.dtpBaslangic.Size = new System.Drawing.Size(241, 26);
-            this.dtpBaslangic.TabIndex = 2;
+            this.dtpBaslangic.TabIndex = 0;
             this.dtpBaslangic.ValueChanged += new System.EventHandler(this.dtpBaslangic_ValueChanged);
             // 
             // label4
@@ -103,7 +104,7 @@
             this.txtSaat.MaxLength = 2;
             this.txtSaat.Name = "txtSaat";
             this.txtSaat.Size = new System.Drawing.Size(30, 26);
-            this.txtSaat.TabIndex = 0;
+            this.txtSaat.TabIndex = 1;
             // 
             // txtdk
             // 
@@ -114,7 +115,7 @@
             this.txtdk.MaxLength = 2;
             this.txtdk.Name = "txtdk";
             this.txtdk.Size = new System.Drawing.Size(30, 26);
-            this.txtdk.TabIndex = 118;
+            this.txtdk.TabIndex = 2;
             // 
             // label2
             // 
@@ -137,9 +138,9 @@
             this.label3.Location = new System.Drawing.Point(264, 81);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(86, 20);
+            this.label3.Size = new System.Drawing.Size(392, 20);
             this.label3.TabIndex = 120;
-            this.label3.Text = "örn.(16:30)";
+            this.label3.Text = "örn.(16:30) Normal saatten 10dk fazla girmeniz gerekli.";
             // 
             // btnSalonSec
             // 
@@ -174,6 +175,7 @@
             // 
             // pnlSalon
             // 
+            this.pnlSalon.Controls.Add(this.btnSalonIptal);
             this.pnlSalon.Controls.Add(this.lblSalonKapasite);
             this.pnlSalon.Controls.Add(this.lblSalonKodu);
             this.pnlSalon.Controls.Add(this.label6);
@@ -405,6 +407,21 @@
             this.btnSil.Visible = false;
             this.btnSil.Click += new System.EventHandler(this.btnSil_Click);
             // 
+            // btnSalonIptal
+            // 
+            this.btnSalonIptal.BackColor = System.Drawing.Color.Navy;
+            this.btnSalonIptal.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSalonIptal.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnSalonIptal.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSalonIptal.Location = new System.Drawing.Point(177, 116);
+            this.btnSalonIptal.Name = "btnSalonIptal";
+            this.btnSalonIptal.Size = new System.Drawing.Size(120, 31);
+            this.btnSalonIptal.TabIndex = 138;
+            this.btnSalonIptal.Text = "Salon İptal";
+            this.btnSalonIptal.UseVisualStyleBackColor = false;
+            this.btnSalonIptal.Visible = false;
+            this.btnSalonIptal.Click += new System.EventHandler(this.btnSalonIptal_Click);
+            // 
             // pnlHeader1
             // 
             this.pnlHeader1.BackColor = System.Drawing.SystemColors.GrayText;
@@ -470,5 +487,6 @@
         private System.Windows.Forms.Button btnIptal;
         private System.Windows.Forms.Button btnKaydet;
         private System.Windows.Forms.Button btnSil;
+        private System.Windows.Forms.Button btnSalonIptal;
     }
 }

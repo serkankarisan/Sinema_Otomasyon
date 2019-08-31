@@ -21,8 +21,7 @@ namespace DAL.Sinema.Context
         public DbSet<Seance> Seances { get; set; }
         public DbSet<Seat> Seats { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
-        public DbSet<TicketDetail> TicketDetails { get; set; }
-        public DbSet<TicketDetail_Seat> TicketDetail_Seats { get; set; }
+        public DbSet<Ticket_Seat> Ticket_Seats { get; set; }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
@@ -39,35 +38,30 @@ namespace DAL.Sinema.Context
                 .HasRequired(t => t.Seance)
                 .WithMany(s => s.Tickets)
                 .HasForeignKey(t => t.SeanceId)
-                .WillCascadeOnDelete(false);
-            modelBuilder.Entity<TicketDetail>()
-                .HasRequired(td => td.Ticket)
-                .WithMany(t => t.TicketDetails)
-                .HasForeignKey(td => td.TicketId)
-                .WillCascadeOnDelete(false);
-            modelBuilder.Entity<Seance>()
-                .HasRequired(s => s.Movie)
-                .WithMany(m => m.Seances)
-                .HasForeignKey(s => s.MovieId)
-                .WillCascadeOnDelete(false);
-            modelBuilder.Entity<Seance>()
-                .HasRequired(s => s.Hall)
-                .WithMany(h => h.Seances)
-                .HasForeignKey(s => s.HallId)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(false);           
+            //modelBuilder.Entity<Seance>()
+            //    .HasRequired(s => s.Movie)
+            //    .WithMany(m => m.Seances)
+            //    .HasForeignKey(s => s.MovieId)
+            //    .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<Seance>()
+            //    .HasRequired(s => s.Hall)
+            //    .WithMany(h => h.Seances)
+            //    .HasForeignKey(s => s.HallId)
+                //.WillCascadeOnDelete(false);
             modelBuilder.Entity<Seat>()
                 .HasRequired(s => s.Hall)
                 .WithMany(s => s.Seats)
                 .HasForeignKey(s => s.HallId)
                 .WillCascadeOnDelete(false);
-            modelBuilder.Entity<TicketDetail_Seat>()
-                .HasRequired(tds => tds.TicketDetail)
-                .WithMany(td => td.TicketDetail_Seats)
-                .HasForeignKey(tds => tds.TicketDetailId)
+            modelBuilder.Entity<Ticket_Seat>()
+                .HasRequired(tds => tds.Ticket)
+                .WithMany(td => td.Ticket_Seats)
+                .HasForeignKey(tds => tds.TicketId)
                 .WillCascadeOnDelete(false);
-            modelBuilder.Entity<TicketDetail_Seat>()
+            modelBuilder.Entity<Ticket_Seat>()
                 .HasRequired(tds => tds.Seat)
-                .WithMany(s => s.TicketDetail_Seats)
+                .WithMany(s => s.Ticket_Seats)
                 .HasForeignKey(tds => tds.SeatId)
                 .WillCascadeOnDelete(false);
             modelBuilder.Entity<User>()
@@ -91,16 +85,16 @@ namespace DAL.Sinema.Context
             modelBuilder.Entity<Customer>()
                 .Property(p => p.Name)
                 .HasMaxLength(50)
-                .IsRequired();
+                .IsOptional();
             modelBuilder.Entity<Customer>()
                 .Property(p => p.Surname)
                 .HasMaxLength(50)
-                .IsRequired();
+                .IsOptional();
             modelBuilder.Entity<Customer>()
                 .Property(p => p.Phone)
                 .HasMaxLength(11)
                 .IsFixedLength()
-                .IsOptional();
+                .IsRequired();
 
             modelBuilder.Entity<Hall>()
                 .Property(p => p.Id)
@@ -205,28 +199,16 @@ namespace DAL.Sinema.Context
                 .Property(p => p.Validity_Date)
                 .HasColumnType("datetime2")
                 .IsRequired();
-
-            modelBuilder.Entity<TicketDetail>()
+            
+            modelBuilder.Entity<Ticket_Seat>()
                 .Property(p => p.Id)
                 .HasColumnOrder(0);
-            modelBuilder.Entity<TicketDetail>()
+            modelBuilder.Entity<Ticket_Seat>()
                 .HasKey(c => c.Id)
                 .Property(p => p.AddedDate)
                 .HasColumnType("datetime2")
                 .IsOptional();
-            modelBuilder.Entity<TicketDetail>()
-                .Property(p => p.IsActive)
-                .IsOptional();
-
-            modelBuilder.Entity<TicketDetail_Seat>()
-                .Property(p => p.Id)
-                .HasColumnOrder(0);
-            modelBuilder.Entity<TicketDetail_Seat>()
-                .HasKey(c => c.Id)
-                .Property(p => p.AddedDate)
-                .HasColumnType("datetime2")
-                .IsOptional();
-            modelBuilder.Entity<TicketDetail_Seat>()
+            modelBuilder.Entity<Ticket_Seat>()
                 .Property(p => p.IsActive)
                 .IsOptional();
 

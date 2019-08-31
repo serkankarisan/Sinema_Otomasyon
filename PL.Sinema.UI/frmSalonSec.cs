@@ -33,7 +33,7 @@ namespace PL.Sinema.UI
 
         private void frmSalonSec_Load(object sender, EventArgs e)
         {
-            if (!Genel.Filter)
+            if (!Genel.HallByDate)
             {
                 Listele(Genel.Service.Hall.Select());
             }

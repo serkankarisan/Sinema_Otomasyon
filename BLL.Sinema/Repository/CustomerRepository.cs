@@ -9,5 +9,9 @@ namespace BLL.Sinema.Repository
 {
     public class CustomerRepository:BaseRepository<Customer>
     {
+        public Customer SelectByPhone(string Phone)
+        {
+            return _dbSet.Where(w => w.IsActive == true).FirstOrDefault(x => x.Phone == Phone);
+        }
     }
 }

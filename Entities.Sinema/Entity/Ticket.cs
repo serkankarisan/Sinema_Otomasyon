@@ -11,10 +11,12 @@ namespace Entities.Sinema.Entity
     {
         private DateTime _validity_Date;
         private decimal _ticket_Amount;
-
+        private string _ticket_Code;
         [Column(Order = 3)]
-        public DateTime Validity_Date { get => _validity_Date; set => _validity_Date = value; }
+        public string Ticket_Code { get => _ticket_Code; set => _ticket_Code = value; }
         [Column(Order = 4)]
+        public DateTime Validity_Date { get => _validity_Date; set => _validity_Date = value; }
+        [Column(Order = 5)]
         public decimal Ticket_Amount { get => _ticket_Amount; set => _ticket_Amount = value; }
 
         public int SeanceId { get; set; }
@@ -23,6 +25,7 @@ namespace Entities.Sinema.Entity
         public int CustomerId { get; set; }
         public virtual Customer Customer { get; set; }
 
-        public virtual List<TicketDetail> TicketDetails { get; set; }
+        public virtual List<Ticket_Seat> Ticket_Seats { get; set; }
+        
     }
 }

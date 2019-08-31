@@ -26,6 +26,7 @@ namespace PL.Sinema.UI
         Seance seance;
         int saat, dk;
         bool s = false, d = false;
+        int Yenidk, Yenisaat;
         private void btnSalonSec_Click(object sender, EventArgs e)
         {
             bugun = Convert.ToDateTime(DateTime.Now.ToShortDateString());
@@ -95,22 +96,58 @@ namespace PL.Sinema.UI
             {
                 string[] date = baslangic.ToString().Split(' ');
                 string[] hour = date[1].Split(':');
-                hour[0] = saat.ToString();
-                hour[1] = dk.ToString();
+                if (dk < 10)
+                {
+                    Yenidk = 60 - dk;
+                    if (saat == 0)
+                    {
+                        hour[0] = "23";
+                    }
+                    else
+                    {
+                        hour[0] = (saat - 1).ToString();
+                    }
+                    hour[1] = (Yenidk - (10)).ToString();
+                }
+                else
+                {
+                    hour[0] = saat.ToString();
+                    hour[1] = (dk-10).ToString();
+                }
                 Baslama_tarihi = Convert.ToDateTime(date[0] + " " + hour[0] + ":" + hour[1] + ":00");
                 int filmSaat = (Convert.ToInt32(lblSure.Text) / 60);
                 int filmDk = (Convert.ToInt32(lblSure.Text) % 60);
-                hour[0] = (saat + filmSaat).ToString();
-                hour[1] = (dk + filmDk).ToString();
+                bool NextDay = false;
+                if (saat+filmSaat >= 24)
+                {
+                    saat =  (saat + filmSaat) %24;
+                    NextDay = true;
+                    hour[0] = (saat).ToString();
+                    hour[1] = (dk + filmDk).ToString();
+                }
+                else
+                {
+                    hour[0] = (saat + filmSaat).ToString();
+                    hour[1] = (dk + filmDk).ToString();
+                }
+                
                 Bitis_tarihi = Convert.ToDateTime(date[0] + " " + hour[0] + ":" + hour[1] + ":00");
+                if (NextDay)
+                {
+                    Bitis_tarihi=Bitis_tarihi.AddDays(1);
+                    NextDay = false;
+                }
                 Genel.BaslangicTarihi = Baslama_tarihi;
                 Genel.BitisTarihi = Bitis_tarihi;
-                Genel.Filter = true;
+                Genel.HallByDate = true;
                 frmSalonSec frm = new frmSalonSec();
                 frm.ShowDialog();
                 h = Genel.Service.Hall.SelectByHallCode(Genel.Selected_Hall_Code);
                 if (h != null)
                 {
+                    btnSalonIptal.Visible = true;
+                    txtdk.Enabled = false;
+                    txtSaat.Enabled = false;
                     lblSalonKodu.Text = h.Hall_Code;
                     lblSalonKapasite.Text = h.Seating_Capacity.ToString();
                     if (seance == null)
@@ -118,11 +155,20 @@ namespace PL.Sinema.UI
                         btnSeansEkle.Visible = true;
                     }
                 }
+                else
+                {
+                    txtdk.Enabled = true;
+                    txtSaat.Enabled = true;
+                }
             }
         }
 
         private void frmSeanIslemleri_Load(object sender, EventArgs e)
         {
+            foreach (Seance item in Genel.Service.Seance.Select().Where(s => s.Start_Time <= DateTime.Now).ToList())
+            {
+                Genel.Service.Seance.Delete(item.Id);
+            }
             txtSaat.Focus();
         }
         bool kontrol = false;
@@ -143,6 +189,10 @@ namespace PL.Sinema.UI
 
         private void btnGoruntule_Click(object sender, EventArgs e)
         {
+            foreach (Seance item in Genel.Service.Seance.Select().Where(s => s.Start_Time <= DateTime.Now).ToList())
+            {
+                Genel.Service.Seance.Delete(item.Id);
+            }
             frmSeansSec frm = new frmSeansSec();
             frm.ShowDialog();
             seance = Genel.Service.Seance.SelectById(Genel.Selected_Seance_ID);
@@ -151,6 +201,7 @@ namespace PL.Sinema.UI
                 btnIptal.Visible = true;
                 btnKaydet.Visible = true;
                 btnSil.Visible = true;
+                btnSalonSec.Enabled = true;
                 kontrol = true;
                 lblFilmAdi.Text = seance.Movie.Movie_Name;
                 lblSure.Text = seance.Movie.Movie_Duration_InMinute.ToString();
@@ -164,6 +215,32 @@ namespace PL.Sinema.UI
                 txtSaat.Text = hour[0];
                 txtdk.Text = hour[1];
                 dtpBaslangic.Value = seance.Start_Time;
+            }
+            else
+            {
+                Genel.Selected_Seance_ID = 0;
+                Genel.Selected_Film_ID = 0;
+                Genel.Selected_Hall_Code = "";
+                seance = null;
+                h = null;
+                m = null;
+                btnSil.Visible = false;
+                btnKaydet.Visible = false;
+                btnIptal.Visible = false;
+                btnSeansEkle.Visible = false;
+                lblFilmAdi.Text = "";
+                lblSure.Text = "";
+                lblTur.Text = "";
+                lblSalonKodu.Text = "";
+                lblSalonKapasite.Text = "";
+                dtpBaslangic.Value = DateTime.Now;
+                txtdk.Clear();
+                txtSaat.Clear();
+                btnSalonSec.Enabled = false;
+                btnSalonIptal.Visible = false;
+                txtdk.Enabled = true;
+                txtSaat.Enabled = true;
+                Genel.HallByDate = false;
             }
         }
 
@@ -274,6 +351,10 @@ namespace PL.Sinema.UI
                 txtdk.Clear();
                 txtSaat.Clear();
                 btnSalonSec.Enabled = false;
+                btnSalonIptal.Visible = false;
+                txtdk.Enabled = true;
+                txtSaat.Enabled = true;
+                Genel.HallByDate = false;
                 MessageBox.Show("Seans başarıyla güncellendi.", "İşlem Başarılı");
             }
         }
@@ -326,10 +407,26 @@ namespace PL.Sinema.UI
                     txtdk.Clear();
                     txtSaat.Clear();
                     btnSalonSec.Enabled = false;
+                    btnSalonIptal.Visible = false;
+                    txtdk.Enabled = true;
+                    txtSaat.Enabled = true;
+                    Genel.HallByDate = false;
                     MessageBox.Show("Seans başarıyla silindi.", "İşlem Başarılı");
                 }
             }
         }
+
+        private void btnSalonIptal_Click(object sender, EventArgs e)
+        {
+            txtSaat.Enabled = true;
+            txtdk.Enabled = true;
+            lblSalonKodu.Text = "";
+            lblSalonKapasite.Text = "";
+            Genel.Selected_Hall_Code = "";
+            btnSalonIptal.Visible = false;
+            btnSeansEkle.Visible = false;
+        }
+
         private void btnFilmSec_Click(object sender, EventArgs e)
         {
             bugun = Convert.ToDateTime(DateTime.Now.ToShortDateString());
@@ -442,6 +539,10 @@ namespace PL.Sinema.UI
                     txtdk.Clear();
                     txtSaat.Clear();
                     btnSalonSec.Enabled = false;
+                    btnSalonIptal.Visible = false;
+                    txtdk.Enabled = true;
+                    txtSaat.Enabled = true;
+                    Genel.HallByDate = false;
                 }
                 else
                 {

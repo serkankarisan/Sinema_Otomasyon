@@ -17,11 +17,11 @@ namespace PL.Sinema.UI
         public static int Selected_Film_ID = 0;
         public static float pnlKoltukWidth = 0;
         public static float pnlKoltukHeight = 0;
-        public static bool Filter = false;
+        public static bool HallByDate = false;
         public static DateTime BaslangicTarihi;
         public static DateTime BitisTarihi;
         public static int Selected_Seance_ID = 0;
-
+        public static bool SeansByFilm = false;
         public static string Hash(string password)
         {
             var bytes = new UTF8Encoding().GetBytes(password);
@@ -37,6 +37,7 @@ namespace PL.Sinema.UI
         {
             string hashPassword = Hash(Password);
             User user = Service.User.Select().Where(k => k.UserName == UserName).FirstOrDefault();
+
             string result = "0";
             if (user != null)
             {

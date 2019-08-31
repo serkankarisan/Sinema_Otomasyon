@@ -23,7 +23,7 @@ namespace Entities.Sinema.Entity
         public int HallId { get; set; }
         public virtual Hall Hall { get; set; }
 
-        public virtual List<TicketDetail_Seat> TicketDetail_Seats { get; set; }
+        public virtual List<Ticket_Seat> Ticket_Seats { get; set; }
         public Seat()
         {
             Location_X = 0;

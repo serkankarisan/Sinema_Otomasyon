@@ -69,10 +69,10 @@
             this.dgvSeanslar.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvSeanslar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSeanslar.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dgvSeanslar.Location = new System.Drawing.Point(26, 12);
+            this.dgvSeanslar.Location = new System.Drawing.Point(30, 12);
             this.dgvSeanslar.Name = "dgvSeanslar";
             this.dgvSeanslar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSeanslar.Size = new System.Drawing.Size(466, 276);
+            this.dgvSeanslar.Size = new System.Drawing.Size(539, 276);
             this.dgvSeanslar.TabIndex = 112;
             this.dgvSeanslar.DoubleClick += new System.EventHandler(this.dgvSalonlar_DoubleClick);
             // 
@@ -81,7 +81,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(517, 372);
+            this.ClientSize = new System.Drawing.Size(594, 372);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnVazgec);
             this.Controls.Add(this.dgvSeanslar);

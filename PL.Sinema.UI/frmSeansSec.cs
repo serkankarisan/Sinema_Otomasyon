@@ -20,7 +20,16 @@ namespace PL.Sinema.UI
 
         private void frmSeansSec_Load(object sender, EventArgs e)
         {
-            List<Seance> Liste = Genel.Service.Seance.Select();
+            List<Seance> Liste;
+            if (Genel.SeansByFilm)
+            {
+                 Liste= Genel.Service.Seance.SelectByFilm(Genel.Selected_Film_ID);
+               
+            }
+            else
+            {
+                Liste = Genel.Service.Seance.Select();
+            }
             Listele(Liste);
         }
 

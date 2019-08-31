@@ -50,8 +50,7 @@
     <Compile Include="Entity\Seance.cs" />
     <Compile Include="Entity\Seat.cs" />
     <Compile Include="Entity\Ticket.cs" />
-    <Compile Include="Entity\TicketDetail.cs" />
-    <Compile Include="Entity\TicketDetail_Seat.cs" />
+    <Compile Include="Entity\Ticket_Seat.cs" />
     <Compile Include="Entity\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

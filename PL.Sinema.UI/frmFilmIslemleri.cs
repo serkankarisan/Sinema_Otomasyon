@@ -25,6 +25,7 @@ namespace PL.Sinema.UI
         private void ShowListView(List<Movie> Movies)
         {
             lvFilmler.Items.Clear();
+            imgList1.Images.Clear();
             imgList1.ImageSize = new Size(200, 220);
             lvFilmler.LargeImageList = imgList1;
             for (int i = 0; i < Movies.Count; i++)
@@ -130,6 +131,7 @@ namespace PL.Sinema.UI
                     Genel.Service.Movie.Insert(m);
                     MessageBox.Show("Film başarıyla eklendi.", "İşlem Başarılı");
                     btnKaydet.Enabled = false;
+                    btnKaydet.Visible = false;
                     btnUpdate.Enabled = false;
                     btnUpdate.Visible = false;
                     btnIptal.Enabled = false;
@@ -167,6 +169,7 @@ namespace PL.Sinema.UI
                         Genel.Service.Movie.Delete(FilmID);
                         MessageBox.Show("Film başarıyla silindi.", "İşlem Başarılı");
                         btnKaydet.Enabled = false;
+                        btnKaydet.Visible = false;
                         btnUpdate.Enabled = false;
                         btnUpdate.Visible = false;
                         btnIptal.Enabled = false;
@@ -218,6 +221,7 @@ namespace PL.Sinema.UI
                         Genel.Service.Movie.Update(m);
                         MessageBox.Show("Film başarıyla güncellendi.", "İşlem Başarılı");
                         btnKaydet.Enabled = false;
+                        btnKaydet.Visible = false;
                         btnUpdate.Enabled = false;
                         btnUpdate.Visible = false;
                         btnIptal.Enabled = false;
@@ -247,6 +251,7 @@ namespace PL.Sinema.UI
             Enabled();
             btnKaydet.Enabled = true;
             btnUpdate.Enabled = false;
+            btnKaydet.Visible = true;
             btnUpdate.Visible = false;
             btnIptal.Enabled = true;
             btnIptal.Visible = true;
@@ -287,6 +292,7 @@ namespace PL.Sinema.UI
             btnIptal.Enabled = false;
             btnIptal.Visible = false;
             btnKaydet.Enabled = false;
+            btnKaydet.Visible = false;
             btnUpdate.Enabled = false;
             btnUpdate.Visible = false;
             btnSil.Enabled = false;
@@ -297,6 +303,7 @@ namespace PL.Sinema.UI
         {
             Disabled();
             btnKaydet.Enabled = false;
+            btnKaydet.Visible = false;
             btnUpdate.Enabled = false;
             btnUpdate.Visible = false;
             btnSil.Enabled = false;
@@ -329,6 +336,7 @@ namespace PL.Sinema.UI
                 pbFoto.Image = Image.FromFile(Application.StartupPath + "" + txtBanner.Text);
             }
             Enabled();
+            btnKaydet.Visible = false;
             btnKaydet.Enabled = false;
             btnUpdate.Enabled = true;
             btnUpdate.Visible = true;

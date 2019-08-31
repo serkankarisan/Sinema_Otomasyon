@@ -14,8 +14,7 @@ namespace BLL.Sinema.Repository.Service
         private readonly SeanceRepository seanceRepository;
         private readonly SeatRepository seatRepository;
         private readonly TicketRepository ticketRepository;
-        private readonly TicketDetailRepository ticketDetailRepository;
-        private readonly TicketDetailSeatRepository ticketDetailSeatRepository;
+        private readonly TicketSeatRepository ticketSeatRepository;
         private readonly UserRepository userRepository;
         private readonly RoleRepository roleRepository;
         public RepositoryService()
@@ -26,8 +25,7 @@ namespace BLL.Sinema.Repository.Service
             seanceRepository = new SeanceRepository();
             seatRepository = new SeatRepository();
             ticketRepository = new TicketRepository();
-            ticketDetailRepository = new TicketDetailRepository();
-            ticketDetailSeatRepository = new TicketDetailSeatRepository();
+            ticketSeatRepository = new TicketSeatRepository();
             userRepository = new UserRepository();
             roleRepository = new RoleRepository();
         }
@@ -37,8 +35,7 @@ namespace BLL.Sinema.Repository.Service
         public SeanceRepository Seance => seanceRepository;
         public SeatRepository Seat => seatRepository;
         public TicketRepository Ticket => ticketRepository;
-        public TicketDetailRepository TicketDetail => ticketDetailRepository;
-        public TicketDetailSeatRepository TicketDetailSeat => ticketDetailSeatRepository;
+        public TicketSeatRepository TicketSeat => ticketSeatRepository;
         public UserRepository User => userRepository;
         public RoleRepository Role => roleRepository;
     }
