@@ -20,7 +20,8 @@ namespace PL.Sinema.UI
 
         private void frmSeansSec_Load(object sender, EventArgs e)
         {
-            Listele(Genel.Service.Seance.Select());
+            List<Seance> Liste = Genel.Service.Seance.Select();
+            Listele(Liste);
         }
 
         private void dgvSalonlar_DoubleClick(object sender, EventArgs e)

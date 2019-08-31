@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL.Sinema.Context;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -107,6 +108,14 @@ namespace PL.Sinema.UI
                 txtSifre.Clear();
             }
             txtSifre.PasswordChar = '*';
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            using (SinemaContext ent = new SinemaContext())
+            {
+                ent.Database.CreateIfNotExists();
+            }
         }
     }
 }
