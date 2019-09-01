@@ -1,4 +1,5 @@
 ﻿using DAL.Sinema.Context;
+using Entities.Sinema.Entity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -55,7 +56,7 @@ namespace PL.Sinema.UI
                 txtKullaniciAdi.Clear();
                 txtKullaniciAdi.Focus();
             }
-            else if (txtKullaniciAdi.Text.Trim()=="")
+            else if (txtKullaniciAdi.Text.Trim() == "")
             {
                 MessageBox.Show("Kullanıcı adı girmelisiniz.", "Eksik Bilgi!");
                 txtKullaniciAdi.Clear();
@@ -63,13 +64,13 @@ namespace PL.Sinema.UI
             }
             else
             {
-                if (txtSifre.Text.Trim()=="Şifre")
+                if (txtSifre.Text.Trim() == "Şifre")
                 {
                     MessageBox.Show("Şifre girmelisiniz.", "Eksik Bilgi!");
                     txtSifre.Clear();
                     txtSifre.Focus();
                 }
-                else if (txtSifre.Text.Trim()=="")
+                else if (txtSifre.Text.Trim() == "")
                 {
                     MessageBox.Show("Şifre girmelisiniz.", "Eksik Bilgi!");
                     txtSifre.Clear();
@@ -115,6 +116,24 @@ namespace PL.Sinema.UI
             using (SinemaContext ent = new SinemaContext())
             {
                 ent.Database.CreateIfNotExists();
+                User u = new User { Id = 1, UserName = "serkan", Name = "Serkan", SurName = "Karışan", IsActive = true, Password = "NieQminDE4Ggcewn98nKl3Jhgq7Smn3dLlQ1MyLPswq7njpt8qwsIP4jQ2MR1nhWTQyNMFkwV19g4tPQSBhNeQ==", AddedDate = DateTime.Now, RoleId = 1 };
+                Role r1 = new Role { Id = 1, RoleName = "Admin", AddedDate = DateTime.Now, IsActive = true };
+                Role r2 = new Role { Id = 2, RoleName = "User", AddedDate = DateTime.Now, IsActive = true };                
+                if(ent.Users.Where(us=>us.Id==u.Id && us.UserName==u.UserName && us.Name==u.Name && us.SurName == u.SurName).FirstOrDefault() == null)
+                {
+                    ent.Users.Add(u);
+                    ent.SaveChanges();
+                }
+                if (ent.Roles.Where(rl => rl.Id == r1.Id && rl.RoleName == r1.RoleName).FirstOrDefault() == null)
+                {
+                    ent.Roles.Add(r1);
+                    ent.SaveChanges();
+                }
+                if (ent.Roles.Where(rl => rl.Id == r2.Id && rl.RoleName == r2.RoleName).FirstOrDefault() == null)
+                {
+                    ent.Roles.Add(r2);
+                    ent.SaveChanges();
+                }
             }
         }
     }
