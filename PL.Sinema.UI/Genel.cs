@@ -2,6 +2,7 @@
 using Entities.Sinema.Entity;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,18 @@ namespace PL.Sinema.UI
         public static DateTime BitisTarihi;
         public static int Selected_Seance_ID = 0;
         public static bool SeansByFilm = false;
+        public static decimal BiletFiyat;
+        public static void BiletFiyatBelirleme()
+        {
+            StreamReader DosyaOku = new StreamReader("BiletFiyat.txt");
+            string okunan = DosyaOku.ReadLine();
+            while (okunan != null)
+            {
+                BiletFiyat= Convert.ToDecimal(okunan);
+                okunan = DosyaOku.ReadLine();
+            }
+            DosyaOku.Close();
+        }
         public static string Hash(string password)
         {
             var bytes = new UTF8Encoding().GetBytes(password);

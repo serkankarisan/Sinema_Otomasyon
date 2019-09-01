@@ -46,6 +46,7 @@
             this.btnBiletKes = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.pnlUser = new System.Windows.Forms.Panel();
+            this.btnCikisYap = new System.Windows.Forms.Button();
             this.lblYetki = new System.Windows.Forms.Label();
             this.lblKullanici = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -56,7 +57,11 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.lblMenuUyari = new System.Windows.Forms.Label();
             this.tmrClock = new System.Windows.Forms.Timer(this.components);
-            this.btnCikisYap = new System.Windows.Forms.Button();
+            this.btnBiletFiyat = new System.Windows.Forms.Button();
+            this.pnlFiyat = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtYeniFiyat = new System.Windows.Forms.TextBox();
+            this.btnFiyatOnayla = new System.Windows.Forms.Button();
             this.maxMinExit1 = new PL.Sinema.UI.MaxMinExit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -68,6 +73,7 @@
             this.panel3.SuspendLayout();
             this.pnlUser.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.pnlFiyat.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -86,7 +92,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 44);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(943, 468);
+            this.panel2.Size = new System.Drawing.Size(943, 558);
             this.panel2.TabIndex = 1;
             // 
             // panel4
@@ -96,7 +102,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 42);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(943, 426);
+            this.panel4.Size = new System.Drawing.Size(943, 516);
             this.panel4.TabIndex = 1;
             // 
             // pnlContent
@@ -107,7 +113,7 @@
             this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContent.Location = new System.Drawing.Point(0, 0);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(943, 426);
+            this.pnlContent.Size = new System.Drawing.Size(943, 516);
             this.pnlContent.TabIndex = 2;
             this.pnlContent.Click += new System.EventHandler(this.pnlContent_Click);
             // 
@@ -117,6 +123,8 @@
             this.pnlMenu.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlMenu.BackgroundImage")));
             this.pnlMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlMenu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlMenu.Controls.Add(this.pnlFiyat);
+            this.pnlMenu.Controls.Add(this.btnBiletFiyat);
             this.pnlMenu.Controls.Add(this.btnSeansMenu);
             this.pnlMenu.Controls.Add(this.btnSalonDüzenleme);
             this.pnlMenu.Controls.Add(this.btnSalonMenu);
@@ -135,7 +143,7 @@
             this.btnSeansMenu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnSeansMenu.Image = ((System.Drawing.Image)(resources.GetObject("btnSeansMenu.Image")));
             this.btnSeansMenu.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSeansMenu.Location = new System.Drawing.Point(7, 254);
+            this.btnSeansMenu.Location = new System.Drawing.Point(9, 254);
             this.btnSeansMenu.Name = "btnSeansMenu";
             this.btnSeansMenu.Size = new System.Drawing.Size(230, 40);
             this.btnSeansMenu.TabIndex = 23;
@@ -251,7 +259,7 @@
             this.pnlGiris.Controls.Add(this.btnBiletKes);
             this.pnlGiris.Location = new System.Drawing.Point(65, 40);
             this.pnlGiris.Name = "pnlGiris";
-            this.pnlGiris.Size = new System.Drawing.Size(810, 350);
+            this.pnlGiris.Size = new System.Drawing.Size(810, 440);
             this.pnlGiris.TabIndex = 27;
             this.pnlGiris.Click += new System.EventHandler(this.pnlContent_Click);
             // 
@@ -264,7 +272,7 @@
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
             this.pictureBox3.Location = new System.Drawing.Point(103, 115);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(603, 199);
+            this.pictureBox3.Size = new System.Drawing.Size(603, 289);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 28;
             this.pictureBox3.TabStop = false;
@@ -315,6 +323,24 @@
             this.pnlUser.Name = "pnlUser";
             this.pnlUser.Size = new System.Drawing.Size(438, 40);
             this.pnlUser.TabIndex = 18;
+            // 
+            // btnCikisYap
+            // 
+            this.btnCikisYap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCikisYap.FlatAppearance.BorderSize = 0;
+            this.btnCikisYap.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCikisYap.Font = new System.Drawing.Font("High Tower Text", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnCikisYap.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnCikisYap.Image = ((System.Drawing.Image)(resources.GetObject("btnCikisYap.Image")));
+            this.btnCikisYap.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCikisYap.Location = new System.Drawing.Point(297, 3);
+            this.btnCikisYap.Name = "btnCikisYap";
+            this.btnCikisYap.Size = new System.Drawing.Size(138, 36);
+            this.btnCikisYap.TabIndex = 20;
+            this.btnCikisYap.Text = "Çıkış Yap";
+            this.btnCikisYap.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCikisYap.UseVisualStyleBackColor = true;
+            this.btnCikisYap.Click += new System.EventHandler(this.btnCikisYap_Click);
             // 
             // lblYetki
             // 
@@ -428,23 +454,68 @@
             // 
             this.tmrClock.Tick += new System.EventHandler(this.tmrClock_Tick);
             // 
-            // btnCikisYap
+            // btnBiletFiyat
             // 
-            this.btnCikisYap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCikisYap.FlatAppearance.BorderSize = 0;
-            this.btnCikisYap.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnCikisYap.Font = new System.Drawing.Font("High Tower Text", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btnCikisYap.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnCikisYap.Image = ((System.Drawing.Image)(resources.GetObject("btnCikisYap.Image")));
-            this.btnCikisYap.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCikisYap.Location = new System.Drawing.Point(297, 3);
-            this.btnCikisYap.Name = "btnCikisYap";
-            this.btnCikisYap.Size = new System.Drawing.Size(138, 36);
-            this.btnCikisYap.TabIndex = 20;
-            this.btnCikisYap.Text = "Çıkış Yap";
-            this.btnCikisYap.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCikisYap.UseVisualStyleBackColor = true;
-            this.btnCikisYap.Click += new System.EventHandler(this.btnCikisYap_Click);
+            this.btnBiletFiyat.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnBiletFiyat.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnBiletFiyat.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnBiletFiyat.Image = ((System.Drawing.Image)(resources.GetObject("btnBiletFiyat.Image")));
+            this.btnBiletFiyat.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBiletFiyat.Location = new System.Drawing.Point(9, 300);
+            this.btnBiletFiyat.Name = "btnBiletFiyat";
+            this.btnBiletFiyat.Size = new System.Drawing.Size(230, 40);
+            this.btnBiletFiyat.TabIndex = 24;
+            this.btnBiletFiyat.Text = "Bilet Fiyatı Belirle";
+            this.btnBiletFiyat.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBiletFiyat.UseVisualStyleBackColor = true;
+            this.btnBiletFiyat.Click += new System.EventHandler(this.btnBiletFiyat_Click);
+            // 
+            // pnlFiyat
+            // 
+            this.pnlFiyat.Controls.Add(this.label4);
+            this.pnlFiyat.Controls.Add(this.txtYeniFiyat);
+            this.pnlFiyat.Controls.Add(this.btnFiyatOnayla);
+            this.pnlFiyat.Location = new System.Drawing.Point(9, 346);
+            this.pnlFiyat.Name = "pnlFiyat";
+            this.pnlFiyat.Size = new System.Drawing.Size(230, 0);
+            this.pnlFiyat.TabIndex = 25;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label4.Location = new System.Drawing.Point(17, 10);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(79, 20);
+            this.label4.TabIndex = 117;
+            this.label4.Text = "Yeni Fiyat";
+            // 
+            // txtYeniFiyat
+            // 
+            this.txtYeniFiyat.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.txtYeniFiyat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.txtYeniFiyat.Location = new System.Drawing.Point(104, 7);
+            this.txtYeniFiyat.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtYeniFiyat.MaxLength = 3;
+            this.txtYeniFiyat.Name = "txtYeniFiyat";
+            this.txtYeniFiyat.Size = new System.Drawing.Size(105, 26);
+            this.txtYeniFiyat.TabIndex = 116;
+            // 
+            // btnFiyatOnayla
+            // 
+            this.btnFiyatOnayla.BackColor = System.Drawing.Color.Transparent;
+            this.btnFiyatOnayla.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnFiyatOnayla.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnFiyatOnayla.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnFiyatOnayla.Location = new System.Drawing.Point(109, 50);
+            this.btnFiyatOnayla.Name = "btnFiyatOnayla";
+            this.btnFiyatOnayla.Size = new System.Drawing.Size(100, 35);
+            this.btnFiyatOnayla.TabIndex = 115;
+            this.btnFiyatOnayla.Text = "Onayla";
+            this.btnFiyatOnayla.UseVisualStyleBackColor = false;
+            this.btnFiyatOnayla.Click += new System.EventHandler(this.btnFiyatOnayla_Click);
             // 
             // maxMinExit1
             // 
@@ -463,7 +534,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(943, 512);
+            this.ClientSize = new System.Drawing.Size(943, 602);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -485,6 +556,8 @@
             this.pnlUser.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            this.pnlFiyat.ResumeLayout(false);
+            this.pnlFiyat.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -519,5 +592,10 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label lblMenuUyari;
         private System.Windows.Forms.Button btnCikisYap;
+        private System.Windows.Forms.Button btnBiletFiyat;
+        private System.Windows.Forms.Panel pnlFiyat;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtYeniFiyat;
+        private System.Windows.Forms.Button btnFiyatOnayla;
     }
 }

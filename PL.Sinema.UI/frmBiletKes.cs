@@ -55,6 +55,7 @@ namespace PL.Sinema.UI
         {
             if (MessageBox.Show("Bilet kesilsin mi?", "Onaylıyor Musunuz?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
+
                 if (txtTel.Text.Trim().Count() < 10)
                 {
                     MessageBox.Show("Telefon numarası hatalı.", "Hata!");
@@ -62,18 +63,6 @@ namespace PL.Sinema.UI
                 }
                 else
                 {
-                    Ticket t = new Ticket();
-                    t.SeanceId = s.Id;
-                    t.Validity_Date = s.Start_Time;
-                    t.Ticket_Amount = 12;
-                    t.Ticket_Code = "T" + DateTime.Now.ToShortDateString() + DateTime.Now.ToLongTimeString();
-                    Customer c = new Customer();
-                    c.Name = txtAdi.Text;
-                    c.Surname = txtSoyadi.Text;
-                    c.Phone = txtTel.Text.Trim();
-                    Genel.Service.Customer.Insert(c);
-                    t.CustomerId = Genel.Service.Customer.SelectByPhone(c.Phone).Id;
-                    Genel.Service.Ticket.Insert(t);
                     List<int> SeatIDList = new List<int>();
                     foreach (Control p in this.pnlKoltuklar.Controls)
                     {
@@ -84,16 +73,39 @@ namespace PL.Sinema.UI
                             SeatIDList.Add(Convert.ToInt32(pbName[1]));
                         }
                     }
-                    foreach (int SeatID in SeatIDList)
+                    if (SeatIDList.Count()!=0)
                     {
-                        Ticket_Seat ts = new Ticket_Seat();
-                        ts.SeatId = SeatID;
-                        ts.TicketId = Genel.Service.Ticket.SelectByTicketCode(t.Ticket_Code).Id;
-                        Genel.Service.TicketSeat.Insert(ts);
+                       
+                        Ticket t = new Ticket();
+                        t.SeanceId = s.Id;
+                        t.Validity_Date = s.Start_Time;
+                        Genel.BiletFiyatBelirleme();
+                        t.Ticket_Amount = SeatIDList.Count() * Genel.BiletFiyat;
+                        t.Ticket_Code = "T" + DateTime.Now.ToShortDateString() + DateTime.Now.ToLongTimeString();
+                        Customer c = new Customer();
+                        c.Name = txtAdi.Text;
+                        c.Surname = txtSoyadi.Text;
+                        c.Phone = txtTel.Text.Trim();
+                        Genel.Service.Customer.Insert(c);
+                        t.CustomerId = Genel.Service.Customer.SelectByPhone(c.Phone).Id;
+                        Genel.Service.Ticket.Insert(t);
+                        foreach (int SeatID in SeatIDList)
+                        {
+                            Ticket_Seat ts = new Ticket_Seat();
+                            ts.SeatId = SeatID;
+                            ts.TicketId = Genel.Service.Ticket.SelectByTicketCode(t.Ticket_Code).Id;
+                            Genel.Service.TicketSeat.Insert(ts);
+                        }
+                        MessageBox.Show(h.Hall_Code + " Numaralı salonda iyi seyirler dileriz.", "İşlem Başarılı");
+                        Temizle();
                     }
-                    MessageBox.Show(h.Hall_Code + " Numaralı salonda iyi seyirler dileriz.", "İşlem Başarılı");
-                    Temizle();
+                    else
+                    {
+                        MessageBox.Show("Koltuk seçmelisiniz.", "Hata!");
+                        return;
+                    }
                 }
+
             }
         }
         private void btnAnamenu_Click(object sender, EventArgs e)
@@ -173,7 +185,7 @@ namespace PL.Sinema.UI
                 {
                     Ticket bilet = Genel.Service.Ticket.SelectById(ticketseat.TicketId);
                     Seance Snc = Genel.Service.Seance.SelectById(bilet.SeanceId);
-                    if (koltuk.Id == ticketseat.SeatId && Snc.Id==s.Id)
+                    if (koltuk.Id == ticketseat.SeatId && Snc.Id == s.Id)
                     {
                         SeatList.Remove(koltuk);
                     }
@@ -293,19 +305,21 @@ namespace PL.Sinema.UI
         private void SuresiDolanSeansSil()
         {
             List<Seance> SuresiDolmusSeanslar = Genel.Service.Seance.Select().Where(s => s.Start_Time <= DateTime.Now).ToList();
-            if (SuresiDolmusSeanslar != null)
+            if (SuresiDolmusSeanslar.Count() != 0)
             {
                 foreach (Seance seans in SuresiDolmusSeanslar)
                 {
                     if (seans != null)
                     {
-                        if (seans.Tickets != null)
+                        List<Ticket> BiletListe = Genel.Service.Ticket.Select().Where(t => t.SeanceId == seans.Id).ToList();
+                        if (BiletListe.Count() != 0)
                         {
-                            foreach (Ticket t in seans.Tickets)
+                            foreach (Ticket t in BiletListe)
                             {
-                                if (t.Ticket_Seats != null)
+                                List<Ticket_Seat> BiletKoltukListe = Genel.Service.TicketSeat.Select().Where(ts => ts.TicketId == t.Id).ToList();
+                                if (BiletKoltukListe.Count() != 0)
                                 {
-                                    foreach (Ticket_Seat ts in t.Ticket_Seats)
+                                    foreach (Ticket_Seat ts in BiletKoltukListe)
                                     {
                                         if (ts != null)
                                         {
@@ -331,9 +345,10 @@ namespace PL.Sinema.UI
                 {
                     if (ticket != null)
                     {
-                        if (ticket.Ticket_Seats != null)
+                        List<Ticket_Seat> BiletKoltukListe = Genel.Service.TicketSeat.Select().Where(ts => ts.TicketId == ticket.Id).ToList();
+                        if (BiletKoltukListe.Count() != 0)
                         {
-                            foreach (Ticket_Seat ts in ticket.Ticket_Seats)
+                            foreach (Ticket_Seat ts in BiletKoltukListe)
                             {
                                 if (ts != null)
                                 {

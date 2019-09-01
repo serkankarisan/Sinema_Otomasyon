@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -113,6 +114,17 @@ namespace PL.Sinema.UI
 
         private void Login_Load(object sender, EventArgs e)
         {
+            FileStream fs = new FileStream("BiletFiyat.txt", FileMode.OpenOrCreate);
+            StreamReader sr = new StreamReader(fs);
+            string okunan = sr.ReadLine();
+            if(okunan == null)
+            {
+                StreamWriter sw = new StreamWriter(fs);
+                sw.Write("12");
+                sw.Close();
+            }
+            sr.Close();
+            Genel.BiletFiyatBelirleme();
             using (SinemaContext ent = new SinemaContext())
             {
                 ent.Database.CreateIfNotExists();

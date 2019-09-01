@@ -127,7 +127,7 @@ namespace PL.Sinema.UI
             SuresiDolanSeansSil();
             txtSaat.Focus();
         }
-        
+
         private void dtpBaslangic_ValueChanged(object sender, EventArgs e)
         {
             if (!kontrol)
@@ -363,33 +363,54 @@ namespace PL.Sinema.UI
         {
             if (seance != null && MessageBox.Show("Silmek İstiyor musunuz?", "Onaylıyor Musunuz?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                if (Genel.Service.Seance.Delete(seance.Id) > 0)
+                if (seance != null)
                 {
-                    Genel.Selected_Seance_ID = 0;
-                    Genel.Selected_Film_ID = 0;
-                    Genel.Selected_Hall_Code = "";
-                    seance = null;
-                    h = null;
-                    m = null;
-                    btnSil.Visible = false;
-                    btnKaydet.Visible = false;
-                    btnIptal.Visible = false;
-                    btnSeansEkle.Visible = false;
-                    lblFilmAdi.Text = "";
-                    lblSure.Text = "";
-                    lblTur.Text = "";
-                    lblSalonKodu.Text = "";
-                    lblSalonKapasite.Text = "";
-                    dtpBaslangic.Value = DateTime.Now;
-                    txtdk.Clear();
-                    txtSaat.Clear();
-                    btnSalonSec.Enabled = false;
-                    btnSalonIptal.Visible = false;
-                    txtdk.Enabled = true;
-                    txtSaat.Enabled = true;
-                    Genel.HallByDate = false;
-                    MessageBox.Show("Seans başarıyla silindi.", "İşlem Başarılı");
+                    List<Ticket> BiletListe =Genel.Service.Ticket.Select().Where(t=>t.SeanceId==seance.Id).ToList();
+                    if (BiletListe.Count() != 0)
+                    {
+                        foreach (Ticket t in BiletListe)
+                        {
+                            List<Ticket_Seat> BiletKoltukListe = Genel.Service.TicketSeat.Select().Where(ts => ts.TicketId == t.Id).ToList();
+                            if (BiletKoltukListe.Count() != 0)
+                            {
+                                foreach (Ticket_Seat ts in BiletKoltukListe)
+                                {
+                                    if (ts != null)
+                                    {
+                                        Genel.Service.TicketSeat.Delete(ts.Id);
+                                    }
+                                }
+                            }
+                            Genel.Service.Ticket.Delete(t.Id);
+                        }
+                    }
+                    Genel.Service.Seance.Delete(seance.Id);
                 }
+                Genel.Selected_Seance_ID = 0;
+                Genel.Selected_Film_ID = 0;
+                Genel.Selected_Hall_Code = "";
+                seance = null;
+                h = null;
+                m = null;
+                btnSil.Visible = false;
+                btnKaydet.Visible = false;
+                btnIptal.Visible = false;
+                btnSeansEkle.Visible = false;
+                lblFilmAdi.Text = "";
+                lblSure.Text = "";
+                lblTur.Text = "";
+                lblSalonKodu.Text = "";
+                lblSalonKapasite.Text = "";
+                dtpBaslangic.Value = DateTime.Now;
+                txtdk.Clear();
+                txtSaat.Clear();
+                btnSalonSec.Enabled = false;
+                btnSalonIptal.Visible = false;
+                txtdk.Enabled = true;
+                txtSaat.Enabled = true;
+                Genel.HallByDate = false;
+                MessageBox.Show("Seans başarıyla silindi.", "İşlem Başarılı");
+
             }
         }
 

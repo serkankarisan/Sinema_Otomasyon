@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,7 @@ namespace PL.Sinema.UI
             InitializeComponent();
         }
 
-        int pnlMaxboyut = 400;
+        int pnlMaxboyut = 460;
         private bool _dragging = false;
         private Point _start_point = new Point(0, 0);
         ToolTip ttMenuEnabled = new ToolTip();
@@ -26,6 +27,9 @@ namespace PL.Sinema.UI
         {
             ttMenuEnabled.SetToolTip(lblMenuUyari, "Menü'nün aktif olması için açık sayfaları kapatmalısınız!");
             btnSeansMenu.Location = new Point(7, 166);
+            btnBiletFiyat.Location = new Point(9, 212);
+            pnlFiyat.Location = new Point(9, 258);
+            pnlFiyat.Height = 0;
             pnlMenu.Height = 0;
             User u = Genel.Service.User.SelectByUserName(Genel.ActiveUser.UserName);
             lblKullanici.Text = u.Name + " " + u.SurName;
@@ -130,7 +134,10 @@ namespace PL.Sinema.UI
             frmKullanıcıIslemleri frm = new frmKullanıcıIslemleri();
             FormAc(frm);
             pnlMenu.Height = 0;
-            btnSeansMenu.Location = new Point(7, 166);
+            pnlFiyat.Height = 0;
+            btnSeansMenu.Location = new Point(9, 166);
+            btnBiletFiyat.Location = new Point(9, 212);
+            pnlFiyat.Location = new Point(9, 300);
             btnSalonDüzenleme.Visible = false;
             btnSalonTanımlama.Visible = false;
         }
@@ -140,7 +147,10 @@ namespace PL.Sinema.UI
             frmFilmIslemleri frm = new frmFilmIslemleri();
             FormAc(frm);
             pnlMenu.Height = 0;
-            btnSeansMenu.Location = new Point(7, 166);
+            pnlFiyat.Height = 0;
+            btnSeansMenu.Location = new Point(9, 166);
+            btnBiletFiyat.Location = new Point(9, 212);
+            pnlFiyat.Location = new Point(9, 300);
             btnSalonDüzenleme.Visible = false;
             btnSalonTanımlama.Visible = false;
         }
@@ -151,13 +161,19 @@ namespace PL.Sinema.UI
             {
                 btnSalonDüzenleme.Visible = true;
                 btnSalonTanımlama.Visible = true;
-                btnSeansMenu.Location = new Point(7, 254);
+                btnSeansMenu.Location = new Point(9, 254);
+                btnBiletFiyat.Location = new Point(9, 300);
+                pnlFiyat.Location = new Point(9, 346);
+                pnlFiyat.Height = 0;
             }
             else if (btnSalonDüzenleme.Visible == true && btnSalonDüzenleme.Visible == true)
             {
                 btnSalonDüzenleme.Visible = false;
                 btnSalonTanımlama.Visible = false;
-                btnSeansMenu.Location = new Point(7, 166);
+                btnSeansMenu.Location = new Point(9, 166);
+                btnBiletFiyat.Location = new Point(9, 212);
+                pnlFiyat.Location = new Point(9, 300);
+                pnlFiyat.Height = 0;
             }
         }
 
@@ -166,7 +182,10 @@ namespace PL.Sinema.UI
             frmSeanIslemleri frm = new frmSeanIslemleri();
             FormAc(frm);
             pnlMenu.Height = 0;
-            btnSeansMenu.Location = new Point(7, 166);
+            pnlFiyat.Height = 0;
+            btnSeansMenu.Location = new Point(9, 166);
+            btnBiletFiyat.Location = new Point(9, 212);
+            pnlFiyat.Location = new Point(9, 300);
             btnSalonDüzenleme.Visible = false;
             btnSalonTanımlama.Visible = false;
         }
@@ -176,7 +195,10 @@ namespace PL.Sinema.UI
             frmSalonTanımlama frm = new frmSalonTanımlama();
             FormAc(frm);
             pnlMenu.Height = 0;
-            btnSeansMenu.Location = new Point(7, 166);
+            pnlFiyat.Height = 0;
+            btnSeansMenu.Location = new Point(9, 166);
+            btnBiletFiyat.Location = new Point(9, 212);
+            pnlFiyat.Location = new Point(9, 300);
             btnSalonDüzenleme.Visible = false;
             btnSalonTanımlama.Visible = false;
         }
@@ -186,7 +208,10 @@ namespace PL.Sinema.UI
             frmSalonDüzenleme frm = new frmSalonDüzenleme();
             FormAc(frm);
             pnlMenu.Height = 0;
-            btnSeansMenu.Location = new Point(7, 166);
+            pnlFiyat.Height = 0;
+            btnSeansMenu.Location = new Point(9, 166);
+            btnBiletFiyat.Location = new Point(9, 212);
+            pnlFiyat.Location = new Point(9, 300);
             btnSalonDüzenleme.Visible = false;
             btnSalonTanımlama.Visible = false;
         }
@@ -194,6 +219,7 @@ namespace PL.Sinema.UI
         private void btnCikisYap_Click(object sender, EventArgs e)
         {
             Genel.ActiveUser = null;
+            Genel.FormActive = false;
             Login frm = new Login();
             frm.Show();
             this.Hide();
@@ -204,9 +230,57 @@ namespace PL.Sinema.UI
             frmBiletKes frm = new frmBiletKes();
             FormAc(frm);
             pnlMenu.Height = 0;
-            btnSeansMenu.Location = new Point(7, 166);
+            pnlFiyat.Height = 0;
+            btnSeansMenu.Location = new Point(9, 166);
+            btnBiletFiyat.Location = new Point(9, 212);
+            pnlFiyat.Location = new Point(9, 300);
             btnSalonDüzenleme.Visible = false;
             btnSalonTanımlama.Visible = false;
+        }
+
+        private void btnBiletFiyat_Click(object sender, EventArgs e)
+        {
+            if (btnSalonDüzenleme.Visible == false && btnSalonDüzenleme.Visible == false)
+            {
+                btnBiletFiyat.Location = new Point(9, 212);
+                pnlFiyat.Location = new Point(9, 258);
+            }
+            else if (btnSalonDüzenleme.Visible == true && btnSalonDüzenleme.Visible == true)
+            {
+
+                btnBiletFiyat.Location = new Point(9, 300);
+                pnlFiyat.Location = new Point(9, 346);
+            }
+            if (pnlFiyat.Height==0)
+            {
+                pnlFiyat.Height = 100;
+            }
+            else if (pnlFiyat.Height==100)
+            {
+                pnlFiyat.Height = 0;
+            }
+        }
+
+        private void btnFiyatOnayla_Click(object sender, EventArgs e)
+        {
+            StreamWriter sw = new StreamWriter("BiletFiyat.txt");
+            sw.Write(txtYeniFiyat.Text.Trim());
+            sw.Close();
+            txtYeniFiyat.Clear();
+            Genel.BiletFiyatBelirleme();
+            if (btnSalonDüzenleme.Visible == false && btnSalonDüzenleme.Visible == false)
+            {
+                btnBiletFiyat.Location = new Point(9, 212);
+                pnlFiyat.Location = new Point(9, 258);
+            }
+            else if (btnSalonDüzenleme.Visible == true && btnSalonDüzenleme.Visible == true)
+            {
+
+                btnBiletFiyat.Location = new Point(9, 300);
+                pnlFiyat.Location = new Point(9, 346);
+            }
+            pnlFiyat.Height = 0;
+            MessageBox.Show("Yeni bilet fiyatınız başarıyla değiştirildi.", "İşlem Başarılı");
         }
     }
 
