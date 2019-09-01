@@ -27,18 +27,18 @@ namespace PL.Sinema.UI
             ttMenuEnabled.SetToolTip(lblMenuUyari, "Menü'nün aktif olması için açık sayfaları kapatmalısınız!");
             btnSeansMenu.Location = new Point(7, 166);
             pnlMenu.Height = 0;
-            //User u = Genel.Service.User.SelectByUserName(Genel.ActiveUser.UserName);
-            //lblKullanici.Text = u.Name + " " + u.SurName;
-            //lblYetki.Text = u.Role.RoleName;
-            User testuser = new User();
-            testuser.Name = "Serkan";
-            testuser.SurName = "Karışan";
-            Role testrole = new Role();
-            testrole.RoleName = "Admin";
-            testuser.Role = testrole;
-            lblKullanici.Text = testuser.Name + " " + testuser.SurName;
-            lblYetki.Text = testuser.Role.RoleName;
-            if (testuser.Role.RoleName != "Admin")
+            User u = Genel.Service.User.SelectByUserName(Genel.ActiveUser.UserName);
+            lblKullanici.Text = u.Name + " " + u.SurName;
+            lblYetki.Text = u.Role.RoleName;
+            //User testuser = new User();
+            //testuser.Name = "Serkan";
+            //testuser.SurName = "Karışan";
+            //Role testrole = new Role();
+            //testrole.RoleName = "Admin";
+            //testuser.Role = testrole;
+            //lblKullanici.Text = testuser.Name + " " + testuser.SurName;
+            //lblYetki.Text = testuser.Role.RoleName;
+            if (u.Role.RoleName != "Admin")
             {
                 pnlUser.Location = new Point(10, 0);
                 btnMenu.Enabled = false;

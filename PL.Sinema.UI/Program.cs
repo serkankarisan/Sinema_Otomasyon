@@ -16,7 +16,7 @@ namespace PL.Sinema.UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AnaSayfa());
+            Application.Run(new Login());
         }
     }
 }

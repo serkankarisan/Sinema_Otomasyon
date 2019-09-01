@@ -21,6 +21,10 @@ namespace PL.Sinema.UI
         {
             Genel.FormActive = false;
             Genel.Selected_Hall_Code = "";
+            Genel.SeansByFilm = false;
+            Genel.Selected_Film_ID = 0;
+            Genel.Selected_Seance_ID = 0;
+            Genel.HallByDate = false;
             this.FindForm().Close();
         }
 

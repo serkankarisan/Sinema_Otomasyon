@@ -17,6 +17,13 @@ namespace PL.Sinema.UI
         {
             InitializeComponent();
         }
+        int pbWidth = 100, pbHeight = 75;
+        int Dsayac = 0, Ysayac = 0;
+        float YKalan = 0, YMaxUzunluk = 0, YSira = 0, YAralik = 0, Soldan = 0, Ustten = 0, YYuvarlamaFarki = 0;
+        float DKalan = 0, DMaxUzunluk = 0, DSira = 0, DAralik = 0, DYuvarlamaFarki = 0;
+        bool KapasiteAsimi = false;
+        bool Salon_Eklendi = false;
+        string EklenenSalonKodu = "";
         int salon_kapasite;
         private void frmSalonTanımlama_Load(object sender, EventArgs e)
         {
@@ -53,13 +60,7 @@ namespace PL.Sinema.UI
             btnSalonDuzeni.Enabled = false;
             btnSalonDuzeni.Visible = false;
         }
-        int pbWidth = 100, pbHeight = 75;
-        int Dsayac = 0, Ysayac = 0;
-        float YKalan = 0, YMaxUzunluk = 0, YSira = 0, YAralik = 0, Soldan = 0, Ustten = 0, YYuvarlamaFarki = 0;
-        float DKalan = 0, DMaxUzunluk = 0, DSira = 0, DAralik = 0, DYuvarlamaFarki = 0;
-        bool KapasiteAsimi = false;
-        bool Salon_Eklendi = false;
-        string EklenenSalonKodu = "";
+        
 
         private void btnKaydet_Click(object sender, EventArgs e)
         {

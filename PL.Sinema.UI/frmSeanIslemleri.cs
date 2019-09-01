@@ -27,6 +27,7 @@ namespace PL.Sinema.UI
         int saat, dk;
         bool s = false, d = false;
         int Yenidk, Yenisaat;
+        bool kontrol = false;
         private void btnSalonSec_Click(object sender, EventArgs e)
         {
             bugun = Convert.ToDateTime(DateTime.Now.ToShortDateString());
@@ -126,7 +127,7 @@ namespace PL.Sinema.UI
             SuresiDolanSeansSil();
             txtSaat.Focus();
         }
-        bool kontrol = false;
+        
         private void dtpBaslangic_ValueChanged(object sender, EventArgs e)
         {
             if (!kontrol)
