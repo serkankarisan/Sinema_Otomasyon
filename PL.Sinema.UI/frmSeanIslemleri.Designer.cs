@@ -38,6 +38,7 @@
             this.btnSalonSec = new System.Windows.Forms.Button();
             this.btnFilmSec = new System.Windows.Forms.Button();
             this.pnlSalon = new System.Windows.Forms.Panel();
+            this.btnSalonIptal = new System.Windows.Forms.Button();
             this.lblSalonKapasite = new System.Windows.Forms.Label();
             this.lblSalonKodu = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -55,7 +56,6 @@
             this.btnIptal = new System.Windows.Forms.Button();
             this.btnKaydet = new System.Windows.Forms.Button();
             this.btnSil = new System.Windows.Forms.Button();
-            this.btnSalonIptal = new System.Windows.Forms.Button();
             this.pnlHeader1 = new PL.Sinema.UI.pnlHeader();
             this.pnlSalon.SuspendLayout();
             this.pnlFilm.SuspendLayout();
@@ -138,9 +138,9 @@
             this.label3.Location = new System.Drawing.Point(264, 81);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(392, 20);
+            this.label3.Size = new System.Drawing.Size(457, 20);
             this.label3.TabIndex = 120;
-            this.label3.Text = "örn.(16:30) Normal saatten 10dk fazla girmeniz gerekli.";
+            this.label3.Text = "örn.(16:30) Seans aralarından dolayı 10dk fazla girmeniz gerekli.";
             // 
             // btnSalonSec
             // 
@@ -185,6 +185,21 @@
             this.pnlSalon.Name = "pnlSalon";
             this.pnlSalon.Size = new System.Drawing.Size(300, 150);
             this.pnlSalon.TabIndex = 129;
+            // 
+            // btnSalonIptal
+            // 
+            this.btnSalonIptal.BackColor = System.Drawing.Color.Navy;
+            this.btnSalonIptal.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSalonIptal.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnSalonIptal.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSalonIptal.Location = new System.Drawing.Point(177, 116);
+            this.btnSalonIptal.Name = "btnSalonIptal";
+            this.btnSalonIptal.Size = new System.Drawing.Size(120, 31);
+            this.btnSalonIptal.TabIndex = 138;
+            this.btnSalonIptal.Text = "Salon İptal";
+            this.btnSalonIptal.UseVisualStyleBackColor = false;
+            this.btnSalonIptal.Visible = false;
+            this.btnSalonIptal.Click += new System.EventHandler(this.btnSalonIptal_Click);
             // 
             // lblSalonKapasite
             // 
@@ -406,21 +421,6 @@
             this.btnSil.UseVisualStyleBackColor = false;
             this.btnSil.Visible = false;
             this.btnSil.Click += new System.EventHandler(this.btnSil_Click);
-            // 
-            // btnSalonIptal
-            // 
-            this.btnSalonIptal.BackColor = System.Drawing.Color.Navy;
-            this.btnSalonIptal.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSalonIptal.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btnSalonIptal.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSalonIptal.Location = new System.Drawing.Point(177, 116);
-            this.btnSalonIptal.Name = "btnSalonIptal";
-            this.btnSalonIptal.Size = new System.Drawing.Size(120, 31);
-            this.btnSalonIptal.TabIndex = 138;
-            this.btnSalonIptal.Text = "Salon İptal";
-            this.btnSalonIptal.UseVisualStyleBackColor = false;
-            this.btnSalonIptal.Visible = false;
-            this.btnSalonIptal.Click += new System.EventHandler(this.btnSalonIptal_Click);
             // 
             // pnlHeader1
             // 

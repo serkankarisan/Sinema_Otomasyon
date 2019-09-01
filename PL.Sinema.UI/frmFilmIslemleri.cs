@@ -22,6 +22,7 @@ namespace PL.Sinema.UI
         string projeAdres = Application.StartupPath;
         int FilmID = 0;
         int film_sure;
+        int eski_sure;
         private void ShowListView(List<Movie> Movies)
         {
             lvFilmler.Items.Clear();
@@ -197,6 +198,7 @@ namespace PL.Sinema.UI
                 if (FilmID != 0)
                 {
                     Movie m = Genel.Service.Movie.SelectById(FilmID);
+                    eski_sure = m.Movie_Duration_InMinute;
                     Movie movienameToUser = Genel.Service.Movie.SelectByMovieName(txtFilmAdi.Text.Trim());
                     if (movienameToUser != null && movienameToUser.Id != m.Id)
                     {
@@ -215,6 +217,12 @@ namespace PL.Sinema.UI
                         {
                             MessageBox.Show("Film süresi sayılardan oluşmalı.", "Hata!");
                             return;
+                        }
+                        List<Seance> SeanceByFilmList = Genel.Service.Seance.SelectByFilm(FilmID);
+                        foreach (Seance seans in SeanceByFilmList)
+                        {
+                            seans.End_Time = seans.End_Time.AddMinutes(film_sure-eski_sure);
+                            Genel.Service.Seance.Update(seans);
                         }
                         m.Director = txtYönetmen.Text.Trim();
                         m.Banner = txtBanner.Text.Trim();

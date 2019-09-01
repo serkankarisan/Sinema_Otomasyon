@@ -94,49 +94,7 @@ namespace PL.Sinema.UI
             }
             if (s && d)
             {
-                string[] date = baslangic.ToString().Split(' ');
-                string[] hour = date[1].Split(':');
-                if (dk < 10)
-                {
-                    Yenidk = 60 - dk;
-                    if (saat == 0)
-                    {
-                        hour[0] = "23";
-                    }
-                    else
-                    {
-                        hour[0] = (saat - 1).ToString();
-                    }
-                    hour[1] = (Yenidk - (10)).ToString();
-                }
-                else
-                {
-                    hour[0] = saat.ToString();
-                    hour[1] = (dk-10).ToString();
-                }
-                Baslama_tarihi = Convert.ToDateTime(date[0] + " " + hour[0] + ":" + hour[1] + ":00");
-                int filmSaat = (Convert.ToInt32(lblSure.Text) / 60);
-                int filmDk = (Convert.ToInt32(lblSure.Text) % 60);
-                bool NextDay = false;
-                if (saat+filmSaat >= 24)
-                {
-                    saat =  (saat + filmSaat) %24;
-                    NextDay = true;
-                    hour[0] = (saat).ToString();
-                    hour[1] = (dk + filmDk).ToString();
-                }
-                else
-                {
-                    hour[0] = (saat + filmSaat).ToString();
-                    hour[1] = (dk + filmDk).ToString();
-                }
-                
-                Bitis_tarihi = Convert.ToDateTime(date[0] + " " + hour[0] + ":" + hour[1] + ":00");
-                if (NextDay)
-                {
-                    Bitis_tarihi=Bitis_tarihi.AddDays(1);
-                    NextDay = false;
-                }
+                TarihHesapla();
                 Genel.BaslangicTarihi = Baslama_tarihi;
                 Genel.BitisTarihi = Bitis_tarihi;
                 Genel.HallByDate = true;
@@ -165,10 +123,7 @@ namespace PL.Sinema.UI
 
         private void frmSeanIslemleri_Load(object sender, EventArgs e)
         {
-            foreach (Seance item in Genel.Service.Seance.Select().Where(s => s.Start_Time <= DateTime.Now).ToList())
-            {
-                Genel.Service.Seance.Delete(item.Id);
-            }
+            SuresiDolanSeansSil();
             txtSaat.Focus();
         }
         bool kontrol = false;
@@ -186,34 +141,64 @@ namespace PL.Sinema.UI
                 }
             }
         }
-
+        private void SuresiDolanSeansSil()
+        {
+            List<Seance> SuresiDolmusSeanslar = Genel.Service.Seance.Select().Where(s => s.Start_Time <= DateTime.Now).ToList();
+            if (SuresiDolmusSeanslar != null)
+            {
+                foreach (Seance seans in SuresiDolmusSeanslar)
+                {
+                    if (seans != null)
+                    {
+                        if (seans.Tickets != null)
+                        {
+                            foreach (Ticket t in seans.Tickets)
+                            {
+                                if (t.Ticket_Seats != null)
+                                {
+                                    foreach (Ticket_Seat ts in t.Ticket_Seats)
+                                    {
+                                        if (ts != null)
+                                        {
+                                            Genel.Service.TicketSeat.Delete(ts.Id);
+                                        }
+                                    }
+                                }
+                                Genel.Service.Ticket.Delete(t.Id);
+                            }
+                        }
+                        Genel.Service.Seance.Delete(seans.Id);
+                    }
+                }
+            }
+        }
         private void btnGoruntule_Click(object sender, EventArgs e)
         {
-            foreach (Seance item in Genel.Service.Seance.Select().Where(s => s.Start_Time <= DateTime.Now).ToList())
-            {
-                Genel.Service.Seance.Delete(item.Id);
-            }
+            SuresiDolanSeansSil();
+            Genel.SeansByFilm = false;
             frmSeansSec frm = new frmSeansSec();
             frm.ShowDialog();
             seance = Genel.Service.Seance.SelectById(Genel.Selected_Seance_ID);
             if (seance != null)
             {
+                Movie FilmBySeans = Genel.Service.Movie.SelectById(seance.MovieId);
+                Hall SalonBySeans = Genel.Service.Hall.SelectById(seance.HallId);
                 btnIptal.Visible = true;
                 btnKaydet.Visible = true;
                 btnSil.Visible = true;
                 btnSalonSec.Enabled = true;
                 kontrol = true;
-                lblFilmAdi.Text = seance.Movie.Movie_Name;
-                lblSure.Text = seance.Movie.Movie_Duration_InMinute.ToString();
-                lblTur.Text = seance.Movie.Movie_Type;
-                lblSalonKodu.Text = seance.Hall.Hall_Code;
-                lblSalonKapasite.Text = seance.Hall.Seating_Capacity.ToString();
+                lblFilmAdi.Text = FilmBySeans.Movie_Name;
+                lblSure.Text = FilmBySeans.Movie_Duration_InMinute.ToString();
+                lblTur.Text = FilmBySeans.Movie_Type;
+                lblSalonKodu.Text = SalonBySeans.Hall_Code;
+                lblSalonKapasite.Text = SalonBySeans.Seating_Capacity.ToString();
 
                 string[] date = seance.Start_Time.ToString().Split(' ');
                 string[] hour = date[1].Split(':');
 
                 txtSaat.Text = hour[0];
-                txtdk.Text = hour[1];
+                txtdk.Text = (Convert.ToInt32(hour[1]) + 10).ToString();
                 dtpBaslangic.Value = seance.Start_Time;
             }
             else
@@ -311,16 +296,7 @@ namespace PL.Sinema.UI
             }
             if (s && d)
             {
-                string[] date = baslangic.ToString().Split(' ');
-                string[] hour = date[1].Split(':');
-                hour[0] = saat.ToString();
-                hour[1] = dk.ToString();
-                Baslama_tarihi = Convert.ToDateTime(date[0] + " " + hour[0] + ":" + hour[1] + ":00");
-                int filmSaat = (Convert.ToInt32(lblSure.Text) / 60);
-                int filmDk = (Convert.ToInt32(lblSure.Text) % 60);
-                hour[0] = (saat + filmSaat).ToString();
-                hour[1] = (dk + filmDk).ToString();
-                Bitis_tarihi = Convert.ToDateTime(date[0] + " " + hour[0] + ":" + hour[1] + ":00");
+                TarihHesapla();
                 seance.Start_Time = Baslama_tarihi;
                 seance.End_Time = Bitis_tarihi;
                 if (h != null)
@@ -550,6 +526,61 @@ namespace PL.Sinema.UI
                     return;
                 }
 
+            }
+        }
+        private void TarihHesapla()
+        {
+            string[] date = baslangic.ToString().Split(' ');
+            string[] hour = date[1].Split(':');
+            if (dk < 10)
+            {
+                Yenidk = 60 - dk;
+                if (saat == 0)
+                {
+                    hour[0] = "23";
+                }
+                else
+                {
+                    saat = saat - 1;
+                    hour[0] = saat.ToString();
+                }
+                hour[1] = (Yenidk - (10)).ToString();
+            }
+            else
+            {
+                Yenidk = dk;
+                hour[0] = saat.ToString();
+                hour[1] = (Yenidk - 10).ToString();
+            }
+            Baslama_tarihi = Convert.ToDateTime(date[0] + " " + hour[0] + ":" + hour[1] + ":00");
+            int filmSaat = (Convert.ToInt32(lblSure.Text) / 60);
+            int filmDk = (Convert.ToInt32(lblSure.Text) % 60);
+            bool NextDay = false;
+            if (saat + filmSaat >= 24)
+            {
+                saat = (saat + filmSaat) % 24;
+                NextDay = true;
+                hour[0] = (saat).ToString();
+                hour[1] = (Yenidk + filmDk).ToString();
+            }
+            else
+            {
+                if (Yenidk + filmDk >= 60)
+                {
+                    hour[0] = (saat + filmSaat + ((Yenidk + filmDk) / 60)).ToString();
+                    hour[1] = (((Yenidk + filmDk) % 60)).ToString();
+                }
+                else
+                {
+                    hour[0] = (saat + filmSaat).ToString();
+                    hour[1] = (Yenidk + filmDk).ToString();
+                }
+            }
+            Bitis_tarihi = Convert.ToDateTime(date[0] + " " + hour[0] + ":" + hour[1] + ":00");
+            if (NextDay)
+            {
+                Bitis_tarihi = Bitis_tarihi.AddDays(1);
+                NextDay = false;
             }
         }
     }

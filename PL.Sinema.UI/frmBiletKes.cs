@@ -21,28 +21,18 @@ namespace PL.Sinema.UI
         int Dsayac = 0, Ysayac = 0;
         float YKalan = 0, YMaxUzunluk = 0, YSira = 0, YAralik = 0, Soldan = 0, Ustten = 0, YYuvarlamaFarki = 0;
         float DKalan = 0, DMaxUzunluk = 0, DSira = 0, DAralik = 0, DYuvarlamaFarki = 0;
-
-        private void frmBiletKes_Load(object sender, EventArgs e)
-        {
-            foreach (Ticket item in Genel.Service.Ticket.Select().Where(s => s.Validity_Date <= DateTime.Now).ToList())
-            {
-                foreach (Ticket_Seat ts in item.Ticket_Seats)
-                {
-                    Genel.Service.TicketSeat.Delete(ts.Id);
-                }
-                Genel.Service.Ticket.Delete(item.Id);
-            }
-            foreach (Seance item in Genel.Service.Seance.Select().Where(s => s.Start_Time <= DateTime.Now).ToList())
-            {
-                Genel.Service.Seance.Delete(item.Id);
-            }
-        }
-
         Seance s;
         Movie m;
         Hall h;
+        private void frmBiletKes_Load(object sender, EventArgs e)
+        {
+            SuresiDolanBiletSil();
+            SuresiDolanSeansSil();
+        }
         private void btnFilmeGoreSeansSec_Click(object sender, EventArgs e)
         {
+            SuresiDolanBiletSil();
+            SuresiDolanSeansSil();
             frmFilmSec frm = new frmFilmSec();
             frm.ShowDialog();
             m = Genel.Service.Movie.SelectById(Genel.Selected_Film_ID);
@@ -106,7 +96,6 @@ namespace PL.Sinema.UI
                 }
             }
         }
-
         private void btnAnamenu_Click(object sender, EventArgs e)
         {
             Genel.FormActive = false;
@@ -114,6 +103,8 @@ namespace PL.Sinema.UI
         }
         private void btnSeansSec_Click(object sender, EventArgs e)
         {
+            SuresiDolanBiletSil();
+            SuresiDolanSeansSil();
             frmSeansSec frm = new frmSeansSec();
             frm.ShowDialog();
             s = Genel.Service.Seance.SelectById(Genel.Selected_Seance_ID);
@@ -133,7 +124,7 @@ namespace PL.Sinema.UI
                 if (p is PictureBox)
                 {
                     PictureBox pb = (PictureBox)p;
-                    if (pb.BackColor!=Color.DarkRed)
+                    if (pb.BackColor != Color.DarkRed)
                     {
                         pb.Enabled = true;
                     }
@@ -172,27 +163,29 @@ namespace PL.Sinema.UI
         private void SalonGetir(string HallCode)
         {
             pnlKoltuklar.Controls.Clear();
-            List<int> SelectedSeatIDList = Genel.Service.TicketSeat.Select().Select(s => s.SeatId).ToList();
+            List<Ticket_Seat> SelectedSeatListIlk = Genel.Service.TicketSeat.Select();
             List<Seat> SeatList = Genel.Service.Seat.SelectByHallCode(HallCode);
             List<Seat> SeatList2 = Genel.Service.Seat.SelectByHallCode(HallCode);
             List<Seat> SelectedSeatList = Genel.Service.Seat.SelectByHallCode(HallCode);
-            foreach (Seat item in SeatList2)
+            foreach (Seat koltuk in SeatList2)
             {
-                foreach (int seatId in SelectedSeatIDList)
+                foreach (Ticket_Seat ticketseat in SelectedSeatListIlk)
                 {
-                    if (item.Id == seatId)
+                    Ticket bilet = Genel.Service.Ticket.SelectById(ticketseat.TicketId);
+                    Seance Snc = Genel.Service.Seance.SelectById(bilet.SeanceId);
+                    if (koltuk.Id == ticketseat.SeatId && Snc.Id==s.Id)
                     {
-                        SeatList.Remove(item);
+                        SeatList.Remove(koltuk);
                     }
                 }
             }
-            foreach (Seat item in SeatList2)
+            foreach (Seat koltuk in SeatList2)
             {
                 foreach (Seat seat in SeatList)
                 {
-                    if (item.Id == seat.Id)
+                    if (koltuk.Id == seat.Id)
                     {
-                        SelectedSeatList.Remove(item);
+                        SelectedSeatList.Remove(koltuk);
                     }
                 }
             }
@@ -297,5 +290,63 @@ namespace PL.Sinema.UI
                 return;
             }
         }
+        private void SuresiDolanSeansSil()
+        {
+            List<Seance> SuresiDolmusSeanslar = Genel.Service.Seance.Select().Where(s => s.Start_Time <= DateTime.Now).ToList();
+            if (SuresiDolmusSeanslar != null)
+            {
+                foreach (Seance seans in SuresiDolmusSeanslar)
+                {
+                    if (seans != null)
+                    {
+                        if (seans.Tickets != null)
+                        {
+                            foreach (Ticket t in seans.Tickets)
+                            {
+                                if (t.Ticket_Seats != null)
+                                {
+                                    foreach (Ticket_Seat ts in t.Ticket_Seats)
+                                    {
+                                        if (ts != null)
+                                        {
+                                            Genel.Service.TicketSeat.Delete(ts.Id);
+                                        }
+                                    }
+                                }
+                                Genel.Service.Ticket.Delete(t.Id);
+                            }
+                        }
+                        Genel.Service.Seance.Delete(seans.Id);
+                    }
+                }
+            }
+        }
+
+        private void SuresiDolanBiletSil()
+        {
+            List<Ticket> SuresiDolanBiletler = Genel.Service.Ticket.Select().Where(s => s.Validity_Date <= DateTime.Now).ToList();
+            if (SuresiDolanBiletler != null)
+            {
+                foreach (Ticket ticket in SuresiDolanBiletler)
+                {
+                    if (ticket != null)
+                    {
+                        if (ticket.Ticket_Seats != null)
+                        {
+                            foreach (Ticket_Seat ts in ticket.Ticket_Seats)
+                            {
+                                if (ts != null)
+                                {
+                                    Genel.Service.TicketSeat.Delete(ts.Id);
+                                }
+                            }
+                        }
+                    }
+                    Genel.Service.Ticket.Delete(ticket.Id);
+                }
+            }
+        }
+
+
     }
 }
