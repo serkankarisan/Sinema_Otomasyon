@@ -212,13 +212,33 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\x-mark-32.ico" />
     <None Include="Images\eye-3-32.ico" />
     <None Include="Images\key-32.ico" />
     <None Include="Images\video-5-512.ico" />
     <None Include="Images\Login_Background.jpg" />
+    <Content Include="Images\arrow-211-32 %281%29.ico" />
+    <Content Include="Images\arrow-211-32.ico" />
+    <Content Include="Images\arrow-32-32.ico" />
+    <Content Include="Images\Background_dark_menu.jpg" />
+    <Content Include="Images\banknotes-32.ico" />
+    <Content Include="Images\dark-wall-background.jpg" />
+    <Content Include="Images\edit-user-32.ico" />
+    <Content Include="Images\eye-4-32.ico" />
+    <Content Include="Images\header_background.jpg" />
+    <Content Include="Images\koltuk_kapak %282%29.png" />
+    <Content Include="Images\koltuk_kapak.png" />
     <Content Include="Images\Logo.png" />
     <Content Include="Images\minus-24.ico" />
+    <Content Include="Images\minus-32.ico" />
+    <Content Include="Images\plus-32.ico" />
+    <Content Include="Images\power-32.ico" />
     <Content Include="Images\resize-6-24.ico" />
+    <Content Include="Images\ticket-32.ico" />
+    <Content Include="Images\user-xl.png" />
+    <Content Include="Images\video-5-32.ico" />
+    <Content Include="Images\video-camera-3-32.ico" />
+    <Content Include="Images\video-multi-32.ico" />
     <Content Include="Images\x-mark-24.ico" />
   </ItemGroup>
   <ItemGroup />
