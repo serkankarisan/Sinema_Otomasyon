@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities.Sinema", "Entities
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup_Sinema", "Setup_Sinema\Setup_Sinema.vdproj", "{D9F04C03-401F-4CCE-9F86-D2D509DA6432}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SetupFiles", "SetupFiles", "{419A0602-7BC0-435E-B5C5-AE20A478E460}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
