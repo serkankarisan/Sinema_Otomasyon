@@ -185,7 +185,8 @@ namespace PL.Sinema.UI
             txtName.Text = dgvKullanicilar.SelectedRows[0].Cells["Name"].Value.ToString();
             txtSurname.Text = dgvKullanicilar.SelectedRows[0].Cells["SurName"].Value.ToString();
             txtUsername.Text = dgvKullanicilar.SelectedRows[0].Cells["UserName"].Value.ToString();
-            cbRol.Text = Genel.Service.User.Select().Where(s => s.Id == ID).FirstOrDefault().Role.RoleName;
+            Role r = Genel.Service.Role.SelectById(Genel.Service.User.Select().Where(s => s.Id == ID).FirstOrDefault().RoleId);
+            cbRol.Text = r.RoleName;
 
         }
 
