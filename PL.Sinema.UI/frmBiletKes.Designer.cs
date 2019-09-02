@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBiletKes));
             this.pnlSalon = new System.Windows.Forms.Panel();
             this.lblSalon = new System.Windows.Forms.Label();
             this.lblSalonKodu = new System.Windows.Forms.Label();
@@ -45,6 +46,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtTel = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.printDoc = new System.Drawing.Printing.PrintDocument();
+            this.printPrwDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.pnlSalon.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -266,6 +270,25 @@
             this.label5.TabIndex = 137;
             this.label5.Text = "5xxxxxxxxx";
             // 
+            // printDoc
+            // 
+            this.printDoc.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDoc_PrintPage);
+            // 
+            // printPrwDialog1
+            // 
+            this.printPrwDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPrwDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPrwDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPrwDialog1.Document = this.printDoc;
+            this.printPrwDialog1.Enabled = true;
+            this.printPrwDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPrwDialog1.Icon")));
+            this.printPrwDialog1.Name = "prntPrwDoc";
+            this.printPrwDialog1.Visible = false;
+            // 
+            // printDialog1
+            // 
+            this.printDialog1.UseEXDialog = true;
+            // 
             // frmBiletKes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -316,5 +339,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtTel;
         private System.Windows.Forms.Label label5;
+        private System.Drawing.Printing.PrintDocument printDoc;
+        private System.Windows.Forms.PrintPreviewDialog printPrwDialog1;
+        private System.Windows.Forms.PrintDialog printDialog1;
     }
 }

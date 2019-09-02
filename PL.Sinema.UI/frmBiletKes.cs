@@ -24,6 +24,7 @@ namespace PL.Sinema.UI
         Seance s;
         Movie m;
         Hall h;
+        int TicketID = 0;
         private void frmBiletKes_Load(object sender, EventArgs e)
         {
             SuresiDolanBiletSil();
@@ -59,6 +60,7 @@ namespace PL.Sinema.UI
                 if (txtTel.Text.Trim().Count() < 10)
                 {
                     MessageBox.Show("Telefon numarası hatalı.", "Hata!");
+                    txtTel.Focus();
                     return;
                 }
                 else
@@ -73,9 +75,9 @@ namespace PL.Sinema.UI
                             SeatIDList.Add(Convert.ToInt32(pbName[1]));
                         }
                     }
-                    if (SeatIDList.Count()!=0)
+                    if (SeatIDList.Count() != 0)
                     {
-                       
+
                         Ticket t = new Ticket();
                         t.SeanceId = s.Id;
                         t.Validity_Date = s.Start_Time;
@@ -89,6 +91,7 @@ namespace PL.Sinema.UI
                         Genel.Service.Customer.Insert(c);
                         t.CustomerId = Genel.Service.Customer.SelectByPhone(c.Phone).Id;
                         Genel.Service.Ticket.Insert(t);
+                        TicketID = Genel.Service.Ticket.SelectByTicketCode(t.Ticket_Code).Id;
                         foreach (int SeatID in SeatIDList)
                         {
                             Ticket_Seat ts = new Ticket_Seat();
@@ -96,7 +99,17 @@ namespace PL.Sinema.UI
                             ts.TicketId = Genel.Service.Ticket.SelectByTicketCode(t.Ticket_Code).Id;
                             Genel.Service.TicketSeat.Insert(ts);
                         }
+                        string[] Bilet = t.Ticket_Code.Split('.');
+                        string[] Devami = Bilet[2].Split(':');
+                        string TCode = Bilet[0] + Bilet[1] + Devami[0] + Devami[1] + Devami[2];
+
                         MessageBox.Show(h.Hall_Code + " Numaralı salonda iyi seyirler dileriz.", "İşlem Başarılı");
+                        Clipboard.SetText(TCode);
+                        printPrwDialog1.Document.DocumentName = TCode;
+                        printPrwDialog1.Focus();
+                        printPrwDialog1.Width = this.FindForm().Width;
+                        printPrwDialog1.Height = this.FindForm().Height+80;
+                        printPrwDialog1.ShowDialog();
                         Temizle();
                     }
                     else
@@ -361,7 +374,54 @@ namespace PL.Sinema.UI
                 }
             }
         }
+        private void printDoc_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            Ticket YazdirilacakBilet = Genel.Service.Ticket.SelectById(TicketID);
+            List<Ticket_Seat> Koltuklar = Genel.Service.TicketSeat.Select().Where(ts => ts.TicketId == TicketID).ToList();
+            Seance YazilacakSeans = Genel.Service.Seance.SelectById(YazdirilacakBilet.SeanceId);
+            Movie YazilacakFilm = Genel.Service.Movie.SelectById(YazilacakSeans.MovieId);
+            //Yazı fontumu ve çizgi çizmek için fırçamı ve kalem nesnemi oluşturdum
+            Font Baslik = new Font("Calibri", 20);
+            Font font2 = new Font("Calibri", 15,FontStyle.Bold);
+            Font font = new Font("Calibri", 12);
+            SolidBrush sbrush = new SolidBrush(Color.Black);
+            Pen myPen = new Pen(Color.Black);
 
+            //Bu kısımda sipariş formu yazısını ve çizgileri yazdırıyorum
+            e.Graphics.DrawLine(myPen, 100, 100, 700, 100);
+            e.Graphics.DrawLine(myPen, 100, 150, 700, 150);
+            e.Graphics.DrawString("SİNEMA OTOMASYON", Baslik, sbrush, 250, 100);
+
+            e.Graphics.DrawLine(myPen, 100, 200, 700, 200);
+
+            e.Graphics.DrawString("Bilet Kodu", font, sbrush, 100, 225);
+            e.Graphics.DrawString(YazdirilacakBilet.Ticket_Code, font, sbrush, 250, 225);
+            e.Graphics.DrawString("Koltuk Sayısı", font, sbrush, 100, 250);
+            e.Graphics.DrawString(Koltuklar.Count().ToString(), font, sbrush, 250, 250);
+            e.Graphics.DrawString("Birim Fiyatı", font, sbrush, 100, 275);
+            e.Graphics.DrawString((YazdirilacakBilet.Ticket_Amount / Koltuklar.Count()).ToString("c"), font, sbrush, 250, 275);
+
+            e.Graphics.DrawString("Koltuklar", font, sbrush, 100, 300);
+            for (int i = 0; i < Koltuklar.Count(); i++)
+            {
+                Seat SeciliKoltuk = Genel.Service.Seat.SelectById(Koltuklar[i].SeatId);
+                e.Graphics.DrawString(SeciliKoltuk.Seat_Code, font, sbrush, 250, ((i * 25) + 325));
+            }
+
+            e.Graphics.DrawString("Film", font, sbrush, 100, (Koltuklar.Count() * 25 + 350));
+            e.Graphics.DrawString(YazilacakFilm.Movie_Name, font, sbrush, 250, (Koltuklar.Count() * 25 + 350));
+            e.Graphics.DrawString("Salon Kodu", font, sbrush, 100, (Koltuklar.Count() * 25 + 375));
+            e.Graphics.DrawString(h.Hall_Code, font, sbrush, 250, (Koltuklar.Count() * 25 + 375));
+            e.Graphics.DrawString("Tarih", font, sbrush, 100, (Koltuklar.Count() * 25 + 400));
+            e.Graphics.DrawString(YazdirilacakBilet.Validity_Date.ToString(), font, sbrush, 250, (Koltuklar.Count() * 25 + 400));
+
+            e.Graphics.DrawLine(myPen, 100, (Koltuklar.Count() * 25 + 425), 750, (Koltuklar.Count() * 25 + 425));
+            e.Graphics.DrawString("Bilet Tutarı", font2, sbrush, 100, (Koltuklar.Count() * 25 + 425));
+            e.Graphics.DrawString(YazdirilacakBilet.Ticket_Amount.ToString("c"), font2, sbrush, 250, (Koltuklar.Count() * 25 + 425));
+            e.Graphics.DrawLine(myPen, 100, (Koltuklar.Count() * 25 + 450), 750, (Koltuklar.Count() * 25 + 450));
+
+            e.Graphics.DrawString("İyi Seyirler...", Baslik, sbrush, 325, (Koltuklar.Count() * 25 + 500));
+        }
 
     }
 }
