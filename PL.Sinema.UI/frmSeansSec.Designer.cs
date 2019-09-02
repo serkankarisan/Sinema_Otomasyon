@@ -44,7 +44,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(345, 33);
             this.label1.TabIndex = 114;
-            this.label1.Text = "Seçmek için filme çift tıklamanız yeterli.";
+            this.label1.Text = "Seçmek için seansa çift tıklamanız yeterli.";
             // 
             // btnVazgec
             // 
