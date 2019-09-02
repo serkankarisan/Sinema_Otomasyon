@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PL.Sinema.UI
 {
@@ -26,7 +27,8 @@ namespace PL.Sinema.UI
         public static decimal BiletFiyat;
         public static void BiletFiyatBelirleme()
         {
-            StreamReader DosyaOku = new StreamReader("BiletFiyat.txt");
+            FileStream fs = new FileStream(Application.LocalUserAppDataPath + "\\BiletFiyat.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            StreamReader DosyaOku = new StreamReader(fs);
             string okunan = DosyaOku.ReadLine();
             while (okunan != null)
             {

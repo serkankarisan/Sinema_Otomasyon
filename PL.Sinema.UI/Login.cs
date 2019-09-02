@@ -114,7 +114,7 @@ namespace PL.Sinema.UI
 
         private void Login_Load(object sender, EventArgs e)
         {
-            FileStream fs = new FileStream("BiletFiyat.txt", FileMode.OpenOrCreate);
+            FileStream fs = new FileStream(Application.LocalUserAppDataPath + "\\BiletFiyat.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite);
             StreamReader sr = new StreamReader(fs);
             string okunan = sr.ReadLine();
             if(okunan == null)

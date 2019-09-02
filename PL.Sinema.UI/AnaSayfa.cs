@@ -263,7 +263,8 @@ namespace PL.Sinema.UI
 
         private void btnFiyatOnayla_Click(object sender, EventArgs e)
         {
-            StreamWriter sw = new StreamWriter("BiletFiyat.txt");
+            FileStream fs = new FileStream(Application.LocalUserAppDataPath + "\\BiletFiyat.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            StreamWriter sw = new StreamWriter(fs);
             sw.Write(txtYeniFiyat.Text.Trim());
             sw.Close();
             txtYeniFiyat.Clear();

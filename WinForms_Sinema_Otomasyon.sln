@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL.Sinema", "BLL.Sinema\BL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities.Sinema", "Entities.Sinema\Entities.Sinema.csproj", "{03732BB4-C23C-4CCE-B8DB-0E951F4D555E}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup_Sinema", "Setup_Sinema\Setup_Sinema.vdproj", "{D9F04C03-401F-4CCE-9F86-D2D509DA6432}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,8 @@ Global
 		{03732BB4-C23C-4CCE-B8DB-0E951F4D555E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03732BB4-C23C-4CCE-B8DB-0E951F4D555E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03732BB4-C23C-4CCE-B8DB-0E951F4D555E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9F04C03-401F-4CCE-9F86-D2D509DA6432}.Debug|Any CPU.ActiveCfg = Debug
+		{D9F04C03-401F-4CCE-9F86-D2D509DA6432}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
