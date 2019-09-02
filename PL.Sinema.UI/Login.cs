@@ -130,12 +130,7 @@ namespace PL.Sinema.UI
                 ent.Database.CreateIfNotExists();
                 User u = new User { Id = 1, UserName = "serkan", Name = "Serkan", SurName = "Karışan", IsActive = true, Password = "NieQminDE4Ggcewn98nKl3Jhgq7Smn3dLlQ1MyLPswq7njpt8qwsIP4jQ2MR1nhWTQyNMFkwV19g4tPQSBhNeQ==", AddedDate = DateTime.Now, RoleId = 1 };
                 Role r1 = new Role { Id = 1, RoleName = "Admin", AddedDate = DateTime.Now, IsActive = true };
-                Role r2 = new Role { Id = 2, RoleName = "User", AddedDate = DateTime.Now, IsActive = true };                
-                if(ent.Users.Where(us=>us.Id==u.Id && us.UserName==u.UserName && us.Name==u.Name && us.SurName == u.SurName).FirstOrDefault() == null)
-                {
-                    ent.Users.Add(u);
-                    ent.SaveChanges();
-                }
+                Role r2 = new Role { Id = 2, RoleName = "User", AddedDate = DateTime.Now, IsActive = true };
                 if (ent.Roles.Where(rl => rl.Id == r1.Id && rl.RoleName == r1.RoleName).FirstOrDefault() == null)
                 {
                     ent.Roles.Add(r1);
@@ -146,6 +141,12 @@ namespace PL.Sinema.UI
                     ent.Roles.Add(r2);
                     ent.SaveChanges();
                 }
+                if (ent.Users.Where(us=>us.Id==u.Id && us.UserName==u.UserName && us.Name==u.Name && us.SurName == u.SurName).FirstOrDefault() == null)
+                {
+                    ent.Users.Add(u);
+                    ent.SaveChanges();
+                }
+
             }
         }
     }
