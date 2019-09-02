@@ -33,7 +33,8 @@ namespace PL.Sinema.UI
             pnlMenu.Height = 0;
             User u = Genel.Service.User.SelectByUserName(Genel.ActiveUser.UserName);
             lblKullanici.Text = u.Name + " " + u.SurName;
-            lblYetki.Text = u.Role.RoleName;
+            Role r = Genel.Service.Role.SelectById(u.RoleId);
+            lblYetki.Text = r.RoleName;
             //User testuser = new User();
             //testuser.Name = "Serkan";
             //testuser.SurName = "Karışan";
